@@ -1,0 +1,9 @@
+version: '3'
+services:
+  nuxt:
+    build: .
+    tty: true
+    volumes:
+      - ".:/Twimon"
+    ports:
+      - "3000:3000"

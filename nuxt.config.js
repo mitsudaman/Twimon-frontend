@@ -1,4 +1,5 @@
 module.exports = {
+  mode: 'spa',
   /*
   ** Headers of the page
   */
@@ -17,7 +18,10 @@ module.exports = {
   plugins: [
     '~/plugins/vuetify.js',
   ],
-  css: ['~/assets/style/app.styl'],
+  css: [
+    '~/assets/style/app.styl',
+    '~/assets/style/main.styl',
+  ],
   /*
   ** Customize the progress bar color
   */
@@ -29,7 +33,8 @@ module.exports = {
     clientConfigs: {
       default: {
         // Graphpack側のエンドポイントを指定します。
-        httpEndpoint: 'http://stark-ravine-37952.herokuapp.com/graphql',
+        // httpEndpoint: 'http://stark-ravine-37952.herokuapp.com/graphql',
+        httpEndpoint: 'http://localhost:8001//graphql',
         // // Subscription用にWebSocketの設定も追加します。
         // wsEndpoint: 'ws://localhost:4000/graphql',
         // websocketsOnly: true, 

@@ -1,46 +1,115 @@
 <template>
-  <v-layout column justify-center align-center>
-    <v-flex xs12 sm8 md6>
-      <div class="text-xs-center">
-        <img src="/v.png" alt="Vuetify.js" class="mb-5" />
-      </div>
-      <v-card>
-        <v-card-title class="headline">Welcome to the Vuetify + Nuxt.js template</v-card-title>
-        <v-card-text>
-          <p>Vuetify is a progressive Material Design component framework for Vue.js. It was designed to empower developers to create amazing applications.</p>
-          <p>For more information on Vuetify, check out the <a href="https://vuetifyjs.com" target="_blank">documentation</a>.</p>
-          <p>If you have questions, please join the official <a href="https://chat.vuetifyjs.com/" target="_blank" title="chat">discord</a>.</p>
-          <p>Find a bug? Report it on the github <a href="https://github.com/vuetifyjs/vuetify/issues" target="_blank" title="contribute">issue board</a>.</p>
-          <p>Thank you for developing with Vuetify and I look forward to bringing more exciting features in the future.</p>
-          <div class="text-xs-right">
-            <em><small>&mdash; John Leider</small></em>
-          </div>
-          <hr class="my-3">
-          <a href="https://nuxtjs.org/" target="_blank">Nuxt Documentation</a>
-          <br>
-          <a href="https://github.com/nuxt/nuxt.js" target="_blank">Nuxt GitHub</a>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="primary" flat nuxt to="/inspire">Continue</v-btn>
-        </v-card-actions>
-      </v-card>
-      <v-btn
-                :block=true
-                :large=true
-                @click="commandTalk"
-                color="grey darken-3 white--text">
-                <span><i class="far fa-comment-dots"></i> はなす</span>
-                </v-btn>
-    </v-flex>
+  <div>
+    <v-layout row wrap justify-center mt-4>
+      <v-flex sm8>
+        <h2>プロフィール</h2>
+      </v-flex>
+    </v-layout>
+    <v-layout row wrap justify-center mt-5>
+      <v-flex sm7 class="profile">
+        <v-layout row wrap justify-center>
+          <v-flex xs6 sm4>
+            <div>
+              <img width="100%" src="~/assets/img/mitsudama.png"/>
+            </div>
+            <div text-center>
+              No.???
+            </div>
+          </v-flex>
+          <v-flex xs6 sm4 text-lef
+          :class="{'mt-0': $vuetify.breakpoint.smAndDown, 'mt-4': $vuetify.breakpoint.lgAndUp}">
+            <div class="pt-4 pl-2 text-xs-left">
+              <!-- <p>ミツダマ</p>
+              <p>えんじにあニセモン</p>
+              <p>たかさ 1.7mm</p>
+              <p>おもさ りんご3こぶん</p> -->
+              <p>{{ name }}</p>
+              <p>{{ title }}</p>
+              <p>{{ height }}</p>
+              <p>{{ weight }}</p>
+            </div>
+          </v-flex>
+        </v-layout>
+        <hr style="border: 1px solid #000;">
+        <div class="mt-3">
+          <p>ふくおかに せいそくする うぇぶの ぷろぐらまー。</p>
+          <p>ぶらっくな かいしゃから すぐいなくなる。2びょう</p>
+          <p>かんに 1000もじの コードを かくことができる。</p>
+        </div>
+      </v-flex>
+    </v-layout>
+    <v-layout column justify-center align-center>
+      <v-flex xs12 sm8 md6>
+        <v-btn
+          :block=true
+          :large=true
+          @click="commandTalk"
+          color="grey darken-3 white--text">
+          <span><i class="far fa-comment-dots"></i> はなす</span>
+        </v-btn>
+      </v-flex>
+      {{user.name}}
+    </v-layout>
 
-{{user}}
-    <!-- <div v-for="item in user" :key="item.id">
-      <div>{{ item.id }}</div>
-      <div>{{ item.name }}</div>
-      <div>{{ item.email }}</div>
-    </div> -->
-  </v-layout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <v-layout row justify-center align-center>
+      <v-flex sm7 >
+        <v-layout row>
+          <v-flex d-flex>
+            <v-text-field
+              v-model="name"
+              outline
+              placeholder="ニックネーム"
+              single-line
+            ></v-text-field>
+          </v-flex>
+        </v-layout>
+        <v-layout row>
+          <v-flex d-flex>
+            <v-text-field
+              v-model="title"
+              outline
+              placeholder="タイトル"
+              single-line
+            ></v-text-field>
+          </v-flex>
+        </v-layout>
+        <v-layout row>
+          <v-flex d-flex>
+            <v-text-field
+              v-model="height"
+              outline
+              placeholder="たかさ"
+              single-line
+            ></v-text-field>
+          </v-flex>
+        </v-layout>
+        <v-layout row>
+          <v-flex d-flex>
+            <v-text-field
+              v-model="weight"
+              outline
+              placeholder="おもさ"
+              single-line
+            ></v-text-field>
+          </v-flex>
+        </v-layout>
+      </v-flex>
+    </v-layout>
+
+  </div>
 </template>
 
 <script>
@@ -49,10 +118,11 @@ import getUsersGql from '~/apollo/queries/getUsers.gql'
 export default {
   data() {
     return {
+      name: "",
+      title: "",
+      height: "",
+      weight: "",
       user: {
-        id:1,
-        name:"aa",
-        email:"aaa",
       }
     }
   },
@@ -64,51 +134,33 @@ export default {
   methods: {
     commandTalk (){
       console.log("aaaaaaaaa")
+      this.name = "ミツダマ"
+      this.title = "えんじにあニセモン"
+      this.height = "1.7mm"
+      this.weight = "りんご3こぶん"
     },
   }
 }
 </script>
 <style type="text/css">
-/* @font-face {
-	font-family: 'PixelMplus';
-	src: url(~assets/font/PixelMplus10-Regular.ttf);
-} */
-.balloon_area{
-  background-color: rgba(0, 0, 0, 0.7)!important;
-  border: 2px solid white;
+h2 {
+  font-size: 2.5em;
+  border: 2px solid black;
   border-radius: 1em;
 }
-.v-btn__content {
-  font-size: 1.4em;
+.skill_svg {
+  font-size: 1.6em;
+  border-radius: 1em;
 }
-.comment{
-  color: white;
-  font-size: 1.4em;
-  margin-bottom: 0px;
+.card {
+  font-size: 1.6em;
+  border: 2px solid black;
+  border-radius: 1em;
 }
-.comment p {
-  margin-bottom: 0px;
+.profile {
+  border: 6px double #000;
 }
-.next-arrow{
-  animation: Flash1 1s infinite;
-}
-/* アニメーション */
-@keyframes Flash1{
-  50%{
-    opacity: 0;
-  }
-}
-.mb-6 {
-  margin-bottom: 200px !important;
-}
-.footer-fixed {
-    position: fixed;
-}
-.footer-fixed {
-  margin-left: 1px;
-  bottom: 5px;
-  left: 6px;
-  width: 99%;
-  z-index: 3;
+.service_title{
+  font-size: 2em;
 }
 </style>

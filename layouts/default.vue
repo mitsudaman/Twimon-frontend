@@ -1,7 +1,7 @@
 <template>
   <v-app >
     <v-content>
-      <v-container>
+      <v-container text-xs-center >
         <nuxt />
       </v-container>
     </v-content>
@@ -30,3 +30,10 @@
     }
   }
 </script>
+
+<style type="text/css">
+@font-face {
+	font-family: 'PixelMplus';
+	src: url(~assets/font/PixelMplus10-Regular.ttf);
+}
+</style>

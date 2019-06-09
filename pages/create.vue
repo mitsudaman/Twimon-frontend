@@ -72,13 +72,25 @@
         </v-btn>
       </v-flex>
       {{user.name}}
+      <v-flex xs12 sm8 md6>{{imageRadioButton}}
+        <v-radio-group v-model="imageRadioButton" row>
+          <v-radio label="ツイッター画像" value="1"></v-radio>
+          <v-radio label="アップロード画像" value="2"></v-radio>
+        </v-radio-group>
+        <input v-if="imageRadioButton=='2'" type="file" v-on:change="onFileChange">
+
+        <!-- <label for="file_upload">ファイルを選択して下さい
+          <input type="file" id="file" :disabled="imageRadioButton=='1'" v-on:change="onFileChange">
+        </label> -->
+      </v-flex>
     </v-layout>
     <v-layout row wrap justify-center mt-5>
       <v-flex sm7 class="profile">
         <v-layout row wrap justify-center>
-          <v-flex xs6 sm4>
+          <v-flex xs6 sm4 pt-1>
             <div>
-              <!-- <img width="100%" src="~/assets/img/mitsudama.png"/> -->
+              <img v-if="imageRadioButton=='1'" width="150px" src="https://konvajs.org/assets/yoda.jpg"/>
+              <img v-if="imageRadioButton=='2'" width="100%" v-show="uploadedImage" :src="uploadedImage" />
             </div>
             <div text-center>
               No.???
@@ -86,11 +98,7 @@
           </v-flex>
           <v-flex xs6 sm4 text-lef
           :class="{'mt-0': $vuetify.breakpoint.smAndDown, 'mt-4': $vuetify.breakpoint.lgAndUp}">
-            <div class="pt-4 pl-2 text-xs-left">
-              <!-- <p>ミツダマ</p>
-              <p>えんじにあニセモン</p>
-              <p>たかさ 1.7mm</p>
-              <p>おもさ りんご3こぶん</p> -->
+            <div class="pt-3 pl-2 text-xs-left">
               <p>{{ name }}</p>
               <p>{{ title }}</p>
               <p>たかさ {{ height }}</p>
@@ -124,6 +132,8 @@ export default {
       height: '',
       weight: '',
       description: '',
+      imageRadioButton: "1",
+      uploadedImage: '',
       user: {
       }
     }
@@ -149,6 +159,22 @@ export default {
 かんに 1000もじの コードを かくことができる。`;
       // console.log( this.description.split(/\n/) );
     },
+    onFileChange(e) {
+      let files = e.target.files || e.dataTransfer.files;
+      this.createImage(files[0]);
+    },
+    createImage(file) {
+      // 画像ファイル以外は処理を止める
+      if(!file.type.match('image.*')) {
+          alert('画像を選択してください');
+          return;
+      }
+      let reader = new FileReader();
+      reader.onload = (e) => {
+        this.uploadedImage = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    },
   }
 }
 </script>
@@ -173,4 +199,16 @@ h2 {
 .service_title{
   font-size: 2em;
 }
+
+/* label {
+  color: #AAAAAA;
+  font-size: 13px; 
+  background-color: #006DD9;
+  padding: 6px;	
+  border-radius: 10px;	
+  cursor:pointer;	
+}
+label > input{
+  display:none;	
+} */
 </style>

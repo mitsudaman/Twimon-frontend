@@ -17,6 +17,7 @@ module.exports = {
   },
   plugins: [
     '~/plugins/vuetify.js',
+    '~/plugins/konva',
   ],
   css: [
     '~/assets/style/app.styl',

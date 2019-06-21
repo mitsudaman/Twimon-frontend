@@ -1,7 +1,19 @@
 query GetUsers {
-    user(id: 1) {
-        id
-        name
-        email
+    users(count: 20, page: 1) {
+        data {
+            id
+            name
+            feature1
+            feature1_content
+            feature2
+            feature2_content
+            description
+            email
+            password
+        }
+        paginatorInfo {
+            currentPage
+            lastPage
+        }
     }
 }

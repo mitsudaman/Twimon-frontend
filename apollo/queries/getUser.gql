@@ -1,0 +1,17 @@
+# Write your query or mutation here
+query getUser($userId:ID!){
+  user(id: $userId) {
+      id
+      name
+      title
+      feature1
+      feature1_content
+      feature2
+      feature2_content
+      email
+      comments {
+        id
+        content
+      }
+    }
+}

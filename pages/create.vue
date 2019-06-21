@@ -71,7 +71,7 @@
           <span><i class="far fa-comment-dots"></i> はなす</span>
         </v-btn>
       </v-flex>
-      {{user.name}}
+      <!-- {{user.name}} -->
       <v-flex xs12 sm8 md6>{{imageRadioButton}}
         <v-radio-group v-model="imageRadioButton" row>
           <v-radio label="ツイッター画像" value="1"></v-radio>

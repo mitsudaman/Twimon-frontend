@@ -1,119 +1,46 @@
 <template>
   <div>
-    <v-layout row wrap justify-center mt-4>
-      <v-flex sm8>
-        <h2>プロフィール</h2>
-      </v-flex>
-    </v-layout>
-    <v-layout row wrap justify-center mt-5>
-      <v-flex sm7 class="profile">
-        <v-layout row wrap justify-center>
-          <v-flex xs6 sm4>
-            <div>
-              <img width="100%" src="~/assets/img/mitsudama.png"/>
+    <v-container grid-list-xl text-xs-center>
+      <v-layout row wrap>
+        <v-flex v-for="user in users" v-bind:key="user.id" xs12 sm3>
+          <v-card  :hover="true"  class="rounded-card"
+          :href="'/read?n=' + user.id">
+            <!-- <v-img
+              v-bind:src="require('~/assets/img/mitsudama.png')"
+            ></v-img> -->
+            <v-img
+              src="https://cdn.vuetifyjs.com/images/cards/desert.jpg"
+            ></v-img>
+            <v-card-title primary-title>
+              <h3 class="headline text-truncate mb-0">{{ user.name }}</h3>
+            </v-card-title>
+            <div class="text-xs-left pl-4 pb-3">
+              <div class="text-truncate"> {{ user.feature1 }} </div>
+              <div class="text-truncate"> {{ user.feature1_content }} </div>
+              <div class="text-truncate mt-2"> {{ user.feature2 }} </div>
+              <div class="text-truncate"> {{ user.feature2_content }} </div>
             </div>
-            <div text-center>
-              No.???
-            </div>
-          </v-flex>
-          <v-flex xs6 sm4 text-lef
-          :class="{'mt-0': $vuetify.breakpoint.smAndDown, 'mt-4': $vuetify.breakpoint.lgAndUp}">
-            <div class="pt-4 pl-2 text-xs-left">
-              <!-- <p>ミツダマ</p>
-              <p>えんじにあニセモン</p>
-              <p>たかさ 1.7mm</p>
-              <p>おもさ りんご3こぶん</p> -->
-              <p>{{ name }}</p>
-              <p>{{ title }}</p>
-              <p>{{ height }}</p>
-              <p>{{ weight }}</p>
-            </div>
-          </v-flex>
-        </v-layout>
-        <hr style="border: 1px solid #000;">
-        <div class="mt-3">
-          <p>ふくおかに せいそくする うぇぶの ぷろぐらまー。</p>
-          <p>ぶらっくな かいしゃから すぐいなくなる。2びょう</p>
-          <p>かんに 1000もじの コードを かくことができる。</p>
-        </div>
-      </v-flex>
-    </v-layout>
-    <v-layout column justify-center align-center>
-      <v-flex xs12 sm8 md6>
-        <v-btn
-          :block=true
-          :large=true
-          @click="commandTalk"
-          color="grey darken-3 white--text">
-          <span><i class="far fa-comment-dots"></i> はなす</span>
-        </v-btn>
-      </v-flex>
-      {{user.name}}
-    </v-layout>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <v-layout row justify-center align-center>
-      <v-flex sm7 >
-        <v-layout row>
-          <v-flex d-flex>
-            <v-text-field
-              v-model="name"
-              outline
-              placeholder="ニックネーム"
-              single-line
-            ></v-text-field>
-          </v-flex>
-        </v-layout>
-        <v-layout row>
-          <v-flex d-flex>
-            <v-text-field
-              v-model="title"
-              outline
-              placeholder="タイトル"
-              single-line
-            ></v-text-field>
-          </v-flex>
-        </v-layout>
-        <v-layout row>
-          <v-flex d-flex>
-            <v-text-field
-              v-model="height"
-              outline
-              placeholder="たかさ"
-              single-line
-            ></v-text-field>
-          </v-flex>
-        </v-layout>
-        <v-layout row>
-          <v-flex d-flex>
-            <v-text-field
-              v-model="weight"
-              outline
-              placeholder="おもさ"
-              single-line
-            ></v-text-field>
-          </v-flex>
-        </v-layout>
-      </v-flex>
-    </v-layout>
-
+          </v-card>
+        </v-flex>
+      </v-layout>
+      <v-layout justify-center align-center>
+        <v-flex xs4>
+          <v-btn
+            :block=true
+            :large=true
+            @click="commandTalk"
+            color="grey darken-3 white--text">
+            <span><i class="far fa-comment-dots"></i> 追加</span>
+          </v-btn>
+        </v-flex>
+      </v-layout>
+    </v-container>
   </div>
 </template>
 
 <script>
-import getUsersGql from '~/apollo/queries/getUsers.gql'
+import GET_USERS_GQL from '~/apollo/queries/getUsers.gql'
+import CREATE_USER_GQL from '~/apollo/mutations/createUser.gql'
 
 export default {
   data() {
@@ -126,41 +53,38 @@ export default {
       }
     }
   },
+  computed: {
+    binding () {
+      const binding = {}
+      if (this.$vuetify.breakpoint.xs) binding.column = true
+      return binding
+    }
+  },
   apollo: {
-    user: {
-      query: getUsersGql
+    users: {
+      query: GET_USERS_GQL,
+      update(data){
+        return data.users.data
+      }
     }
   },
   methods: {
     commandTalk (){
       console.log("aaaaaaaaa")
-      this.name = "ミツダマ"
-      this.title = "えんじにあニセモン"
-      this.height = "1.7mm"
-      this.weight = "りんご3こぶん"
+      this.$apollo.mutate({
+        mutation: CREATE_USER_GQL,
+        variables: {
+          // name: this.customer.name,
+          // gender: this.customer.gender,
+        }
+      })
     },
   }
 }
 </script>
 <style type="text/css">
-h2 {
-  font-size: 2.5em;
-  border: 2px solid black;
-  border-radius: 1em;
-}
-.skill_svg {
-  font-size: 1.6em;
-  border-radius: 1em;
-}
-.card {
-  font-size: 1.6em;
-  border: 2px solid black;
-  border-radius: 1em;
-}
-.profile {
-  border: 6px double #000;
-}
-.service_title{
-  font-size: 2em;
+.rounded-card{
+  border-radius:20px;
+  /* border: solid 10px #000; */
 }
 </style>

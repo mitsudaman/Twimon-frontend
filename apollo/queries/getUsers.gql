@@ -8,8 +8,6 @@ query GetUsers {
             feature2
             feature2_content
             description
-            email
-            password
         }
         paginatorInfo {
             currentPage

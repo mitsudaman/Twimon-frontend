@@ -8,7 +8,6 @@ query getUser($userId:ID!){
       feature1_content
       feature2
       feature2_content
-      email
       comments {
         id
         content

@@ -17,11 +17,12 @@ module.exports = {
   },
   plugins: [
     '~/plugins/vuetify.js',
-    '~/plugins/konva',
+    // '~/plugins/konva',
   ],
   css: [
     '~/assets/style/app.styl',
     '~/assets/style/main.styl',
+    '@fortawesome/fontawesome-free/css/all.css',
   ],
   /*
   ** Customize the progress bar color

@@ -1,16 +1,24 @@
 <template>
   <div>
+
+    <div
+      class="header"
+    >
+    ツイットモンスター(仮)
+    </div>
     <v-container grid-list-xl text-xs-center>
       <v-layout row wrap>
         <v-flex v-for="user in users" v-bind:key="user.id" xs12 sm3>
           <v-card  :hover="true"  class="rounded-card"
           :href="'/read?n=' + user.id">
-            <!-- <v-img
+            <!-- <img
+              height="160"
               v-bind:src="require('~/assets/img/mitsudama.png')"
-            ></v-img> -->
-            <v-img
-              src="https://cdn.vuetifyjs.com/images/cards/desert.jpg"
-            ></v-img>
+            /> -->
+            <img
+            class="image"
+              v-bind:src="require('~/assets/img/gattyo/' + user.img_src)"
+            />
             <v-card-title primary-title>
               <h3 class="headline text-truncate mb-0">{{ user.name }}</h3>
             </v-card-title>
@@ -21,17 +29,6 @@
               <div class="text-truncate"> {{ user.feature2_content }} </div>
             </div>
           </v-card>
-        </v-flex>
-      </v-layout>
-      <v-layout justify-center align-center>
-        <v-flex xs4>
-          <v-btn
-            :block=true
-            :large=true
-            @click="commandTalk"
-            color="grey darken-3 white--text">
-            <span><i class="far fa-comment-dots"></i> 追加</span>
-          </v-btn>
         </v-flex>
       </v-layout>
     </v-container>
@@ -86,5 +83,17 @@ export default {
 .rounded-card{
   border-radius:20px;
   /* border: solid 10px #000; */
+}
+.header{
+  background-color:blue; 
+  height:300px;
+  font-size: 100px;
+  font-family: 'PixelMplus';
+  text-align: center;
+  padding-top:60px;
+}
+.image{
+  width: 100%;
+  padding:10px;
 }
 </style>

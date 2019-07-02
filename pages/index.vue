@@ -1,9 +1,6 @@
 <template>
   <div>
-
-    <div
-      class="header"
-    >
+    <div class="header">
     ツイットモンスター(仮)
     </div>
     <v-container grid-list-xl text-xs-center>
@@ -31,6 +28,17 @@
           </v-card>
         </v-flex>
       </v-layout>
+      <v-layout row wrap>
+        <v-flex>
+          <div class="text-xs-center">
+            <v-pagination
+              v-model="page"
+              :length="this.lastPage"
+              circle
+            ></v-pagination>
+          </div>
+        </v-flex>
+      </v-layout>
     </v-container>
   </div>
 </template>
@@ -47,7 +55,10 @@ export default {
       height: "",
       weight: "",
       user: {
-      }
+      },
+      page:1,
+      users: null,
+      lastPage:0
     }
   },
   computed: {
@@ -60,7 +71,13 @@ export default {
   apollo: {
     users: {
       query: GET_USERS_GQL,
+      variables() {
+        return {
+          page: this.page,
+        };
+      },
       update(data){
+        this.lastPage= data.users.paginatorInfo.lastPage
         return data.users.data
       }
     }

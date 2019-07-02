@@ -86,8 +86,8 @@
           color="teal"
           flat
           value="nearby">
-          <span>Nearby</span>
-          <v-icon>place</v-icon>
+          <span>MyPage</span>
+          <v-icon>face</v-icon>
         </v-btn>
       </v-bottom-nav>
     </v-card>

@@ -1,5 +1,5 @@
-query GetUsers {
-    users(count: 20, page: 1) {
+query GetUsers ($page:Int!){
+    users(count: 8, page: $page) {
         data {
             id
             name
@@ -8,7 +8,7 @@ query GetUsers {
             feature2
             feature2_content
             description
-            img_src
+          	img_src
         }
         paginatorInfo {
             currentPage

@@ -8,14 +8,7 @@
         <v-flex v-for="user in users" v-bind:key="user.id" xs12 sm3>
           <v-card  :hover="true"  class="rounded-card"
           :href="'/read?n=' + user.id">
-            <!-- <img
-              height="160"
-              v-bind:src="require('~/assets/img/mitsudama.png')"
-            /> -->
-            <img
-            class="image"
-              v-bind:src="require('~/assets/img/gattyo/' + user.img_src)"
-            />
+            <v-img v-bind:src="require('~/assets/img/gattyo/' + user.img_src)" aspect-ratio="1"></v-img>
             <v-card-title primary-title>
               <h3 class="headline text-truncate mb-0">{{ user.name }}</h3>
             </v-card-title>
@@ -99,7 +92,6 @@ export default {
 <style type="text/css">
 .rounded-card{
   border-radius:20px;
-  /* border: solid 10px #000; */
 }
 .header{
   background-color:blue; 
@@ -108,9 +100,5 @@ export default {
   font-family: 'PixelMplus';
   text-align: center;
   padding-top:60px;
-}
-.image{
-  width: 100%;
-  padding:10px;
 }
 </style>

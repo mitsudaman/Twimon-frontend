@@ -1,5 +1,5 @@
 query GetUsers ($page:Int!){
-    users(count: 8, page: $page) {
+    users(count: 12, page: $page) {
         data {
             id
             name

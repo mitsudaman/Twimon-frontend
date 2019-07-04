@@ -58,9 +58,6 @@
 
 
     <v-card height="200px" flat>
-      <!-- <div class="headline text-xs-center pa-5">
-        Active: {{ bottomNav }}
-      </div> -->
       <v-bottom-nav
         :value="true"
         fixed>
@@ -72,7 +69,6 @@
           <span>HOME</span>
           <v-icon>home</v-icon>
         </v-btn>
-
         <v-btn
           color="teal"
           flat
@@ -81,11 +77,11 @@
           <span>Favorites</span>
           <v-icon>favorite</v-icon>
         </v-btn>
-
         <v-btn
           color="teal"
           flat
-          value="nearby">
+          value="nearby"
+          @click="$router.push('/MyPage')">
           <span>MyPage</span>
           <v-icon>face</v-icon>
         </v-btn>

@@ -6,24 +6,23 @@
           <h2>プロフィール</h2>
         </v-flex>
       </v-layout>
-      <v-layout row wrap justify-center mt-5>
-        <v-flex sm7 class="profile">
+      <v-layout row wrap justify-center mt-3>
+        <v-flex sm5 class="profile">
           <v-layout row wrap justify-center>
-            <v-flex xs6 sm4>
+            <v-flex xs6>
               <div>
-                <!-- <img width="100%" src="~/assets/img/mitsudama.png"/> -->
+                <v-img 
+                class="image"
+                v-if="user.img_src"
+                v-bind:src="require('~/assets/img/gattyo/' + user.img_src)" aspect-ratio="1"></v-img>
               </div>
               <div text-center>
                 No.???
               </div>
             </v-flex>
-            <v-flex xs6 sm4 text-lef
+            <v-flex xs6 text-lef
             :class="{'mt-0': $vuetify.breakpoint.smAndDown, 'mt-4': $vuetify.breakpoint.lgAndUp}">
               <div class="pt-4 pl-2 text-xs-left">
-                <!-- <p>ミツダマ</p>
-                <p>えんじにあニセモン</p>
-                <p>たかさ 1.7mm</p>
-                <p>おもさ りんご3こぶん</p> -->
                 <p>{{ user.name }}</p>
                 <p>{{ user.title }}</p>
                 <p>{{ user.feature1 }} {{ user.feature1_content }}</p>
@@ -48,65 +47,6 @@
             color="grey darken-3 white--text">
             <span><i class="far fa-comment-dots"></i> はなす</span>
           </v-btn>
-        </v-flex>
-      </v-layout>
-
-
-        <!-- {{users}} -->
-
-
-
-
-
-
-
-
-
-
-
-
-      <v-layout row justify-center align-center>
-        <v-flex sm7 >
-          <v-layout row>
-            <v-flex d-flex>
-              <v-text-field
-                v-model="name"
-                outline
-                placeholder="ニックネーム"
-                single-line
-              ></v-text-field>
-            </v-flex>
-          </v-layout>
-          <v-layout row>
-            <v-flex d-flex>
-              <v-text-field
-                v-model="title"
-                outline
-                placeholder="タイトル"
-                single-line
-              ></v-text-field>
-            </v-flex>
-          </v-layout>
-          <v-layout row>
-            <v-flex d-flex>
-              <v-text-field
-                v-model="height"
-                outline
-                placeholder="たかさ"
-                single-line
-              ></v-text-field>
-            </v-flex>
-          </v-layout>
-          <v-layout row>
-            <v-flex d-flex>
-              <v-text-field
-                v-model="weight"
-                outline
-                placeholder="おもさ"
-                single-line
-              ></v-text-field>
-            </v-flex>
-          </v-layout>
         </v-flex>
       </v-layout>
     </v-container>
@@ -165,8 +105,12 @@ h2 {
 }
 .profile {
   border: 6px double #000;
+  /* margin: 10px; */
 }
 .service_title{
   font-size: 2em;
+}
+.image{
+   border-radius: 6%;
 }
 </style>

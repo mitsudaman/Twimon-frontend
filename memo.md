@@ -18,3 +18,8 @@ yarn add @nuxtjs/apollo
 
 
 https://takumon.com/nuxt-apollo-with-graphpack
+
+
+
+# axios
+yarn add axios

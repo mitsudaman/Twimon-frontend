@@ -9,7 +9,7 @@
 
 <script>
 import { mapMutations } from 'vuex'
-import HANDLE_TWITTER_CALLBACK from '~/apollo/queries/handleTwitterCallback.gql'
+import GET_SOCIAL_AUTHED_USER from '~/apollo/queries/getSocialAuthedUser.gql'
 
 export default {
   // middleware: 'guest',
@@ -21,11 +21,11 @@ export default {
   },
   created (){
     this.$apollo.query({
-        query: HANDLE_TWITTER_CALLBACK, 
+        query: GET_SOCIAL_AUTHED_USER, 
       })
       .then(({data}) => { 
         // Query work fine and result is the proper data object
-        this.$router.replace('/');
+        // this.$router.replace('/');
       })
       .catch((error) => {
         // This should log the error object but is just printing out the message

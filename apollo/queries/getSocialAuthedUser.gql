@@ -1,0 +1,9 @@
+ {
+  getSocialAuthedUser{
+    user{
+      id
+      name
+    }
+    access_token
+  }
+}

@@ -4,13 +4,21 @@
     <template v-else>
       <p>{{failedMessage}}</p>
     </template>
+    <v-btn
+      :block=true
+      :large=true
+      @click="commandTalk"
+      color="grey darken-3 white--text">
+      <span><i class="far fa-comment-dots"></i> ボタン</span>
+    </v-btn>
   </div>
 </template>
 
 <script>
 import { mapMutations } from 'vuex'
 import AUTHENTICATE_USER_GQL from '~/apollo/mutations/authenticateUserGql.gql'
-import GET_AUTHED_USER from '~/apollo/queries/getAuthedUser.gql'
+import UPDATE_USER_GQL from '~/apollo/mutations/updateUser.gql'
+import GET_AUTHED_USER_GQL from '~/apollo/queries/getAuthedUser.gql'
 
 export default {
   // middleware: 'guest',
@@ -36,7 +44,7 @@ export default {
       });
 
     this.$apollo.query({
-        query: GET_AUTHED_USER,
+        query: GET_AUTHED_USER_GQL,
         variables: {
             var1: "this is a variable"
         },
@@ -54,9 +62,23 @@ export default {
       return !this.failedMessage
     }
   },
-  methods: mapMutations([
-    'setToken',
-    'setUser'
-  ]),
+  methods: {
+    commandTalk (){
+      console.log("aaaaaaaaa")
+      this.$apollo.mutate({
+        mutation: UPDATE_USER_GQL,
+        variables: {
+          name: "オオオオオン",
+          feature1: "aaaa1a2a",
+          description: "領収書発行のお客様あああああああい"
+        },
+        context: {
+          headers: {
+              "Authorization":"Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjMxMzNhYTliMDhjYjQ5Mzc2MTU3MzI4ODU2ZDhjYjFlZTQ2MjdmZDcxZGM2YzVmZjU4MmIwMGRjMzcyNmEwZTExODk1NjM4YTcyMjQxNTk0In0.eyJhdWQiOiIxIiwianRpIjoiMzEzM2FhOWIwOGNiNDkzNzYxNTczMjg4NTZkOGNiMWVlNDYyN2ZkNzFkYzZjNWZmNTgyYjAwZGMzNzI2YTBlMTE4OTU2MzhhNzIyNDE1OTQiLCJpYXQiOjE1NjIzMTAzMjIsIm5iZiI6MTU2MjMxMDMyMiwiZXhwIjoxNTkzOTMyNzIyLCJzdWIiOiI5Iiwic2NvcGVzIjpbXX0.H8REUy29uvoooHA6ggU86VI7iTYZ3pCKexFqUYo6ZJwCUQZo4MpOrHt4X7XAa-PhcnhsvnbomSpkIAyzrFCpc06kPr5t-LzTHaVi9zO6eFjFr_qWgqI9A2vYu4uYZNXdwiEgA10ODN3WvH6zUvucAROCfAtRNC5KXf8kbvsskkB-8VsXKSoEDxKhJ599AEdkwLDL-naUeB3vN0i6ZN8ukNPXmaB1IK8MY-GXKB-0lCOCdmInr7_qdo_--S2dEu7GMHF1fNEVbP_HvHPYBxnP21VfSjexYNSx9B_IkSWJVNs1w2pUGqCCqF-k9u7k7Bskvfk3OgHUPQuB1YWvk38OC-rYsv3blY07zKWf0jgOr4eGhe87-MEetaYqq2tZwrtLfGeBjgC3uaej8Hcq7H9qkw_1HwskulWwZSowtA5i67hfL-ZHOjYQD14HOMq5AO2Tz8wfMRUApucF9088tW_Jh-qI0cZV8qlG6KRQtBUjur5bwfheTRkOtiFzTpalRmbrQbNKtoLNurxQsZ5pgLRBsdX1NKRRzOIDNKxcwDDLOn6ETCYlquOm6UT68hs81GNBUeZQidLwIDI5eIlXeDr8rqJt04S_nrzSAzOIpraVn7b3pjiSX1zrJ-3ij-eEqMqScdEofS1FvOn6ISPxZiF8A0gBxvMNiAwqRxW3yNxO840"
+          }
+        }
+      })
+    },
+  }
 }
 </script>

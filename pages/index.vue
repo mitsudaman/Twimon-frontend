@@ -38,7 +38,7 @@
 
 <script>
 import GET_USERS_GQL from '~/apollo/queries/getUsers.gql'
-import CREATE_USER_GQL from '~/apollo/mutations/createUser.gql'
+// import CREATE_USER_GQL from '~/apollo/mutations/createUser.gql'
 
 export default {
   data() {
@@ -78,13 +78,13 @@ export default {
   methods: {
     commandTalk (){
       console.log("aaaaaaaaa")
-      this.$apollo.mutate({
-        mutation: CREATE_USER_GQL,
-        variables: {
-          // name: this.customer.name,
-          // gender: this.customer.gender,
-        }
-      })
+      // this.$apollo.mutate({
+      //   mutation: CREATE_USER_GQL,
+      //   variables: {
+      //     // name: this.customer.name,
+      //     // gender: this.customer.gender,
+      //   }
+      // })
     },
   }
 }

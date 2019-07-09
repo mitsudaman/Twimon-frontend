@@ -13,7 +13,7 @@
       }
     },
     mounted () {
-      const axios = require('axios');
+      // const axios = require('axios');
       // axios
       //   .get('http://localhost:8001/oauth/scopes')
       //   .then(response => (this.info = response))

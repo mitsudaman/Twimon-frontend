@@ -1,65 +1,61 @@
 <template>
   <div>
     <v-container grid-list-xl text-xs-center>
-      <v-layout row wrap justify-center mt-4>
-        <v-flex sm8>
-          <!-- <h2>プロフィール</h2> -->
-        </v-flex>
-      </v-layout>
-
-
-      <v-layout row justify-center align-center>
-        <v-flex sm7 >
-          <v-layout row>
-            <v-flex d-flex>
-              <v-text-field
-                v-model="name"
-                outline
-                placeholder="ニックネーム"
-                single-line
-              ></v-text-field>
-            </v-flex>
-          </v-layout>
-          <v-layout row>
-            <v-flex d-flex>
-              <v-text-field
-                v-model="title"
-                outline
-                placeholder="タイトル"
-                single-line
-              ></v-text-field>
-            </v-flex>
-          </v-layout>
-          <v-layout row>
-            <v-flex d-flex>
-              <v-text-field
-                v-model="height"
-                outline
-                placeholder="たかさ"
-                single-line
-              ></v-text-field>
-            </v-flex>
-          </v-layout>
-          <v-layout row>
-            <v-flex d-flex>
-              <v-text-field
-                v-model="weight"
-                outline
-                placeholder="おもさ"
-                single-line
-              ></v-text-field>
-            </v-flex>
-          </v-layout>
-          <v-layout row>
-            <v-flex d-flex>
-              <v-textarea
-                outline
-                :auto-grow="true"
-                placeholder="せつめい"
-                v-model="description">
-              </v-textarea>
-            </v-flex>
-          </v-layout>
+      <my-page-nav></my-page-nav>
+      <v-layout row justify-center align-center mt-5>
+        <v-flex sm8 >
+          <v-card class="rounded-card">
+            <v-layout row justify-center align-center>
+              <v-flex xs11 d-flex mt-5>
+                <v-text-field
+                  v-model="name"
+                  outline
+                  placeholder="ニックネーム"
+                  single-line
+                ></v-text-field>
+              </v-flex>
+            </v-layout>
+            <v-layout row justify-center align-center>
+              <v-flex xs11 d-flex>
+                <v-text-field
+                  v-model="title"
+                  outline
+                  placeholder="タイトル"
+                  single-line
+                ></v-text-field>
+              </v-flex>
+            </v-layout>
+            <v-layout row justify-center align-center>
+              <v-flex xs11 d-flex>
+                <v-text-field
+                  v-model="height"
+                  outline
+                  placeholder="たかさ"
+                  single-line
+                ></v-text-field>
+              </v-flex>
+            </v-layout>
+            <v-layout row justify-center align-center>
+              <v-flex xs11 d-flex>
+                <v-text-field
+                  v-model="weight"
+                  outline
+                  placeholder="おもさ"
+                  single-line
+                ></v-text-field>
+              </v-flex>
+            </v-layout>
+            <v-layout row justify-center align-center>
+              <v-flex xs11 d-flex>
+                <v-textarea
+                  outline
+                  :auto-grow="true"
+                  placeholder="せつめい"
+                  v-model="description">
+                </v-textarea>
+              </v-flex>
+            </v-layout>
+          </v-card>
         </v-flex>
       </v-layout>
       <v-layout column justify-center align-center>
@@ -78,15 +74,11 @@
             <v-radio label="アップロード画像" value="2"></v-radio>
           </v-radio-group>
           <input v-if="imageRadioButton=='2'" type="file" v-on:change="onFileChange">
-
-          <!-- <label for="file_upload">ファイルを選択して下さい
-            <input type="file" id="file" :disabled="imageRadioButton=='1'" v-on:change="onFileChange">
-          </label> -->
         </v-flex>
       </v-layout>
 
       <v-layout row wrap justify-center mt-3>
-        <v-flex sm5 class="profile">
+        <v-flex sm5 class="profile ma-2">
           <v-layout row wrap justify-center>
             <v-flex xs6>
               <div>
@@ -108,7 +100,7 @@
             </v-flex>
             <v-flex xs6 text-lef
             :class="{'mt-0': $vuetify.breakpoint.smAndDown, 'mt-4': $vuetify.breakpoint.lgAndUp}">
-              <div class="pt-4 pl-2 text-xs-left">
+              <div class="pl-2 text-xs-left">
                 <p>{{ name }}</p>
                 <p>{{ title }}</p>
                 <p>たかさ {{ height }}</p>
@@ -130,8 +122,13 @@
 
 <script>
 import getUsersGql from '~/apollo/queries/getUsers.gql'
+import MyPageNav from '~/components/MyPageNav.vue'
+import NuxtLogo from '~/components/NuxtLogo.vue'
 
 export default {
+  components: {
+    MyPageNav
+  },
   data() {
     return {
       name: '',
@@ -142,7 +139,11 @@ export default {
       imageRadioButton: "1",
       uploadedImage: '',
       user: {
-      }
+      },
+      items: [
+        { icon: 'apps', title: 'プロフィール', to: '/' },
+        { icon: 'bubble_chart', title: 'はなす', to: '/create' }
+      ],
     }
   },
   computed: {
@@ -213,5 +214,15 @@ h2 {
 }
 .image{
    border-radius: 6%;
+}
+.mypage_link a {
+  color: #787c7b;
+  text-decoration: none ;
+}
+.mypage_link a.nuxt-link-active{
+  color: #2CB696;
+}
+.mypage_link a:hover{
+  color: #000000;
 }
 </style>

@@ -7,7 +7,7 @@
         </v-flex>
       </v-layout>
       <v-layout row wrap justify-center mt-3>
-        <v-flex sm5 class="profile">
+        <v-flex sm5 class="profile ma-2">
           <v-layout row wrap justify-center>
             <v-flex xs6>
               <div>
@@ -38,17 +38,55 @@
           </div>
         </v-flex>
       </v-layout>
-      <v-layout column justify-center align-center>
-        <v-flex xs12 sm8 md6>
-          <v-btn
-            :block=true
-            :large=true
-            @click="commandTalk"
-            color="grey darken-3 white--text">
-            <span><i class="far fa-comment-dots"></i> はなす</span>
-          </v-btn>
+      <v-layout 
+      row wrap justify-center>
+        <v-flex
+          d-flex
+          xs11
+          sm5
+          class="balloon_area mt-5 pa-3"
+        > 
+          <v-layout row wrap>
+            <v-flex
+              xs6>
+              <v-btn
+              :block=true
+              :large=true
+              @click="commandTalk"
+              color="grey darken-3 white--text">
+                <span class="command_context">
+                  <i class="far fa-comment-dots"></i> はなす
+                </span>
+              </v-btn>
+            </v-flex>
+            <v-flex 
+              xs6>
+              <v-btn
+              :block=true
+              :large=true
+              @click="commandSearch"
+              color="grey darken-3 white--text">
+                <span class="command_context">
+                  <i class="fas fa-search"></i> しらべる
+                </span>
+                </v-btn>
+            </v-flex>
+            <v-flex xs6>
+              <v-btn
+              :block=true
+              :large=true
+              @click="commandMagic"
+              color="grey darken-3 white--text">
+                <span class="command_context">
+                  <i class="fas fa-hat-wizard"></i> じゅもん
+                </span>
+              </v-btn>
+            </v-flex>
+          </v-layout>
         </v-flex>
       </v-layout>
+
+
     </v-container>
   </div>
 </template>
@@ -80,10 +118,6 @@ export default {
   methods: {
     commandTalk (){
       console.log(this.$route.query.n)
-      this.name = "ミツダマ"
-      this.title = "えんじにあニセモン"
-      this.height = "1.7mm"
-      this.weight = "りんご3こぶん"
     },
   }
 }
@@ -112,5 +146,10 @@ h2 {
 }
 .image{
    border-radius: 6%;
+}
+.balloon_area{
+  background-color: rgba(0, 0, 0, 0.6)!important;
+  border: 2px solid white;
+  border-radius: 1em;
 }
 </style>

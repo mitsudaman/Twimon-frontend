@@ -1,12 +1,22 @@
 <template>
   <div>
-    <div class="header">
-    ツイットモンスター(仮)
-    </div>
+
+    <v-parallax
+      dark
+      src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg">
+      <v-layout
+        align-center
+        column
+        justify-center
+      >
+        <h1 class="display-2 font-weight-thin mb-3">ツイットモンスター(仮)</h1>
+        <h4 class="subheading">Build your application today!</h4>
+      </v-layout>
+    </v-parallax>
     <v-container grid-list-xl text-xs-center>
       <v-layout row wrap>
         <v-flex v-for="user in users" v-bind:key="user.id" xs12 sm3>
-          <v-card  :hover="true"  class="rounded-card"
+          <v-card  :hover="true" class="rounded-card-20"
           :href="'/read?n=' + user.id">
             <v-img v-bind:src="require('~/assets/img/gattyo/' + user.img_src)" aspect-ratio="1"></v-img>
             <v-card-title primary-title>
@@ -90,9 +100,6 @@ export default {
 }
 </script>
 <style type="text/css">
-.rounded-card{
-  border-radius:20px;
-}
 .header{
   background-color:blue; 
   height:300px;

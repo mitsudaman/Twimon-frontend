@@ -1,13 +1,13 @@
 <template>
   <div>
-    <v-container grid-list-xl text-xs-center>
+    <v-container grid-list-md text-xs-center>
       <v-layout row wrap justify-center mt-4>
         <v-flex sm8>
-          <h2>プロフィール</h2>
+          <h2 class="blackboard">プロフィール</h2>
         </v-flex>
       </v-layout>
       <v-layout row wrap justify-center mt-3>
-        <v-flex sm5 class="profile ma-2">
+        <v-flex sm5 class="profile">
           <v-layout row wrap justify-center>
             <v-flex xs6>
               <div>
@@ -137,9 +137,19 @@ h2 {
   border: 2px solid black;
   border-radius: 1em;
 }
+.blackboard {
+  padding: 1rem;
+  color: #fff;
+  border: 2px solid #000;
+  border-radius: 5px;
+  box-shadow: inset 0 0 0 4px #fff;
+  background-color: rgba(0,0,0,.9);
+  /* font-family: 'PixelMplus'; */
+}
 .profile {
   border: 6px double #000;
   /* margin: 10px; */
+  /* font-family: 'PixelMplus'; */
 }
 .service_title{
   font-size: 2em;

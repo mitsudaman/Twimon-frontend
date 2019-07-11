@@ -9,9 +9,5 @@ query getUser($userId:ID!){
       feature2
       feature2_content
       img_src
-      comments {
-        id
-        content
-      }
     }
 }

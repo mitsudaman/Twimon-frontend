@@ -1,18 +1,29 @@
 <template>
   <div>
-    <v-container grid-list-xl text-xs-center>
+    <v-container grid-list-xl>
       <my-page-nav></my-page-nav>
       <v-layout row justify-center align-center mt-5>
         <v-flex sm8 >
           <v-card class="rounded-card">
-            <v-layout row justify-center align-center>
-              <v-flex xs11 d-flex mt-5>
+            <v-layout justify-center align-center>
+              <v-flex xs11 d-flex mt-4 pb-0>
+                <label class="ml-1 font-weight-bold">ニックネーム</label>
+              </v-flex>
+            </v-layout>
+            <v-layout justify-center align-center>
+              <v-flex xs11 d-flex>
                 <v-text-field
                   v-model="name"
                   outline
-                  placeholder="ニックネーム"
+                  hide-details
+                  placeholder="ツイモン"
                   single-line
                 ></v-text-field>
+              </v-flex>
+            </v-layout>
+            <v-layout justify-center align-center>
+              <v-flex xs11 d-flex pb-0>
+                <label class="ml-1 font-weight-bold">タイトル</label>
               </v-flex>
             </v-layout>
             <v-layout row justify-center align-center>
@@ -20,9 +31,15 @@
                 <v-text-field
                   v-model="title"
                   outline
-                  placeholder="タイトル"
+                  hide-details
+                  placeholder="ほのぼのツイモン"
                   single-line
                 ></v-text-field>
+              </v-flex>
+            </v-layout>
+            <v-layout justify-center align-center>
+              <v-flex xs11 d-flex pb-0>
+                <label class="ml-1 font-weight-bold">たかさ</label>
               </v-flex>
             </v-layout>
             <v-layout row justify-center align-center>
@@ -30,9 +47,15 @@
                 <v-text-field
                   v-model="height"
                   outline
-                  placeholder="たかさ"
+                  hide-details
+                  placeholder="15cm"
                   single-line
                 ></v-text-field>
+              </v-flex>
+            </v-layout>
+            <v-layout justify-center align-center>
+              <v-flex xs11 d-flex pb-0>
+                <label class="ml-1 font-weight-bold">おもさ</label>
               </v-flex>
             </v-layout>
             <v-layout row justify-center align-center>
@@ -40,24 +63,41 @@
                 <v-text-field
                   v-model="weight"
                   outline
-                  placeholder="おもさ"
+                  hide-details
+                  placeholder="2kg"
                   single-line
                 ></v-text-field>
+              </v-flex>
+            </v-layout>
+            <v-layout justify-center align-center>
+              <v-flex xs11 d-flex pb-0>
+                <label class="ml-1 font-weight-bold">ツイットモンスター</label>
               </v-flex>
             </v-layout>
             <v-layout row justify-center align-center>
               <v-flex xs11 d-flex>
                 <v-textarea
                   outline
+                  hide-details
                   :auto-grow="true"
-                  placeholder="せつめい"
+                  placeholder="ほのぼのしてるツイットモンスター"
                   v-model="description">
                 </v-textarea>
+              </v-flex>
+            </v-layout>
+            <v-layout column justify-center align-center>
+              <v-flex xs12 sm8 md6>{{imageRadioButton}}
+                <v-radio-group v-model="imageRadioButton" row>
+                  <v-radio label="ツイッター画像" value="1"></v-radio>
+                  <v-radio label="アップロード画像" value="2"></v-radio>
+                </v-radio-group>
+                <input v-if="imageRadioButton=='2'" type="file" v-on:change="onFileChange">
               </v-flex>
             </v-layout>
           </v-card>
         </v-flex>
       </v-layout>
+
       <v-layout column justify-center align-center>
         <v-flex xs12 sm8 md6>
           <v-btn
@@ -68,16 +108,9 @@
             <span><i class="far fa-comment-dots"></i> はなす</span>
           </v-btn>
         </v-flex>
-        <v-flex xs12 sm8 md6>{{imageRadioButton}}
-          <v-radio-group v-model="imageRadioButton" row>
-            <v-radio label="ツイッター画像" value="1"></v-radio>
-            <v-radio label="アップロード画像" value="2"></v-radio>
-          </v-radio-group>
-          <input v-if="imageRadioButton=='2'" type="file" v-on:change="onFileChange">
-        </v-flex>
       </v-layout>
 
-      <v-layout row wrap justify-center mt-3>
+      <v-layout row wrap justify-center mt-3 text-xs-center>
         <v-flex sm5 class="profile ma-2">
           <v-layout row wrap justify-center>
             <v-flex xs6>
@@ -98,7 +131,7 @@
                 No.???
               </div>
             </v-flex>
-            <v-flex xs6 text-lef
+            <v-flex xs6 text-lef text-center
             :class="{'mt-0': $vuetify.breakpoint.smAndDown, 'mt-4': $vuetify.breakpoint.lgAndUp}">
               <div class="pl-2 text-xs-left">
                 <p>{{ name }}</p>
@@ -110,9 +143,7 @@
           </v-layout>
           <hr style="border: 1px solid #000;">
           <div class="mt-3">
-            <p>ふくおかに せいそくする うぇぶの ぷろぐらまー。</p>
-            <p>ぶらっくな かいしゃから すぐいなくなる。2びょう</p>
-            <p>かんに 1000もじの コードを かくことができる。</p>
+            <p>{{description}}</p>
           </div>
         </v-flex>
       </v-layout>

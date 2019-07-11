@@ -1,5 +1,5 @@
 <template>
-  <v-layout row wrap justify-center>
+  <v-layout text-xs-center row wrap justify-center>
     <v-flex sm8>
       <v-card class="rounded-card">
         <v-layout row justify-center align-center>

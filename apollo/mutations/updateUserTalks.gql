@@ -1,0 +1,25 @@
+mutation {
+  updateUserTalks(input: {
+    id: 1,
+    # name: "Phillip"
+    talks: {
+      create: [
+        {
+          sentence1: "A new post"
+        }
+      ],
+      update: [
+        {
+          id: 2,
+          sentence1: "This post is updated2"
+        }
+      ]
+    }
+  }){
+    id
+    talks {
+      id
+      sentence1
+    }
+  }
+}

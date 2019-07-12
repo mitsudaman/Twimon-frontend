@@ -8,6 +8,16 @@ query getUser($userId:ID!){
       feature1_content
       feature2
       feature2_content
-      img_src
+      talks(orderBy: [
+            {
+                field: "id"
+                order: ASC
+            }
+        ]) {
+        id
+        sentence1
+        sentence2
+        sentence3
+      }
     }
 }

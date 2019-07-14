@@ -18,10 +18,21 @@
                   </template>
 
                   <v-list>
+                    <v-btn 
+                    v-if="this.$store.state.loggedIn" 
+                    round
+                    @click="logOut">ログアウト</v-btn>
+                    <v-btn 
+                    v-else 
+                    round
+                    class="btn-tw"
+                    @click="$router.push('redirect')">
+                      <i class="fab fa-twitter"></i>ログイン
+                    </v-btn>
                     <v-list-tile
                       v-for="(item, i) in items"
                       :key="i"
-                      @click="">
+                      @click="$router.push(item.to)">
                       <v-list-tile-title>{{ item.title }}</v-list-tile-title>
                     </v-list-tile>
                   </v-list>
@@ -84,6 +95,7 @@
 </template>
 
 <script>
+  import { mapMutations } from 'vuex'
   export default {
     data () {
       return {
@@ -92,13 +104,25 @@
         fixed: false,
         items: [
           { icon: 'apps', title: 'ホーム', to: '/' },
-          { icon: 'bubble_chart', title: 'さくせい', to: '/create' }
         ],
         miniVariant: false,
         right: true,
         rightDrawer: false,
         title: 'ツイモン'
       }
+    },
+    methods: {
+      logOut (){
+        this.$store.commit('logOut')
+        this.$router.replace('/');
+        // this.$apollo.mutate({
+        //   mutation: CREATE_USER_GQL,
+        //   variables: {
+        //     // name: this.customer.name,
+        //     // gender: this.customer.gender,
+        //   }
+        // })
+      },
     }
   }
 </script>
@@ -118,6 +142,10 @@
 }
 .rounded-card-20{
   border-radius:20px;
+}
+.btn-tw {
+  color: white !important;
+  background-color: #00aced !important;
 }
 .awesome-green {color: green}
 .awesome-red {color: red}

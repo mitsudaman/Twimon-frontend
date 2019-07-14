@@ -1,5 +1,9 @@
  mutation{
   authenticateUserGql{
     access_token
+    me{
+      id
+      name
+    }
   }
 }

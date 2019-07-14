@@ -30,6 +30,8 @@ module.exports = {
   loading: { color: '#3B8070' },
   modules: [
     '@nuxtjs/apollo',
+    ['cookie-universal-nuxt', {parseJSON: false}],
+    'nuxt-client-init-module',
   ],
   apollo: {
     clientConfigs: {

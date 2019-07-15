@@ -67,7 +67,7 @@
           color="teal"
           flat
           value="favorites"
-          @click="$router.push('/read?n=8')">
+          @click="$router.push('/read/8')">
           <span>Favorites</span>
           <v-icon>favorite</v-icon>
         </v-btn>

@@ -110,14 +110,14 @@ export default {
       query: getUserGql,
       variables() {
         return {
-          userId: this.$route.query.n,
+          userId: this.$route.params.id
         };
       },
     }
   },
   methods: {
     commandTalk (){
-      console.log(this.$route.query.n)
+      console.log(this.$route.params.id)
     },
   }
 }

@@ -52,6 +52,7 @@
               <v-btn
               :block=true
               :large=true
+              round
               @click="commandTalk"
               color="grey darken-3 white--text">
                 <span class="command_context">
@@ -59,29 +60,31 @@
                 </span>
               </v-btn>
             </v-flex>
-            <v-flex 
+            <!-- <v-flex 
               xs6>
               <v-btn
               :block=true
               :large=true
+              round
               @click="commandSearch"
               color="grey darken-3 white--text">
                 <span class="command_context">
                   <i class="fas fa-search"></i> しらべる
                 </span>
                 </v-btn>
-            </v-flex>
-            <v-flex xs6>
+            </v-flex> -->
+            <!-- <v-flex xs6>
               <v-btn
               :block=true
               :large=true
+              round
               @click="commandMagic"
               color="grey darken-3 white--text">
                 <span class="command_context">
                   <i class="fas fa-hat-wizard"></i> じゅもん
                 </span>
               </v-btn>
-            </v-flex>
+            </v-flex> -->
           </v-layout>
         </v-flex>
       </v-layout>
@@ -102,7 +105,8 @@ export default {
       height: "",
       weight: "",
       user: {
-      }
+      },
+      sentenceIndex:0
     }
   },
   apollo: {
@@ -117,7 +121,8 @@ export default {
   },
   methods: {
     commandTalk (){
-      console.log(this.$route.params.id)
+      this.sentenceIndex++
+      console.log(this.sentenceIndex)
     },
   }
 }

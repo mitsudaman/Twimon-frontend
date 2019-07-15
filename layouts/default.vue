@@ -26,7 +26,7 @@
                     v-else 
                     round
                     class="btn-tw"
-                    @click="$router.push('redirect')">
+                    @click="$router.replace({ path: '/redirect'})">
                       <i class="fab fa-twitter"></i>ログイン
                     </v-btn>
                     <v-list-tile
@@ -114,7 +114,7 @@
     methods: {
       logOut (){
         this.$store.commit('logOut')
-        this.$router.replace('/');
+        this.$router.replace({ path: '/' });
         // this.$apollo.mutate({
         //   mutation: CREATE_USER_GQL,
         //   variables: {

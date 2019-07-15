@@ -38,7 +38,7 @@ module.exports = {
       default: {
         // Graphpack側のエンドポイントを指定します。
         // httpEndpoint: 'http://stark-ravine-37952.herokuapp.com/graphql',
-        httpEndpoint: 'http://localhost:8001//graphql',
+        httpEndpoint: 'http://localhost:8001/graphql',
         // httpEndpoint: 'https://damp-wildwood-50383.herokuapp.com/graphql',
         // // Subscription用にWebSocketの設定も追加します。
         // wsEndpoint: 'ws://localhost:4000/graphql',

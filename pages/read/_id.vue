@@ -46,7 +46,7 @@
           sm5
           class="balloon_area mt-5 pa-3"
         > 
-          <v-layout row wrap>
+          <v-layout v-if="!talkViewFlg" row wrap>
             <v-flex
               xs6>
               <v-btn
@@ -86,6 +86,15 @@
               </v-btn>
             </v-flex> -->
           </v-layout>
+          <v-layout v-else row wrap>
+            <v-flex
+              xs12
+              class="balloon_area_context"
+              @click="talkNext"
+              >
+              <p>{{talkSentence}}</p>
+            </v-flex>
+          </v-layout>
         </v-flex>
       </v-layout>
 
@@ -106,7 +115,12 @@ export default {
       weight: "",
       user: {
       },
-      sentenceIndex:0
+      talkIndex: 0,
+      sentenceIndex: 1,
+      talks:[],
+      nowTalk:[],
+      talkViewFlg: false,
+      talkSentence: null
     }
   },
   apollo: {
@@ -117,13 +131,47 @@ export default {
           userId: this.$route.params.id
         };
       },
+      update(data){
+        this.talks = data.user.talks
+        return data.user
+      }
     }
   },
   methods: {
     commandTalk (){
-      this.sentenceIndex++
-      console.log(this.sentenceIndex)
+      this.talkViewFlg = true
+      this.sentenceIndex = 1
+      // console.log(this.talkIndex)
+      // console.log(this.talkIndex%this.talks.length)
+      this.nowTalk = this.talks[this.talkIndex%this.talks.length]
+      this.talkSentence = this.nowTalk.sentence1
     },
+    talkNext() {
+      this.sentenceIndex++
+      if(this.sentenceIndex == 2){
+        if(this.nowTalk.sentence2){
+          this.talkSentence = this.nowTalk.sentence2
+        }
+        else{
+          this.talkSentence = ""
+        }
+      }
+      else if(this.sentenceIndex == 3){
+        if(this.nowTalk.sentence3){
+          this.talkSentence = this.nowTalk.sentence3
+        }
+        else{
+          this.talkEnd()
+        }
+      }
+      else{
+        this.talkEnd()
+      }
+    },
+    talkEnd(){
+      this.talkIndex ++
+      this.talkViewFlg = false
+    }
   }
 }
 </script>
@@ -166,5 +214,10 @@ h2 {
   background-color: rgba(0, 0, 0, 0.6)!important;
   border: 2px solid white;
   border-radius: 1em;
+}
+.balloon_area_context{
+  color: white;
+  font-size: 1.4em;
+  margin-bottom: 0px;
 }
 </style>

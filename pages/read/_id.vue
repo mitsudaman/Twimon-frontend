@@ -92,7 +92,8 @@
               class="balloon_area_context"
               @click="talkNext"
               >
-              <p>{{talkSentence}}</p>
+              <p class="text-xs-left">{{talkSentence}}</p>
+              <p class="next-arrow">▼</p>
             </v-flex>
           </v-layout>
         </v-flex>
@@ -219,5 +220,14 @@ h2 {
   color: white;
   font-size: 1.4em;
   margin-bottom: 0px;
+}
+.next-arrow{
+  animation: Flash1 1s infinite;
+}
+/* アニメーション */
+@keyframes Flash1{
+  50%{
+    opacity: 0;
+  }
 }
 </style>

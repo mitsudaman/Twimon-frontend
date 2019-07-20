@@ -71,7 +71,7 @@
             </v-layout>
             <v-layout justify-center align-center>
               <v-flex xs11 d-flex pb-0>
-                <label class="ml-1 font-weight-bold">ツイットモンスター</label>
+                <label class="ml-1 font-weight-bold">せつめい</label>
               </v-flex>
             </v-layout>
             <v-layout row justify-center align-center>
@@ -143,7 +143,8 @@
           </v-layout>
           <hr style="border: 1px solid #000;">
           <div class="mt-3">
-            <p>{{description}}</p>
+            <p>{{description}}</p>{{me}}
+            <!-- {{this.$store.state.twimonToken}} -->
           </div>
         </v-flex>
       </v-layout>
@@ -152,7 +153,7 @@
 </template>
 
 <script>
-import getUsersGql from '~/apollo/queries/getUsers.gql'
+import GET_ME from '~/apollo/queries/getMe.gql'
 import MyPageNav from '~/components/MyPageNav.vue'
 import NuxtLogo from '~/components/NuxtLogo.vue'
 
@@ -175,23 +176,28 @@ export default {
         { icon: 'apps', title: 'プロフィール', to: '/' },
         { icon: 'bubble_chart', title: 'はなす', to: '/create' }
       ],
+      tokentttt:""
     }
+  },
+  created (){
+    // console.log(this.$cookies.get('twimonToken'))
+    this.tokentttt = this.$cookies.get('twimonToken')
   },
   computed: {
     arrDescription () { 
       return this.description.split(/\n/);
     },
   },
-  apollo: {
-    // user: {
-    //   query: getUsersGql,
-    //   variables() {
-    //     return {
-    //       userId: 8,
-    //     };
-    //   },
-    // }
-  },
+  // apollo: {
+  //   me: {
+  //     query: GET_ME,
+  //     context: {
+  //       headers: {
+  //           "Authorization":"Bearer " + this.tokentttt
+  //       }
+  //     }
+  //   }
+  // },
   methods: {
     commandTalk (){
       this.name = "ミツダマ"

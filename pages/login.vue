@@ -1,0 +1,68 @@
+<template>
+  <div>
+    <v-container grid-list-xl>
+      <v-layout row justify-center align-center>
+        <v-flex sm8 >
+          <v-card class="rounded-card">
+            <v-layout justify-center align-center>
+              <v-flex xs11 mt-4 pb-0 title>
+                <p>ボタンをクリックするとTwitterログイン画面に移動します</p>
+              </v-flex>
+            </v-layout>
+            <v-layout justify-center align-center>
+              <v-flex xs11 d-flex pb-4>
+                <v-btn
+                round
+                :loading="loading"
+                class="btn-tw"
+                @click="onLogin()">
+                  <i class="fab fa-twitter"></i>ログイン
+                </v-btn>
+              </v-flex>
+            </v-layout>
+          </v-card>
+        </v-flex>
+      </v-layout>
+      <v-layout row justify-center align-center mt-5>
+        <v-flex sm8 >
+          <v-card class="rounded-card">
+            <v-layout justify-center align-center>
+              <v-flex xs11 mt-4 pb-4>
+                <p class="subheading">ツイットモンスターは個人を識別するためにTwitterアカウントの連携を必要としています。</p>
+                <ul>
+                  <li>連携許可をログイン以外の目的で使用することはありません。</li>
+                  <li>あなたのアカウントからツイートすることはありません。</li>
+                  <li>DMなどを勝手に送信することはありません。</li>
+                </ul>
+              </v-flex>
+            </v-layout>
+          </v-card>
+        </v-flex>
+      </v-layout>
+    </v-container>
+  </div>
+</template>
+
+<script>
+import GET_REDIRECT_URL_GQL from '~/apollo/queries/getRedirectUrl.gql'
+
+export default {
+  components: {
+  },
+  data() {
+    return {
+      loading:false
+    }
+  },
+  methods: {
+    onLogin (){
+      this.loading=true;
+      this.$apollo.query({
+          query: GET_REDIRECT_URL_GQL
+      }).then(({data}) => {
+        window.location.href = data.getRedirectUrl
+      })
+    }
+  }
+}
+</script>

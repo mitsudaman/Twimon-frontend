@@ -11,7 +11,7 @@ export const state = () => ({
 export const mutations = {
   setUser (state, { user }) {
     state.user = user
-    state.loggedIn = Boolean(user)
+    state.isLoggedIn = Boolean(user)
   },
   setToken (state, { token }) {
     state.twimonToken = token
@@ -29,7 +29,7 @@ export const mutations = {
   logOut (state) {
     state.twimonToken = null
     state.user = null
-    state.loggedIn = false
+    state.isLoggedIn = false
     this.$cookies.remove('twimonToken')
   }
 }
@@ -40,7 +40,6 @@ export const actions = {
     if (!token) {
       return Promise.resolve()
     }
-    commit('setToken', { token })
     const client = this.app.apolloProvider.defaultClient
     client.query({
         query: GET_ME_GQL,

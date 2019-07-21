@@ -126,6 +126,7 @@ import MyPageNav from '~/components/MyPageNav.vue'
 import NuxtLogo from '~/components/NuxtLogo.vue'
 
 export default {
+  middleware: 'authenticated',
   components: {
     MyPageNav
   },

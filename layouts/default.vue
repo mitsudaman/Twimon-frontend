@@ -19,7 +19,7 @@
 
                   <v-list>
                     <v-btn 
-                    v-if="this.$store.state.loggedIn" 
+                    v-if="this.$store.state.isLoggedIn" 
                     round
                     @click="logOut">ログアウト</v-btn>
                     <v-btn 

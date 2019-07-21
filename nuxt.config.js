@@ -34,8 +34,9 @@ module.exports = {
     'nuxt-client-init-module',
   ],
   apollo: {
+    tokenName: 'twimonToken',
     clientConfigs: {
-      default: {
+      default:{
         // Graphpack側のエンドポイントを指定します。
         // httpEndpoint: 'http://stark-ravine-37952.herokuapp.com/graphql',
         httpEndpoint: 'http://localhost:8001/graphql',

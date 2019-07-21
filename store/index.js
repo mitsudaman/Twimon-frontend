@@ -4,7 +4,7 @@ const inBrowser = typeof window !== 'undefined'
 
 export const state = () => ({
   user: null,
-  loggedIn: false,
+  isLoggedIn: false,
   twimonToken: null
 })
 
@@ -44,11 +44,6 @@ export const actions = {
     const client = this.app.apolloProvider.defaultClient
     client.query({
         query: GET_ME_GQL,
-        context: {
-          headers: {
-              "Authorization":"Bearer " + token
-          }
-        }
       }).then(({data}) => {
           const me = data.me
           commit('setUser',  { user: data.me})

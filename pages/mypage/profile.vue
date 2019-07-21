@@ -170,34 +170,17 @@ export default {
       description: '',
       imageRadioButton: "1",
       uploadedImage: '',
-      user: {
-      },
       items: [
         { icon: 'apps', title: 'プロフィール', to: '/' },
         { icon: 'bubble_chart', title: 'はなす', to: '/create' }
       ],
-      tokentttt:""
     }
   },
-  created (){
-    // console.log(this.$cookies.get('twimonToken'))
-    this.tokentttt = this.$cookies.get('twimonToken')
+  apollo: {
+    me: {
+      query: GET_ME,
+    }
   },
-  computed: {
-    arrDescription () { 
-      return this.description.split(/\n/);
-    },
-  },
-  // apollo: {
-  //   me: {
-  //     query: GET_ME,
-  //     context: {
-  //       headers: {
-  //           "Authorization":"Bearer " + this.tokentttt
-  //       }
-  //     }
-  //   }
-  // },
   methods: {
     commandTalk (){
       this.name = "ミツダマ"

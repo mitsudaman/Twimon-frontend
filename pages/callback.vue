@@ -25,7 +25,7 @@
 <script>
 import { mapMutations } from 'vuex'
 import AUTHENTICATE_USER_GQL from '~/apollo/mutations/authenticateUserGql.gql'
-import UPDATE_USER_GQL from '~/apollo/mutations/updateUser.gql'
+import UPDATE_USER_PROF_GQL from '~/apollo/mutations/updateUserProf.gql'
 import ADD_OR_DELETE_LIKE_UAER_GQL from '~/apollo/mutations/addOrDeleteLikeUser.gql'
 import GET_AUTHED_USER_GQL from '~/apollo/queries/getAuthedUser.gql'
 

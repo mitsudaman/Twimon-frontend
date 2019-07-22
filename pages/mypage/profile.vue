@@ -173,7 +173,7 @@
 import GET_ME from '~/apollo/queries/getMe.gql'
 import MyPageNav from '~/components/MyPageNav.vue'
 import NuxtLogo from '~/components/NuxtLogo.vue'
-import UPDATE_USER_GQL from '~/apollo/mutations/updateUser.gql'
+import UPDATE_USER_PROF_GQL from '~/apollo/mutations/updateUserProf.gql'
 import _ from 'lodash'
 
 export default {
@@ -221,7 +221,7 @@ export default {
     },
     updateUser (){
       this.$apollo.mutate({
-        mutation: UPDATE_USER_GQL,
+        mutation: UPDATE_USER_PROF_GQL,
         variables: {
           name: this.me.name,
           title: this.me.title,

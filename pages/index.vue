@@ -14,15 +14,19 @@
       </v-layout>
     </v-parallax>
     <v-container grid-list-xl text-xs-center>
-      <v-layout row wrap>
-        <v-flex v-for="user in users" v-bind:key="user.id" xs12 sm3>
+      <v-layout row justify-center wrap>
+        <v-flex v-for="user in users" v-bind:key="user.id" xs11 sm3>
           <v-card  :hover="true" class="rounded-card-20"
           :to="'/read/' + user.id">
             <v-img v-bind:src="require('~/assets/img/gattyo/' + user.img_src)" aspect-ratio="1"></v-img>
-            <v-card-title primary-title>
+            <v-card-title primary-title class="pb-1">
               <h3 class="headline text-truncate mb-0">{{ user.name }}</h3>
             </v-card-title>
             <div class="text-xs-left pl-4 pb-3">
+              <div class="subheading">
+                <i v-if="user.liked" class="fas fa-heart"></i>
+                <i v-else class="far fa-heart"></i>
+              </div>
               <div class="text-truncate"> {{ user.feature1 }} </div>
               <div class="text-truncate"> {{ user.feature1_content }} </div>
               <div class="text-truncate mt-2"> {{ user.feature2 }} </div>
@@ -107,5 +111,8 @@ export default {
   font-family: 'PixelMplus';
   text-align: center;
   padding-top:60px;
+}
+.fa-heart {
+  color:#ea3f60
 }
 </style>

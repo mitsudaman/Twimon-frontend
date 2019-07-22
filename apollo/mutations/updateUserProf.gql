@@ -1,0 +1,12 @@
+mutation  updateUserProf($UpdateUserProfInput:UpdateUserProfInput!){
+  updateUserProf(input:$UpdateUserProfInput){
+    id
+    name
+    title
+    feature1
+    feature1_content
+    feature2
+    feature2_content
+    description
+  }
+}

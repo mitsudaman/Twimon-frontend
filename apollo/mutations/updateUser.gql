@@ -1,7 +1,0 @@
-mutation  updateUser($name:String $feature1:String $description:String){
-  updateUser(name: $name feature1:$feature1 description:$description){
-    id
-    name
-    feature1
-  }
-}

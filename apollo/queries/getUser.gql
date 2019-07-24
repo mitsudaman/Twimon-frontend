@@ -2,13 +2,17 @@
 query getUser($userId:ID!){
   user(id: $userId) {
       id
+    	serial_number
       name
       title
       feature1
       feature1_content
       feature2
       feature2_content
-      img_src
+      sns_img_src
+    	hall_of_fame_flg
+    	legend_flg
+    	like_ct
       talks(orderBy: [
             {
                 field: "id"

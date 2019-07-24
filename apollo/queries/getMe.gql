@@ -1,6 +1,7 @@
 {
   me{
     id
+    serial_number
     name
     title
     feature1
@@ -8,5 +9,9 @@
     feature2
     feature2_content
     description
+    sns_img_src
+    hall_of_fame_flg
+    legend_flg
+    like_ct
   }
 }

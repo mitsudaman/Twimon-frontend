@@ -7,6 +7,7 @@ query GetUsers ($page:Int!){
         ]) {
         data {
             id
+            serial_number
             name
             feature1
             feature1_content
@@ -16,6 +17,9 @@ query GetUsers ($page:Int!){
           	upload_img_src
             sns_img_src
             sns_img_use_flg
+            hall_of_fame_flg
+            legend_flg
+          	like_ct
           	liked
         }
         paginatorInfo {

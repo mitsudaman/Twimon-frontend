@@ -13,7 +13,9 @@ query GetUsers ($page:Int!){
             feature2
             feature2_content
             description
-          	img_src
+          	upload_img_src
+            sns_img_src
+            sns_img_use_flg
           	liked
         }
         paginatorInfo {

@@ -6,6 +6,12 @@
           <h2 class="blackboard">プロフィール</h2>
         </v-flex>
       </v-layout>
+      <!-- <v-layout row wrap justify-center mt-4>
+        <v-flex sm8>
+                <i v-if="user.liked" class="fas fa-heart"></i>
+                <i v-else class="far fa-heart"></i>
+        </v-flex>
+      </v-layout> -->
       <v-layout row wrap justify-center mt-3>
         <v-flex sm5 class="profile">
           <v-layout row wrap justify-center>
@@ -13,8 +19,8 @@
               <div>
                 <v-img 
                 class="image"
-                v-if="user.img_src"
-                v-bind:src="require('~/assets/img/gattyo/' + user.img_src)" aspect-ratio="1"></v-img>
+                v-if="user.sns_img_src"
+                v-bind:src="require('~/assets/img/gattyo/' + user.sns_img_src)" aspect-ratio="1"></v-img>
               </div>
               <div text-center>
                 No.???

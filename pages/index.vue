@@ -18,7 +18,7 @@
         <v-flex v-for="user in users" v-bind:key="user.id" xs11 sm3>
           <v-card  :hover="true" class="rounded-card-20"
           :to="'/read/' + user.id">
-            <v-img v-bind:src="require('~/assets/img/gattyo/' + user.img_src)" aspect-ratio="1"></v-img>
+            <v-img v-bind:src="require('~/assets/img/gattyo/' + user.sns_img_src)" aspect-ratio="1"></v-img>
             <v-card-title primary-title class="pb-1">
               <h3 class="headline text-truncate mb-0">{{ user.name }}</h3>
             </v-card-title>

@@ -8,5 +8,8 @@
     feature2
     feature2_content
     description
+    upload_img_src
+    sns_img_src
+    sns_img_use_flg
   }
 }

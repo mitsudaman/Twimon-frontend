@@ -8,7 +8,10 @@ query getUser($userId:ID!){
       feature1_content
       feature2
       feature2_content
-      img_src
+      upload_img_src
+      sns_img_src
+      sns_img_use_flg
+      liked
       talks(orderBy: [
             {
                 field: "id"

@@ -33,6 +33,9 @@ module.exports = {
     ['cookie-universal-nuxt', {parseJSON: false}],
     'nuxt-client-init-module',
   ],
+  axios: {
+    credentials: true
+  },
   apollo: {
     tokenName: 'twimonToken',
     clientConfigs: {

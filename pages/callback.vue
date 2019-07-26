@@ -38,21 +38,21 @@ export default {
     }
   },
   created (){
-    this.$apollo.mutate({
-        mutation: AUTHENTICATE_USER_GQL, 
-      })
-      .then(({data}) => { 
-        // Query work fine and result is the proper data object
-        // console.log(data.authenticateUserGql.access_token)
-        this.$store.commit('setToken',{ token: data.authenticateUserGql.access_token})
-        this.$store.commit('setUser',{ user: data.authenticateUserGql.me})
-        this.$router.replace('/');
-      })
-      .catch((error) => {
-        // This should log the error object but is just printing out the message
-        console.log(error);
-        this.failedMessage = 'Twitterでのログインに失敗しました。';
-      });
+    // this.$apollo.mutate({
+    //     mutation: AUTHENTICATE_USER_GQL, 
+    //   })
+    //   .then(({data}) => { 
+    //     // Query work fine and result is the proper data object
+    //     // console.log(data.authenticateUserGql.access_token)
+    //     this.$store.commit('setToken',{ token: data.authenticateUserGql.access_token})
+    //     this.$store.commit('setUser',{ user: data.authenticateUserGql.me})
+    //     // this.$router.replace('/');
+    //   })
+    //   .catch((error) => {
+    //     // This should log the error object but is just printing out the message
+    //     console.log(error);
+    //     this.failedMessage = 'Twitterでのログインに失敗しました。';
+    //   });
 
     // this.$apollo.query({
     //     query: GET_AUTHED_USER_GQL,
@@ -67,6 +67,18 @@ export default {
     // }).then(({data}) => {
     //     console.log(data)
     //   })
+  },
+  async mounted () {
+    try{
+      console.log(this.$route.query)
+      const axios = require('axios');
+      const callbackData = await axios.get('http://localhost:8001/api/login/twitter/callback', { params: this.$route.query })
+
+      console.log(callbackData)
+    }catch (error) {
+      console.log(error)
+      console.log(error.message)
+    }
   },
   computed: {
     attempting () {

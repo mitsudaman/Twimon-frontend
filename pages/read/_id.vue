@@ -6,12 +6,29 @@
           <h2 class="blackboard">プロフィール</h2>
         </v-flex>
       </v-layout>
-      <!-- <v-layout row wrap justify-center mt-4>
-        <v-flex sm8>
-                <i v-if="user.liked" class="fas fa-heart"></i>
-                <i v-else class="far fa-heart"></i>
+      <v-layout row wrap justify-center mt-4>
+        <v-flex xs10 sm9></v-flex>
+        <v-flex xs2 sm3 class="title text-xs-left">
+          <div 
+            class="like_panel"
+            v-bind:class="{ like_active: likedFlg }">
+            <button 
+            v-if="likedFlg"
+            @click="delLikeUsr()">
+              <i  
+                v-bind:class="{ heart_break: onLikedFlg }"
+              class="fas fa-heart"></i>
+            </button>
+            <button 
+            v-else
+            @click="addLikeUsr()">
+              <i 
+                class="far fa-heart"></i>
+            </button>
+            <span class="ml-1">{{likeSum}}</span>
+          </div>
         </v-flex>
-      </v-layout> -->
+      </v-layout>
       <v-layout row wrap justify-center mt-3>
         <v-flex sm5 class="profile">
           <v-layout row wrap justify-center>
@@ -111,15 +128,15 @@
 </template>
 
 <script>
-import getUserGql from '~/apollo/queries/getUser.gql'
+import GET_USER_GQL from '~/apollo/queries/getUser.gql'
+import ADD_OR_DELETE_LIKE_UAER_GQL from '~/apollo/mutations/addOrDeleteLikeUser.gql'
 
 export default {
   data() {
     return {
-      name: "",
-      title: "",
-      height: "",
-      weight: "",
+      likeSum: 0,
+      likedFlg: false,
+      onLikedFlg: false,
       user: {
       },
       talkIndex: 0,
@@ -132,7 +149,7 @@ export default {
   },
   apollo: {
     user: {
-      query: getUserGql,
+      query: GET_USER_GQL,
       variables() {
         return {
           userId: this.$route.params.id
@@ -140,11 +157,33 @@ export default {
       },
       update(data){
         this.talks = data.user.talks
+        this.likeSum = data.user.like_ct
+        this.likedFlg = data.user.liked
         return data.user
       }
     }
   },
   methods: {
+    addLikeUsr(){
+      this.likeSum ++ 
+      this.likedFlg = true
+      this.onLikedFlg = true
+      this.updateLike()
+    },
+    delLikeUsr(){
+      this.likeSum --
+      this.likedFlg = false
+      this.onLikedFlg = false
+      this.updateLike()
+    },
+    updateLike(){
+      this.$apollo.mutate({
+        mutation: ADD_OR_DELETE_LIKE_UAER_GQL,
+        variables: {
+          user_id: this.$route.params.id
+        },
+      })
+    },
     commandTalk (){
       this.talkViewFlg = true
       this.sentenceIndex = 1
@@ -235,5 +274,22 @@ h2 {
   50%{
     opacity: 0;
   }
+}
+.heart_break{
+  animation: anime1 0.1s  ;
+}
+.like_panel{
+  color: #a8abb1;
+}
+.like_active {
+  color:#ea3f60;
+}
+@keyframes anime1{
+0% { transform: scale(1); }
+20% { transform: scale(1.1); }
+40% { transform: scale(1.3); }
+60% { transform: scale(1.5); }
+80% { transform: scale(1.3); }
+100% { transform: scale(1); }
 }
 </style>

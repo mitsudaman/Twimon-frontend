@@ -26,7 +26,6 @@
 import { mapMutations } from 'vuex'
 import AUTHENTICATE_USER_GQL from '~/apollo/mutations/authenticateUserGql.gql'
 import UPDATE_USER_PROF_GQL from '~/apollo/mutations/updateUserProf.gql'
-import ADD_OR_DELETE_LIKE_UAER_GQL from '~/apollo/mutations/addOrDeleteLikeUser.gql'
 import GET_AUTHED_USER_GQL from '~/apollo/queries/getAuthedUser.gql'
 
 export default {
@@ -90,19 +89,6 @@ export default {
       //   }
       // })
     },
-    updateLike(){
-      this.$apollo.mutate({
-        mutation: ADD_OR_DELETE_LIKE_UAER_GQL,
-        variables: {
-          user_id: 1
-        },
-        context: {
-          headers: {
-              "Authorization":"Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImRmZjJmMTVhZGI1NDgxNjc5NmNkN2M5ODJiMjM5N2RmZjk0ODgyMDg1M2YzNzMyZTUyNjU4NWM5MjMzMTk4N2Y0N2Q0MjE2ZGM5YTc5Yjg0In0.eyJhdWQiOiIxIiwianRpIjoiZGZmMmYxNWFkYjU0ODE2Nzk2Y2Q3Yzk4MmIyMzk3ZGZmOTQ4ODIwODUzZjM3MzJlNTI2NTg1YzkyMzMxOTg3ZjQ3ZDQyMTZkYzlhNzliODQiLCJpYXQiOjE1NjI3NDIzMzAsIm5iZiI6MTU2Mjc0MjMzMCwiZXhwIjoxNTk0MzY0NzMwLCJzdWIiOiI5Iiwic2NvcGVzIjpbXX0.dWyHR6y6h5UyZiQICef-GCRL1Yi0fA4CVrfsesEQSY78tW8a-aXC3WpBUls4TdZibzyYzjVR-o75N2KyGu-o5vE6FBZmQ3W15EVAYF9h7PiHqJ5umpsYiViJHjiCOeqAbiME43Lo_9DV3AY5UoiiS8Y2Ewc3Y6yv0--alKTS8VY0zCVVt5GCVEQ40GUhxWThszJvqnYSJ6gpShtT3Q7YnPMwO63bGuw91Pc1KIPCkwn9z9jh2G0Nf_6esHvNwzdD0z-OTRCAJiwIdtWlP5o69pD-bOGRiZDL9A3iQ25ZZ3wBHhoEGv685_9QIiYyKhqZa0hSi7qkAxi6Rq_C0mvREfiBZOmRtRfrRZnY04I-eQrkqPGm-XrqEYEwRq3wqaWBh0952UjdAZ08waGqj-2d0sqgi5q9fNNO6PEJD84BtEIgeHkavwqsuakCaTW_gPu5Vnizvc-fRZ31ED421AZuKF9EqXv1K6hzSVZEufv-cLgQrPSu-pFYr_TzL-aUXazk3Hmof1sYJEViDSohKw1nrRRYtxzzAbZw9FxGyO_e-oIh4XQCM-FJTLd8EBDOSVgkM4E5xFGLP2JvrSdkchfNyMbX6vZNLRA_hf8kLXx8jrCRcUZLbMu0vfKx6665d8pQhXK5K99gfw32dVwJ4dKBaVrhDS2KiDlE4dhwP3LfQ2M"
-          }
-        }
-      })
-    }
   }
 }
 </script>

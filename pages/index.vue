@@ -23,9 +23,10 @@
               <h3 class="headline text-truncate mb-0">{{ user.name }}</h3>
             </v-card-title>
             <div class="text-xs-left pl-4 pb-3">
-              <div class="subheading">
+              <div class="subheading like_panel">
                 <i v-if="user.liked" class="fas fa-heart"></i>
                 <i v-else class="far fa-heart"></i>
+                <span class="ml-1">{{user.like_ct}}</span>
               </div>
               <div class="text-truncate"> {{ user.feature1 }} </div>
               <div class="text-truncate"> {{ user.feature1_content }} </div>
@@ -112,7 +113,7 @@ export default {
   text-align: center;
   padding-top:60px;
 }
-.fa-heart {
+.like_panel {
   color:#ea3f60
 }
 </style>

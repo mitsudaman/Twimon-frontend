@@ -182,6 +182,7 @@ export default {
         variables: {
           user_id: this.$route.params.id
         },
+      }).then(({data})=>{
       })
     },
     commandTalk (){

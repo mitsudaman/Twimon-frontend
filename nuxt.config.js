@@ -35,6 +35,11 @@ module.exports = {
   ],
   apollo: {
     tokenName: 'twimonToken',
+    defaultOptions: {
+      $query: {
+        fetchPolicy: 'cache-and-network',
+      },
+    },
     clientConfigs: {
       default:{
         // Graphpack側のエンドポイントを指定します。

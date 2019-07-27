@@ -23,7 +23,7 @@
               <h3 class="headline text-truncate mb-0">{{ user.name }}</h3>
             </v-card-title>
             <div class="text-xs-left pl-4 pb-3">
-              <div class="subheading like_panel">
+              <div class="subheading like_panel_red">
                 <i v-if="user.liked" class="fas fa-heart"></i>
                 <i v-else class="far fa-heart"></i>
                 <span class="ml-1">{{user.like_ct}}</span>
@@ -113,7 +113,7 @@ export default {
   text-align: center;
   padding-top:60px;
 }
-.like_panel {
+.like_panel_red {
   color:#ea3f60
 }
 </style>

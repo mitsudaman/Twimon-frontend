@@ -36,8 +36,8 @@
               <div>
                 <v-img 
                 class="image"
-                v-if="user.sns_img_src"
-                v-bind:src="require('~/assets/img/gattyo/' + user.sns_img_src)" aspect-ratio="1"></v-img>
+                v-if="user.sns_img_url"
+                v-bind:src="user.sns_img_url" aspect-ratio="1"></v-img>
               </div>
               <div text-center>
                 No.???
@@ -132,6 +132,7 @@ import GET_USER_GQL from '~/apollo/queries/getUser.gql'
 import ADD_OR_DELETE_LIKE_UAER_GQL from '~/apollo/mutations/addOrDeleteLikeUser.gql'
 
 export default {
+  middleware: 'authenticated',
   data() {
     return {
       likeSum: 0,

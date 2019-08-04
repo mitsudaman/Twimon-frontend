@@ -12,13 +12,6 @@
       color="grey darken-3 white--text">
       <span><i class="far fa-comment-dots"></i> ボタン</span>
     </v-btn>
-    <v-btn
-      :block=true
-      :large=true
-      @click="updateLike"
-      color="grey darken-3 white--text">
-      <span><i class="far fa-comment-dots"></i> いいね</span>
-    </v-btn>
   </div>
 </template>
 

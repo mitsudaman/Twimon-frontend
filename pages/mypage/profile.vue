@@ -223,13 +223,16 @@ export default {
       this.$apollo.mutate({
         mutation: UPDATE_USER_PROF_GQL,
         variables: {
-          name: this.me.name,
-          title: this.me.title,
-          feature1: this.me.feature1,
-          feature1_content: this.me.feature1_content,
-          feature2: this.me.feature2,
-          feature2_content: this.me.feature2_content,
-          description: this.me.description
+          UpdateUserProfInput:  {
+            name: this.me.name,
+            title: this.me.title,
+            feature1: this.me.feature1,
+            feature1_content: this.me.feature1_content,
+            feature2: this.me.feature2,
+            feature2_content: this.me.feature2_content,
+            description: this.me.description,
+            sns_img_use_flg: true
+          }
         },
       }).then(() => { 
         this.snackbar = true
@@ -292,8 +295,5 @@ h2 {
 }
 .mypage_link a:hover{
   color: #000000;
-}
-.snackbar_text{
-  /* color: #8cad85; */
 }
 </style>

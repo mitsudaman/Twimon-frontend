@@ -18,7 +18,7 @@
         <v-flex v-for="user in users" v-bind:key="user.id" xs11 sm3>
           <v-card  :hover="true" class="rounded-card-20"
           :to="'/read/' + user.id">
-            <v-img v-bind:src="require('~/assets/img/gattyo/' + user.sns_img_src)" aspect-ratio="1"></v-img>
+            <v-img v-bind:src="user.sns_img_url" aspect-ratio="1"></v-img>
             <v-card-title primary-title class="pb-1">
               <h3 class="headline text-truncate mb-0">{{ user.name }}</h3>
             </v-card-title>
@@ -26,7 +26,7 @@
               <div class="subheading like_panel_red">
                 <i v-if="user.liked" class="fas fa-heart"></i>
                 <i v-else class="far fa-heart"></i>
-                <span class="ml-1">{{user.like_ct}}</span>
+                <span class="body-2 ml-1">{{user.like_ct}}</span>
               </div>
               <div class="text-truncate"> {{ user.feature1 }} </div>
               <div class="text-truncate"> {{ user.feature1_content }} </div>

@@ -127,7 +127,53 @@
         </v-flex>
       </v-layout>
 
-      <v-layout row wrap justify-center mt-3 text-xs-center>
+
+      <v-layout row justify-center>
+        <v-flex xs12 sm8>
+          <svg ref="svgArea" viewBox="0 0 600 315">
+            <rect x="0" y="0" width="600" height="315" fill="#fffff0"></rect>
+            <text 
+            x="50%" 
+            :y="30" 
+            font-weight="bold"
+            :font-size="10"
+            text-anchor="middle"></text>
+            <text 
+            x="15%" 
+            y="70%"
+            font-weight="bold"
+            font-size="8px"
+            style="fill: red"
+            >A:</text>
+            <text 
+            x="21%" 
+            y="70%"
+            font-weight="bold"
+            :font-size="10"
+            >aaaaaa</text>
+            <text 
+            x="15%" 
+            y="85%"
+            font-weight="bold"
+            font-size="8px"
+            style="fill: blue"
+            >B:</text>
+            <text 
+            x="21%" 
+            y="85%"
+            font-weight="bold"
+            :font-size="10"
+            >bbbbbbbbb</text>
+          </svg>
+        </v-flex>
+      </v-layout>
+
+    <no-ssr>
+      <canvas 
+        id="test"></canvas>
+    </no-ssr>
+
+      <!-- <v-layout row wrap justify-center mt-3 text-xs-center>
         <v-flex sm5 class="profile ma-2">
           <v-layout row wrap justify-center>
             <v-flex xs6>
@@ -161,15 +207,15 @@
           <hr style="border: 1px solid #000;">
           <div class="mt-3">
             <p>{{description}}</p>{{me}}
-            <!-- {{this.$store.state.twimonToken}} -->
           </div>
         </v-flex>
-      </v-layout>
+      </v-layout> -->
     </v-container>
   </div>
 </template>
 
 <script>
+import canvg from 'canvg';
 import GET_ME from '~/apollo/queries/getMe.gql'
 import MyPageNav from '~/components/MyPageNav.vue'
 import NuxtLogo from '~/components/NuxtLogo.vue'
@@ -199,6 +245,7 @@ export default {
       snackbar:false,
       snackbar_color: 'success',
       snackbar_text:"",
+      test_file:""
     }
   },
   apollo: {
@@ -220,6 +267,7 @@ export default {
 かんに 1000もじの コードを かくことができる。`;
     },
     updateUser (){
+      let image = this.createImageFile()
       this.$apollo.mutate({
         mutation: UPDATE_USER_PROF_GQL,
         variables: {
@@ -231,7 +279,8 @@ export default {
             feature2: this.me.feature2,
             feature2_content: this.me.feature2_content,
             description: this.me.description,
-            sns_img_use_flg: true
+            sns_img_use_flg: true,
+            file: ""
           }
         },
       }).then(() => { 
@@ -259,6 +308,33 @@ export default {
       };
       reader.readAsDataURL(file);
     },
+    createImageFile(){
+      // var canvas = document.getElementById("test")
+      // var svg = this.$refs.svgArea
+      // canvas.width = svg.width.baseVal.value;
+      // canvas.height = svg.height.baseVal.value;
+      // var ctx = canvas.getContext('2d');
+      // var image = new Image;
+      // var svgData = new XMLSerializer().serializeToString(svg);
+      // image.src = 'data:image/svg+xml;charset=utf-8;base64,' + btoa(svgData);
+      // image.onload = () => {
+      //   // SVGデータをPNG形式に変換する
+      //   ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+      // };
+
+
+
+      var canvas = document.getElementById("test")
+      var svg = this.$refs.svgArea
+
+      canvas.width = svg.width.baseVal.value;
+      canvas.height = svg.height.baseVal.value;
+      console.log(svg)
+      const data = new XMLSerializer().serializeToString(this.$refs.svgArea);
+      canvg(canvas, data)
+      // let image = canvas.toDataURL('image/jpeg').split(',')[1]
+      // return image
+    }
   }
 }
 </script>

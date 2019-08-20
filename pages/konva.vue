@@ -1,65 +1,66 @@
 <template>
-<div>
-  <v-stage ref="stage" :config="stageSize">
-    <v-layer ref="layer">
-      <v-image :config="{
-        x: 20,
-        y: 10,
-        image: image
-      }"/>
-      <v-text ref="text" :config="{
-        x: 180,
-        y: 30,
-        fontFamily: 'PixelMplus',
-        fontSize: 14,
-        text: text1,
-        fill: 'black'
-      }" />
-      <v-text ref="text" :config="{
-        x: 180,
-        y: 70,
-        fontFamily: 'PixelMplus',
-        fontSize: 14,
-        text: text2,
-        fill: 'black'
-      }" />
-      <v-text ref="text" :config="{
-        x: 180,
-        y: 110,
-        fontFamily: 'PixelMplus',
-        fontSize: 14,
-        text: text3,
-        fill: 'black'
-      }" />
-      <v-text ref="text" :config="{
-        x: 180,
-        y: 150,
-        fontFamily: 'PixelMplus',
-        fontSize: 14,
-        text: text4,
-        fill: 'black'
-      }" />
-    </v-layer>
-  </v-stage>
-      <v-flex xs12 sm8 md6>
-        <v-btn
-          :block=true
-          :large=true
-          @click="commandTalk"
-          color="grey darken-3 white--text">
-          <span><i class="far fa-comment-dots"></i> はなす</span>
-        </v-btn>
-      </v-flex>
-  <div id="app">
-    <input type="file" v-on:change="onFileChange">
+  <div>
+    <div style="font-family: PixelMplus;">.</div>
+    <v-stage ref="stage" :config="stageSize" style="font-family: PixelMplus;">
+      <v-layer ref="layer">
+        <v-image :config="{
+          x: 20,
+          y: 10,
+          image: image
+        }"/>
+        <v-text ref="text" :config="{
+          x: 180,
+          y: 30,
+          fontFamily: 'PixelMplus',
+          fontSize: 14,
+          text: text1,
+          fill: 'black'
+        }" />
+        <v-text ref="text" :config="{
+          x: 180,
+          y: 70,
+          fontFamily: 'PixelMplus',
+          fontSize: 14,
+          text: text2,
+          fill: 'black'
+        }" />
+        <v-text ref="text" :config="{
+          x: 180,
+          y: 110,
+          fontFamily: 'PixelMplus',
+          fontSize: 14,
+          text: text3,
+          fill: 'black'
+        }" />
+        <v-text ref="text" :config="{
+          x: 180,
+          y: 150,
+          fontFamily: 'PixelMplus',
+          fontSize: 14,
+          text: text4,
+          fill: 'black'
+        }" />
+      </v-layer>
+    </v-stage>
+    <v-flex xs12 sm8 md6>
+      <v-btn
+        :block=true
+        :large=true
+        @click="commandTalk"
+        color="grey darken-3 white--text">
+        <span><i class="far fa-comment-dots"></i> はなす</span>
+      </v-btn>
+    </v-flex>
+    <div id="app">
+      <input type="file" v-on:change="onFileChange">
+    </div>
+    <v-text-field
+      v-model="text1"
+      outline
+      placeholder="テキスト"
+      single-line
+    ></v-text-field>
   </div>
-            <v-text-field
-              v-model="text1"
-              outline
-              placeholder="テキスト"
-              single-line
-            ></v-text-field>
-</div>
 </template>
 
 <script>
@@ -68,7 +69,8 @@ export default {
     return {
       stageSize: {
         width: 400,
-        height: 200
+        height: 200,
+        fontFamily: 'PixelMplus',
       },
       text1: 'ミツダマ',
       text2: 'えんじにあニセモン',
@@ -79,7 +81,10 @@ export default {
     }
   },
   created() {
-    this.createCanvasImage("https://konvajs.org/assets/yoda.jpg")
+    // this.createCanvasImage("https://konvajs.org/assets/yoda.jpg")
+  },
+  mounted(){
+    this.text1 = "マウント"
   },
   methods: {
     commandTalk (){
@@ -133,6 +138,6 @@ export default {
 <style type="text/css">
 @font-face {
 	font-family: 'PixelMplus';
-	src: url(~assets/font/PixelMplus10-Regular.ttf);
+	src: url(~assets/font/PixelMplus10-Regular.ttf),local('PixelMplus10-Regular.ttf');
 }
 </style>

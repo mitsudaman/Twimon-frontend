@@ -238,7 +238,6 @@ export default {
               feature2: this.me.feature2,
               feature2_content: this.me.feature2_content,
               description: this.me.description,
-              sns_img_use_flg: true,
               file: file
             }
           },

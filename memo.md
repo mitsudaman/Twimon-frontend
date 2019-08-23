@@ -30,3 +30,5 @@ yarn add axios
 #heroku 
 heroku create twimon-frontend
 heroku git:remote --app twimon-frontend
+
+heroku config:set HTTP_ENDPOINT=http://localhost:8001/graphql

@@ -23,3 +23,10 @@ https://takumon.com/nuxt-apollo-with-graphpack
 
 # axios
 yarn add axios
+
+
+
+
+#heroku 
+heroku create twimon-frontend
+heroku git:remote --app twimon-frontend

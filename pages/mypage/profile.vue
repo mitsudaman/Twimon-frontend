@@ -159,7 +159,6 @@
 </template>
 
 <script>
-import canvg from 'canvg';
 import GET_ME from '~/apollo/queries/getMe.gql'
 import MyPageNav from '~/components/MyPageNav.vue'
 import NuxtLogo from '~/components/NuxtLogo.vue'

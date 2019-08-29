@@ -1,11 +1,47 @@
 <template>
   <v-app >
+
+     <!-- <v-card
+      flat
+      height="60px"
+      tile
+    >
+      <v-toolbar>
+        <v-app-bar-nav-icon></v-app-bar-nav-icon>
+
+        <v-toolbar-title>Title</v-toolbar-title>
+
+        <div class="flex-grow-1"></div>
+
+        <v-btn icon>
+          <v-icon>mdi-magnify</v-icon>
+        </v-btn>
+
+        <v-btn icon>
+          <v-icon>mdi-heart</v-icon>
+        </v-btn>
+
+        <v-btn icon>
+          <v-icon>mdi-dots-vertical</v-icon>
+        </v-btn>
+      </v-toolbar>
+    </v-card> -->
+
+
+
     <v-layout row>
       <v-flex >
         <v-card height="60px">
           <v-container grid-list-xl text-xs-center>
             <v-layout row wrap>
-                <div>Title</div>
+                <button
+                v-if="$route.name=='read-id'"
+                @click="$router.go(-1)"><i class="fas fa-chevron-left"></i>
+                </button>
+                <nuxt-link
+                v-else
+                to='/'><i class="fas fa-pastafarianism"></i>
+                </nuxt-link>
                 <v-spacer></v-spacer>
                 <v-menu bottom left color="primary">
                   <template v-slot:activator="{ on }">
@@ -51,7 +87,7 @@
 
 
 
-    <v-card height="200px" flat>
+    <v-card height="100px" flat>
       <v-bottom-nav
         :value="true"
         fixed>
@@ -133,26 +169,4 @@
 	src: url(~assets/font/PixelMplus10-Regular.ttf);
 }
 
-.container{
-  max-width: 960px;
-}
-
-.rounded-card{
-  border-radius:5px;
-}
-.rounded-card-20{
-  border-radius:20px;
-}
-.btn-tw {
-  color: white !important;
-  background-color: #00aced !important;
-}
-.awesome-green {color: green}
-.awesome-red {color: red}
-.awesome-blue {color: deepskyblue}
-.awesome-yellow {color:gold}
-.awesome-orange {color:orange}
-.awesome-darkgoldenrod {color:darkgoldenrod}
-.awesome-black {color: black}
-.awesome-white {color: white}
 </style>

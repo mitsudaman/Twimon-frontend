@@ -1,5 +1,5 @@
 query GetUsers ($page:Int!){
-    users(count: 12, page: $page,orderBy: [
+    users(count: 8, page: $page,orderBy: [
             {
                 field: "id"
                 order: ASC

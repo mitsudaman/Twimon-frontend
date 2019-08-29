@@ -1,8 +1,8 @@
 <template>
   <div>
     <v-container grid-list-md text-xs-center>
-      <v-layout row wrap justify-center mt-4>
-        <v-flex sm8>
+      <v-layout row wrap justify-center>
+        <v-flex sm9>
           <h2 class="blackboard">プロフィール</h2>
         </v-flex>
       </v-layout>
@@ -30,7 +30,7 @@
         </v-flex>
       </v-layout>
       <v-layout row wrap justify-center mt-3>
-        <v-flex sm5 class="profile">
+        <v-flex sm8 class="profile">
           <v-layout row wrap justify-center>
             <v-flex xs6>
               <div>
@@ -66,7 +66,7 @@
         <v-flex
           d-flex
           xs11
-          sm5
+          sm8
           class="balloon_area mt-5 pa-3"
         > 
           <v-layout v-if="!talkViewFlg" row wrap>
@@ -132,6 +132,10 @@ import GET_USER_GQL from '~/apollo/queries/getUser.gql'
 import ADD_OR_DELETE_LIKE_UAER_GQL from '~/apollo/mutations/addOrDeleteLikeUser.gql'
 
 export default {
+  transition (to, from) {
+    if(from && from.name == 'index') return 'read'
+    return
+  },
   middleware: 'authenticated',
   data() {
     return {

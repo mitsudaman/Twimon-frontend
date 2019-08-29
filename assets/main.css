@@ -1,0 +1,36 @@
+.container{
+    max-width: 600px;
+}
+.rounded-card{
+    border-radius:5px;
+}
+.rounded-card-20{
+    border-radius:20px;
+}
+.btn-tw {
+    color: white !important;
+    background-color: #00aced !important;
+}
+.awesome-green {color: green}
+.awesome-red {color: red}
+.awesome-blue {color: deepskyblue}
+.awesome-yellow {color:gold}
+.awesome-orange {color:orange}
+.awesome-darkgoldenrod {color:darkgoldenrod}
+.awesome-black {color: black}
+.awesome-white {color: white}
+.read-enter-active, .read-leave-active {
+    transition: all 0.1s
+}
+.read-enter{
+    opacity: 0;
+    transform: translate(500px, 0);
+}
+.index-enter-active, .index-leave-active {
+    transition: all 0.1s
+}
+.index-leave-active {
+    opacity: 0;
+    transform: scale(0);
+    transform: translate(500px, 0);
+}

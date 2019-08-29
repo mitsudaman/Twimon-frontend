@@ -13,13 +13,13 @@
         <h4 class="subheading">Build your application today!</h4>
       </v-layout>
     </v-parallax>
-    <v-container grid-list-xl text-xs-center>
+    <v-container grid-list-lg text-xs-center> 
       <v-layout row justify-center wrap>
-        <v-flex v-for="user in users" v-bind:key="user.id" xs11 sm3>
-          <v-card  :hover="true" class="rounded-card-20"
+        <v-flex v-for="user in users" v-bind:key="user.id" xs3>
+          <v-card  :hover="true" class="rounded-card"
           :to="'/read/' + user.id">
             <v-img v-bind:src="user.sns_img_url" aspect-ratio="1"></v-img>
-            <v-card-title primary-title class="pb-1">
+            <!-- <v-card-title primary-title class="pb-1">
               <h3 class="headline text-truncate mb-0">{{ user.name }}</h3>
             </v-card-title>
             <div class="text-xs-left pl-4 pb-3">
@@ -32,7 +32,7 @@
               <div class="text-truncate"> {{ user.feature1_content }} </div>
               <div class="text-truncate mt-2"> {{ user.feature2 }} </div>
               <div class="text-truncate"> {{ user.feature2_content }} </div>
-            </div>
+            </div> -->
           </v-card>
         </v-flex>
       </v-layout>
@@ -56,6 +56,10 @@ import GET_USERS_GQL from '~/apollo/queries/getUsers.gql'
 // import CREATE_USER_GQL from '~/apollo/mutations/createUser.gql'
 
 export default {
+  transition (to, from) {
+    if(from && from.name == 'read-id') return 'index'
+    return 
+  },
   data() {
     return {
       name: "",

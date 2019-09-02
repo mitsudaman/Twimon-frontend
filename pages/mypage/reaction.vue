@@ -1,119 +1,66 @@
 <template>
   <div>
-    <v-container grid-list-xl text-xs-center>
+    <v-container grid-list-xl>
+      <v-snackbar
+        v-model="snackbar"
+        top
+        :color="snackbar_color"
+        :timeout=3000
+      >
+      <span class="snackbar_text">{{ snackbar_text }}</span>
+    </v-snackbar>
       <my-page-nav></my-page-nav>
       <v-layout row justify-center align-center mt-5>
-        <v-flex sm8 >
-          <v-card class="rounded-card">
-            <v-layout row justify-center align-center>
-              <v-flex xs11 d-flex mt-5>
-                <v-text-field
-                  v-model="name"
-                  outline
-                  placeholder="ニックネーム"
-                  single-line
-                ></v-text-field>
+        <v-flex sm8>
+          <v-card class="rounded-card pb-5">
+            <v-layout justify-center align-center>
+              <v-flex xs11  mt-4 pb-0>
+                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                  viewBox="0 0 512.05 512.05" style="enable-background:new 0 0 512.05 512.05;" xml:space="preserve">
+                  <path style="fill:#2196F3;" d="M256.025,0.05C117.67-2.678,3.184,107.038,0.025,245.383c0.361,70.423,31.544,137.157,85.333,182.613
+                    v73.387c0,5.891,4.776,10.667,10.667,10.667c1.999,0,3.958-0.562,5.653-1.621l59.456-37.141
+                    c30.292,11.586,62.459,17.494,94.891,17.429c138.355,2.728,252.841-106.988,256-245.333C508.866,107.038,394.38-2.678,256.025,0.05z
+                    "/>
+                  <path style="fill:#FAFAFA;" d="M424.558,174.983c-3.174-4.254-8.993-5.527-13.653-2.987l-110.933,60.48l-69.013-59.179
+                  c-4.232-3.628-10.544-3.387-14.485,0.555l-128,128c-4.153,4.178-4.133,10.932,0.046,15.085c3.341,3.321,8.464,4.057,12.605,1.811
+                  l110.933-60.48l69.077,59.2c4.232,3.628,10.544,3.387,14.485-0.555l128-128C427.35,185.148,427.75,179.215,424.558,174.983z"/>
+                </svg>
+                <p class="ml-1 font-weight-bold">会話を追加する</p>
+                <p class="font-weight-thin reactionList_text">ユーザーが【はなす】コマンドを押したときに表示されるメッセージです。複数設定すると、押される度に順番に表示されます。最大5個設定できます。(140文字以内)</p>
               </v-flex>
             </v-layout>
-            <v-layout row justify-center align-center>
-              <v-flex xs11 d-flex>
-                <v-text-field
-                  v-model="title"
-                  outline
-                  placeholder="タイトル"
-                  single-line
-                ></v-text-field>
+            <v-layout justify-center align-center>
+              <v-flex xs11  mt-4 pb-0 border-top>
+                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                  viewBox="0 0 512.05 512.05" style="enable-background:new 0 0 512.05 512.05;" xml:space="preserve">
+                  <path style="fill:#2196F3;" d="M256.025,0.05C117.67-2.678,3.184,107.038,0.025,245.383c0.361,70.423,31.544,137.157,85.333,182.613
+                    v73.387c0,5.891,4.776,10.667,10.667,10.667c1.999,0,3.958-0.562,5.653-1.621l59.456-37.141
+                    c30.292,11.586,62.459,17.494,94.891,17.429c138.355,2.728,252.841-106.988,256-245.333C508.866,107.038,394.38-2.678,256.025,0.05z
+                    "/>
+                  <path style="fill:#FAFAFA;" d="M424.558,174.983c-3.174-4.254-8.993-5.527-13.653-2.987l-110.933,60.48l-69.013-59.179
+                  c-4.232-3.628-10.544-3.387-14.485,0.555l-128,128c-4.153,4.178-4.133,10.932,0.046,15.085c3.341,3.321,8.464,4.057,12.605,1.811
+                  l110.933-60.48l69.077,59.2c4.232,3.628,10.544,3.387,14.485-0.555l128-128C427.35,185.148,427.75,179.215,424.558,174.983z"/>
+                </svg>
+                <p class="ml-1 font-weight-bold">リンクを追加する</p>
+                <p class="font-weight-thin reactionList_text">ユーザーが【しらべる】コマンドを押したときに表示されるリンクの一覧です。最大5個設定できます。</p>
               </v-flex>
             </v-layout>
-            <v-layout row justify-center align-center>
-              <v-flex xs11 d-flex>
-                <v-text-field
-                  v-model="height"
-                  outline
-                  placeholder="たかさ"
-                  single-line
-                ></v-text-field>
-              </v-flex>
-            </v-layout>
-            <v-layout row justify-center align-center>
-              <v-flex xs11 d-flex>
-                <v-text-field
-                  v-model="weight"
-                  outline
-                  placeholder="おもさ"
-                  single-line
-                ></v-text-field>
-              </v-flex>
-            </v-layout>
-            <v-layout row justify-center align-center>
-              <v-flex xs11 d-flex>
-                <v-textarea
-                  outline
-                  :auto-grow="true"
-                  placeholder="せつめい"
-                  v-model="description">
-                </v-textarea>
-              </v-flex>
-            </v-layout>
+            
+
+            
           </v-card>
         </v-flex>
       </v-layout>
+
       <v-layout column justify-center align-center>
         <v-flex xs12 sm8 md6>
           <v-btn
             :block=true
             :large=true
-            @click="commandTalk"
+            @click="onUpdateUser"
             color="grey darken-3 white--text">
-            <span><i class="far fa-comment-dots"></i> はなす</span>
+            <span><i class="far fa-comment-dots"></i> 保存</span>
           </v-btn>
-        </v-flex>
-        <v-flex xs12 sm8 md6>{{imageRadioButton}}
-          <v-radio-group v-model="imageRadioButton" row>
-            <v-radio label="ツイッター画像" value="1"></v-radio>
-            <v-radio label="アップロード画像" value="2"></v-radio>
-          </v-radio-group>
-          <input v-if="imageRadioButton=='2'" type="file" v-on:change="onFileChange">
-        </v-flex>
-      </v-layout>
-
-      <v-layout row wrap justify-center mt-3>
-        <v-flex sm5 class="profile ma-2">
-          <v-layout row wrap justify-center>
-            <v-flex xs6>
-              <div>
-                <v-img 
-                v-if="imageRadioButton=='1'"
-                class="image"
-                src="https://konvajs.org/assets/yoda.jpg" 
-                aspect-ratio="1"></v-img>
-                <v-img
-                class="image"
-                v-if="imageRadioButton=='2'"
-                v-show="uploadedImage" 
-                :src="uploadedImage"
-                aspect-ratio="1"></v-img>
-              </div>
-              <div text-center>
-                No.???
-              </div>
-            </v-flex>
-            <v-flex xs6 text-lef
-            :class="{'mt-0': $vuetify.breakpoint.smAndDown, 'mt-4': $vuetify.breakpoint.lgAndUp}">
-              <div class="pl-2 text-xs-left">
-                <p>{{ name }}</p>
-                <p>{{ title }}</p>
-                <p>たかさ {{ height }}</p>
-                <p>おもさ {{ weight }}</p>
-              </div>
-            </v-flex>
-          </v-layout>
-          <hr style="border: 1px solid #000;">
-          <div class="mt-3">
-            <p>ふくおかに せいそくする うぇぶの ぷろぐらまー。</p>
-            <p>ぶらっくな かいしゃから すぐいなくなる。2びょう</p>
-            <p>かんに 1000もじの コードを かくことができる。</p>
-          </div>
         </v-flex>
       </v-layout>
     </v-container>
@@ -121,9 +68,11 @@
 </template>
 
 <script>
-import getUsersGql from '~/apollo/queries/getUsers.gql'
+import GET_ME from '~/apollo/queries/getMe.gql'
 import MyPageNav from '~/components/MyPageNav.vue'
 import NuxtLogo from '~/components/NuxtLogo.vue'
+import UPDATE_USER_PROF_GQL from '~/apollo/mutations/updateUserProf.gql'
+import _ from 'lodash'
 
 export default {
   middleware: 'authenticated',
@@ -139,91 +88,47 @@ export default {
       description: '',
       imageRadioButton: "1",
       uploadedImage: '',
-      user: {
-      },
       items: [
         { icon: 'apps', title: 'プロフィール', to: '/' },
         { icon: 'bubble_chart', title: 'はなす', to: '/create' }
       ],
+      me: {
+      },
+      snackbar:false,
+      snackbar_color: 'success',
+      snackbar_text:"",
+      test_file:""
     }
   },
-  computed: {
-    arrDescription () { 
-      return this.description.split(/\n/);
-    },
-  },
   apollo: {
-    // user: {
-    //   query: getUsersGql,
-    //   variables() {
-    //     return {
-    //       userId: 8,
-    //     };
-    //   },
-    // }
+    me: {
+      query: GET_ME,
+      update(data){
+        return _.cloneDeep(data.me)
+      }
+    }
   },
   methods: {
     commandTalk (){
-      this.name = "ミツダマ"
-      this.title = "えんじにあニセモン"
-      this.height = "1.7mm"
-      this.weight = "りんご3こぶん"
-      this.description = `ふくおかに せいそくする うぇぶの ぷろぐらまー。
+      this.me.name = "テスト"
+      this.me.title = "えんじにあニセモン"
+      this.me.feature1_content = "1.7mm"
+      this.me.feature2_content = "りんご3こぶん"
+      this.me.description = `ふくおかに せいそくする うぇぶの ぷろぐらまー。
 ぶらっくな かいしゃから すぐいなくなる。2びょう
 かんに 1000もじの コードを かくことができる。`;
-      // console.log( this.description.split(/\n/) );
     },
-    onFileChange(e) {
-      let files = e.target.files || e.dataTransfer.files;
-      this.createImage(files[0]);
-    },
-    createImage(file) {
-      // 画像ファイル以外は処理を止める
-      if(!file.type.match('image.*')) {
-          alert('画像を選択してください');
-          return;
-      }
-      let reader = new FileReader();
-      reader.onload = (e) => {
-        this.uploadedImage = e.target.result;
-      };
-      reader.readAsDataURL(file);
+    onUpdateUser (){
     },
   }
 }
 </script>
 <style type="text/css">
-h2 {
-  font-size: 2.5em;
-  border: 2px solid black;
-  border-radius: 1em;
-}
-.skill_svg {
-  font-size: 1.6em;
-  border-radius: 1em;
-}
-.card {
-  font-size: 1.6em;
-  border: 2px solid black;
-  border-radius: 1em;
-}
-.profile {
-  border: 6px double #000;
-}
-.service_title{
-  font-size: 2em;
-}
-.image{
-   border-radius: 6%;
-}
-.mypage_link a {
+.reactionList_text{
   color: #787c7b;
-  text-decoration: none ;
+  font-size: 13px;
 }
-.mypage_link a.nuxt-link-active{
-  color: #2CB696;
-}
-.mypage_link a:hover{
-  color: #000000;
+.border-top{
+  border-top: 1px solid #f2f2f2;
 }
 </style>

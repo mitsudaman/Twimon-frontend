@@ -19,4 +19,14 @@
 </template>
 
 <style>
+.mypage_link a {
+  color: #787c7b;
+  text-decoration: none ;
+}
+.mypage_link a.nuxt-link-active{
+  color: #2CB696;
+}
+.mypage_link a:hover{
+  color: #000000;
+}
 </style>

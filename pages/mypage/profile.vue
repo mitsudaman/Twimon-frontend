@@ -254,37 +254,4 @@ export default {
 }
 </script>
 <style type="text/css">
-h2 {
-  font-size: 2.5em;
-  border: 2px solid black;
-  border-radius: 1em;
-}
-.skill_svg {
-  font-size: 1.6em;
-  border-radius: 1em;
-}
-.card {
-  font-size: 1.6em;
-  border: 2px solid black;
-  border-radius: 1em;
-}
-.profile {
-  border: 6px double #000;
-}
-.service_title{
-  font-size: 2em;
-}
-.image{
-   border-radius: 6%;
-}
-.mypage_link a {
-  color: #787c7b;
-  text-decoration: none ;
-}
-.mypage_link a.nuxt-link-active{
-  color: #2CB696;
-}
-.mypage_link a:hover{
-  color: #000000;
-}
 </style>

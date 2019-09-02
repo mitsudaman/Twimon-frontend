@@ -36,11 +36,13 @@
             <v-layout row wrap>
                 <button
                 v-if="$route.name=='read-id'"
-                @click="$router.go(-1)"><i class="fas fa-chevron-left"></i>
+                class="title"
+                @click="$router.go(-1)"><i class="fas fa-chevron-left pl-3"></i>
                 </button>
                 <nuxt-link
                 v-else
-                to='/'><i class="fas fa-pastafarianism"></i>
+                class="title"
+                to='/'><i class="fab fa-twitter"></i>
                 </nuxt-link>
                 <v-spacer></v-spacer>
                 <v-menu bottom left color="primary">

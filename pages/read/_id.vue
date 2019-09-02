@@ -1,12 +1,12 @@
 <template>
   <div>
     <v-container grid-list-md text-xs-center>
-      <v-layout row wrap justify-center>
+      <!-- <v-layout row wrap justify-center>
         <v-flex sm9>
           <h2 class="blackboard">プロフィール</h2>
         </v-flex>
-      </v-layout>
-      <v-layout row wrap justify-center mt-4>
+      </v-layout> -->
+      <v-layout row wrap justify-center>
         <v-flex xs10 sm9></v-flex>
         <v-flex xs2 sm3 class="title text-xs-left">
           <div 

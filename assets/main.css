@@ -20,14 +20,14 @@
 .awesome-black {color: black}
 .awesome-white {color: white}
 .read-enter-active, .read-leave-active {
-    transition: all 0.1s
+    transition: all 0.15s
 }
 .read-enter{
     opacity: 0;
     transform: translate(500px, 0);
 }
 .index-enter-active, .index-leave-active {
-    transition: all 0.1s
+    transition: all 0.2s
 }
 .index-leave-active {
     opacity: 0;

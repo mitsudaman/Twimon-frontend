@@ -144,7 +144,7 @@
             :y="30" 
             font-weight="bold"
             :font-size="55"
-            text-anchor="middle"></text>
+            text-anchor="middle">ああああああ</text>
             <text 
             x="21%" 
             y="70%"

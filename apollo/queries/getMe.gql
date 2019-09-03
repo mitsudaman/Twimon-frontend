@@ -14,5 +14,16 @@
     hall_of_fame_flg
     legend_flg
     like_ct
+    talks(orderBy: [
+            {
+                field: "id"
+                order: ASC
+            }
+        ]) {
+      id
+      sentence1
+      sentence2
+      sentence3
+    }
   }
 }

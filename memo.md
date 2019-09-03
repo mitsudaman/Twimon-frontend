@@ -32,3 +32,15 @@ heroku create twimon-frontend
 heroku git:remote --app twimon-frontend
 
 heroku config:set HTTP_ENDPOINT=http://localhost:8001/graphql
+
+
+
+# lodash
+
+## フィールドを絞るとき
+let updateTalks = _.map(this.me.talks,(n)=>{
+  return _.pick(n, ['id','sentence1', 'sentence2','sentence3']);
+})
+
+## 特定のkey,idを除外するとき
+this.me.talks = _.reject(this.me.talks, { 'id': delId});

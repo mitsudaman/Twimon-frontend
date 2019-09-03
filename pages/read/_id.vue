@@ -6,9 +6,8 @@
           <h2 class="blackboard">プロフィール</h2>
         </v-flex>
       </v-layout> -->
-      <v-layout row wrap justify-center>
-        <v-flex xs10 sm9></v-flex>
-        <v-flex xs2 sm3 class="title text-xs-left">
+      <v-layout row wrap justify-center text-xs-right>
+        <v-flex sm8 class="title">
           <div 
             class="like_panel"
             v-bind:class="{ like_active: likedFlg }">
@@ -30,9 +29,9 @@
         </v-flex>
       </v-layout>
       <v-layout row wrap justify-center mt-3>
-        <v-flex sm8 class="profile">
-          <v-layout row wrap justify-center>
-            <v-flex xs6>
+        <v-flex  sm8 class="profile">
+          <v-layout row wrap align-center justify-center pt-2>
+            <v-flex xs5>
               <div>
                 <v-img 
                 class="image"
@@ -43,13 +42,13 @@
                 No.???
               </div>
             </v-flex>
-            <v-flex xs6 text-lef
+            <v-flex xs6
             :class="{'mt-0': $vuetify.breakpoint.smAndDown, 'mt-4': $vuetify.breakpoint.lgAndUp}">
-              <div class="pt-4 pl-2 text-xs-left">
+              <div class="pl-2 text-xs-left">
                 <p>{{ user.name }}</p>
                 <p>{{ user.title }}</p>
                 <p>{{ user.feature1 }} {{ user.feature1_content }}</p>
-                <p>{{ user.feature2 }} {{ user.feature2_content }}</p>
+                <p>{{ user.feature1 }} {{ user.feature1_content }}</p>
               </div>
             </v-flex>
           </v-layout>
@@ -254,7 +253,7 @@ h2 {
 .profile {
   border: 6px double #000;
   /* margin: 10px; */
-  /* font-family: 'PixelMplus'; */
+  font-family: 'PixelMplus';
 }
 .service_title{
   font-size: 2em;

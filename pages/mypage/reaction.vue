@@ -56,14 +56,129 @@
         </v-flex>
       </v-layout>
 
+      <v-layout row justify-center align-center mt-5>
+        <v-flex d-flex sm8>
+          <div class="talk_form_area">
+            <v-card 
+              v-for="(talk,index) in me.talks"
+              v-bind:key="talk.id"
+              class="rounded-card mt-5">
+              <v-layout 
+              justify-space-between align-center>
+                <v-flex xs6 d-flex mt-4 pb-0>
+                  <label class="ml-1 font-weight-bold">会話{{index+1}}</label>
+                </v-flex>
+                <v-flex xs3  mt-4 pb-0>
+                  <v-btn @click="onDeleteUserTalk(talk.id)" fab dark small color="primary">
+                    <v-icon dark>remove</v-icon>
+                  </v-btn>
+                </v-flex>
+              </v-layout>
+              <v-layout row wrap justify-center align-center>
+                <v-flex d-flex xs11>
+                <label class="ml-1 font-weight-bold">文章1</label>
+                </v-flex>
+                <v-flex d-flex xs11>
+                  <v-text-field
+                    v-model="talk.sentence1"
+                    outline
+                    :rules="talkSentence1Rules"
+                    single-line
+                  ></v-text-field>
+                </v-flex>
+                <v-flex d-flex xs11>
+                <label class="ml-1 font-weight-bold">文章2</label>
+                </v-flex>
+                <v-flex d-flex xs11>
+                  <v-text-field
+                    v-model="talk.sentence2"
+                    outline
+                    hide-details
+                    single-line
+                  ></v-text-field>
+                </v-flex>
+                <v-flex d-flex xs11>
+                <label class="ml-1 font-weight-bold">文章3</label>
+                </v-flex>
+                <v-flex d-flex xs11>
+                  <v-text-field
+                    v-model="talk.sentence3"
+                    outline
+                    hide-details
+                    single-line
+                  ></v-text-field>
+                </v-flex>
+              </v-layout>
+            </v-card>
+            <v-card
+              v-for="(talk,index) in newTalks"
+              v-bind:key="talk.id"
+              class="rounded-card mt-5">
+              <v-layout 
+              justify-space-between align-center>
+                <v-flex xs6 d-flex mt-4 pb-0>
+                  <label class="ml-1 font-weight-bold">新規会話{{index+1}}</label>
+                </v-flex>
+                <v-flex xs3  mt-4 pb-0>
+                  <v-btn @click="onDeleteUserNewTalk(index)" fab dark small color="primary">
+                    <v-icon dark>remove</v-icon>
+                  </v-btn>
+                </v-flex>
+              </v-layout>
+              <v-layout row wrap justify-center align-center>
+                <v-flex d-flex xs11>
+                <label class="ml-1 font-weight-bold">文章1</label>
+                </v-flex>
+                <v-flex d-flex xs11>
+                  <v-text-field
+                    v-model="talk.sentence1"
+                    outline
+                    single-line
+                    :rules="talkSentence1Rules"
+                  ></v-text-field>
+                </v-flex>
+                <v-flex d-flex xs11>
+                <label class="ml-1 font-weight-bold">文章2</label>
+                </v-flex>
+                <v-flex d-flex xs11>
+                  <v-text-field
+                    v-model="talk.sentence2"
+                    outline
+                    hide-details
+                    single-line
+                  ></v-text-field>
+                </v-flex>
+                <v-flex d-flex xs11>
+                <label class="ml-1 font-weight-bold">文章3</label>
+                </v-flex>
+                <v-flex d-flex xs11>
+                  <v-text-field
+                    v-model="talk.sentence3"
+                    outline
+                    hide-details
+                    single-line
+                  ></v-text-field>
+                </v-flex>
+              </v-layout>
+            </v-card>
+          </div>
+        </v-flex>
+      </v-layout>
       <v-layout column justify-center align-center>
         <v-flex xs12 sm8 md6>
           <v-btn
             :block=true
             :large=true
-            @click="onUpdateUser"
+            @click="onCreateUserTalk"
             color="grey darken-3 white--text">
-            <span><i class="far fa-comment-dots"></i> 保存</span>
+            <span><i class="far fa-comment-dots"></i> 追加</span>
+          </v-btn>
+          <v-btn
+            :block=true
+            :large=true
+            @click="onUpdateUserTalks"
+            color="grey darken-3 white--text">
+            <span><i class="far fa-comment-dots"></i> 会話保存</span>
           </v-btn>
         </v-flex>
       </v-layout>
@@ -74,8 +189,7 @@
 <script>
 import GET_ME from '~/apollo/queries/getMe.gql'
 import MyPageNav from '~/components/MyPageNav.vue'
-import NuxtLogo from '~/components/NuxtLogo.vue'
-import UPDATE_USER_PROF_GQL from '~/apollo/mutations/updateUserProf.gql'
+import UPDATE_USER_TALKS_GQL from '~/apollo/mutations/updateUserTalks.gql'
 import _ from 'lodash'
 
 export default {
@@ -101,7 +215,11 @@ export default {
       snackbar:false,
       snackbar_color: 'success',
       snackbar_text:"",
-      test_file:""
+      newTalks: [],
+      delTalks: [],
+      talkSentence1Rules: [
+        v => !!v || '文章1は必須です',
+      ],
     }
   },
   apollo: {
@@ -122,7 +240,44 @@ export default {
 ぶらっくな かいしゃから すぐいなくなる。2びょう
 かんに 1000もじの コードを かくことができる。`;
     },
-    onUpdateUser (){
+    onDeleteUserTalk(delId){
+      this.me.talks = _.reject(this.me.talks, { 'id': delId});
+      this.delTalks.push(delId);
+    },
+    onDeleteUserNewTalk(index){
+      this.newTalks.splice(index, 1);
+    },
+    onCreateUserTalk(){
+      this.newTalks.push({
+          sentence1: "",
+          sentence2: "",
+          sentence3: ""
+      });
+    },
+    onUpdateUserTalks (){
+      let updateTalks = _.map(this.me.talks,(n)=>{
+        return _.pick(n, ['id','sentence1', 'sentence2','sentence3']);
+      })
+      // ユーザー会話情報アップデート
+      this.$apollo.mutate({
+        mutation: UPDATE_USER_TALKS_GQL,
+        variables: {
+          UpdateUserTalksInput:{
+          talks: {
+            create: this.newTalks,
+            update: updateTalks,
+            delete: this.delTalks
+          }
+        }
+        },
+      }).then(() => { 
+        this.snackbar = true
+        this.snackbar_text = '会話を更新しました'
+      }).catch(() => {
+        this.snackbar = true
+        this.snackbar_color = 'error'
+        this.snackbar_text = '会話を更新できませんでした'
+      });
     },
   }
 }

@@ -39,7 +39,12 @@
                 v-bind:src="user.sns_img_url" aspect-ratio="1"></v-img>
               </div>
               <div text-center>
-                No.???
+                <template
+                v-if="String(user.serial_number).length<4"
+                >No.{{(("000") + user.serial_number ).substr(-3)}}</template>
+                <template
+                v-else
+                >No.{{user.serial_number}}</template>
               </div>
             </v-flex>
             <v-flex xs6
@@ -132,7 +137,7 @@ import ADD_OR_DELETE_LIKE_UAER_GQL from '~/apollo/mutations/addOrDeleteLikeUser.
 
 export default {
   transition (to, from) {
-    if(from && from.name == 'index') return 'read'
+    if(from && (from.name == 'index' || from.name == 'favorite')) return 'read'
     return
   },
   middleware: 'authenticated',

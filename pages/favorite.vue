@@ -1,38 +1,11 @@
 <template>
   <div>
-
-    <v-parallax
-      dark
-      src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg">
-      <v-layout
-        align-center
-        column
-        justify-center
-      >
-        <h1 class="display-2 font-weight-thin mb-3">ツイットモンスター(仮)</h1>
-        <h4 class="subheading">Build your application today!</h4>
-      </v-layout>
-    </v-parallax>
     <v-container grid-list-lg text-xs-center> 
       <v-layout row wrap>
-        <v-flex v-for="user in users" v-bind:key="user.id" xs3>
+        <v-flex v-for="user in likeUsers" v-bind:key="user.id" xs3>
           <v-card  :hover="true" class="rounded-card"
           :to="'/read/' + user.id">
             <v-img v-bind:src="user.sns_img_url" aspect-ratio="1"></v-img>
-            <!-- <v-card-title primary-title class="pb-1">
-              <h3 class="headline text-truncate mb-0">{{ user.name }}</h3>
-            </v-card-title>
-            <div class="text-xs-left pl-4 pb-3">
-              <div class="subheading like_panel_red">
-                <i v-if="user.liked" class="fas fa-heart"></i>
-                <i v-else class="far fa-heart"></i>
-                <span class="body-2 ml-1">{{user.like_ct}}</span>
-              </div>
-              <div class="text-truncate"> {{ user.feature1 }} </div>
-              <div class="text-truncate"> {{ user.feature1_content }} </div>
-              <div class="text-truncate mt-2"> {{ user.feature2 }} </div>
-              <div class="text-truncate"> {{ user.feature2_content }} </div>
-            </div> -->
           </v-card>
           <p class="mb-0 mt-2 nameText text-truncate ">{{ user.name }}</p>
         </v-flex>
@@ -54,7 +27,9 @@
 
 <script>
 import GET_USERS_GQL from '~/apollo/queries/getUsers.gql'
+import GET_LIKE_USERS_GQL from '~/apollo/queries/getLikeUsers.gql'
 // import CREATE_USER_GQL from '~/apollo/mutations/createUser.gql'
+import _ from 'lodash'
 
 export default {
   transition (to, from) {
@@ -82,30 +57,23 @@ export default {
     }
   },
   apollo: {
-    users: {
-      query: GET_USERS_GQL,
+    likeUsers: {
+      query: GET_LIKE_USERS_GQL,
       variables() {
         return {
           page: this.page,
+          like_user_id: this.$store.state.user.id,
         };
       },
       update(data){
-        this.lastPage= data.users.paginatorInfo.lastPage
-        return data.users.data
+        this.lastPage= data.getLikeUsers.paginatorInfo.lastPage
+        return _.map(data.getLikeUsers.data,(n)=>{
+          return n.user
+        })
       }
     }
   },
   methods: {
-    commandTalk (){
-      console.log("aaaaaaaaa")
-      // this.$apollo.mutate({
-      //   mutation: CREATE_USER_GQL,
-      //   variables: {
-      //     // name: this.customer.name,
-      //     // gender: this.customer.gender,
-      //   }
-      // })
-    },
   }
 }
 </script>

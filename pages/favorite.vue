@@ -27,7 +27,7 @@
 
 <script>
 import GET_USERS_GQL from '~/apollo/queries/getUsers.gql'
-import GET_LIKE_USERS_GQL from '~/apollo/queries/getLikeUsers.gql'
+import GET_ME_WITH_LIKES_GQL from '~/apollo/queries/getMeWithLikes.gql'
 // import CREATE_USER_GQL from '~/apollo/mutations/createUser.gql'
 import _ from 'lodash'
 
@@ -58,16 +58,15 @@ export default {
   },
   apollo: {
     likeUsers: {
-      query: GET_LIKE_USERS_GQL,
+      query: GET_ME_WITH_LIKES_GQL,
       variables() {
         return {
           page: this.page,
-          like_user_id: this.$store.state.user.id,
         };
       },
       update(data){
-        this.lastPage= data.getLikeUsers.paginatorInfo.lastPage
-        return _.map(data.getLikeUsers.data,(n)=>{
+        this.lastPage= data.me.likes.paginatorInfo.lastPage
+        return _.map(data.me.likes.data,(n)=>{
           return n.user
         })
       }

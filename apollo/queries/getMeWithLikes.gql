@@ -1,0 +1,34 @@
+query GetMeWithLikes ($page:Int!){
+    me{
+      id
+      name
+      likes(count: 4, page: $page){
+        data{
+          id
+          user_id
+          liked_user_id
+          user{
+            id
+            serial_number
+            name
+            feature1
+            feature1_content
+            feature2
+            feature2_content
+            description
+            sns_img_url
+            ogp_img_url
+            hall_of_fame_flg
+            legend_flg
+            like_ct
+            liked
+        }
+      }
+      paginatorInfo{
+        currentPage
+        lastPage
+        count
+      }
+    }
+    }
+	}

@@ -1,6 +1,6 @@
 <template>
   <v-layout text-xs-center row wrap justify-center>
-    <v-flex sm8>
+    <v-flex>
       <v-card class="rounded-card">
         <v-layout row justify-center align-center>
           <v-flex xs11 d-flex>

@@ -11,7 +11,7 @@
     </v-snackbar>
       <my-page-nav></my-page-nav>
       <v-layout row justify-center align-center mt-5>
-        <v-flex sm8>
+        <v-flex>
           <v-card class="rounded-card pb-5">
             <v-layout justify-center align-center>
               <v-flex xs11  mt-4 pb-0  align-center>

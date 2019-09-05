@@ -65,6 +65,25 @@
           </div>
         </v-flex>
       </v-layout>
+      <v-layout row justify-center>
+        <v-dialog
+          v-model="dialog"
+          max-width="400">
+          <v-card>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn @click="dialog = false" fab dark small color="primary">
+                <v-icon dark>remove</v-icon>
+              </v-btn>
+            </v-card-actions>
+            <v-card-title class="headline">{{user.name}}のひみつ</v-card-title>
+            <v-card-text>
+              <p><i class="fas fa-link"></i><a class="ml-1" href="aaaaaaaaaaa">ポートフォリオ</a></p>
+              <p><i class="fas fa-link"></i><a class="ml-1" href="aaaaaaaaaaa">HP</a></p>
+            </v-card-text>
+          </v-card>
+        </v-dialog>
+      </v-layout>
       <v-layout 
       row wrap justify-center>
         <v-flex
@@ -87,19 +106,19 @@
                 </span>
               </v-btn>
             </v-flex>
-            <!-- <v-flex 
+            <v-flex 
               xs6>
               <v-btn
               :block=true
               :large=true
               round
-              @click="commandSearch"
+              @click.stop="dialog = true"
               color="grey darken-3 white--text">
                 <span class="command_context">
                   <i class="fas fa-search"></i> しらべる
                 </span>
                 </v-btn>
-            </v-flex> -->
+            </v-flex>
             <!-- <v-flex xs6>
               <v-btn
               :block=true
@@ -153,7 +172,8 @@ export default {
       talks:[],
       nowTalk:[],
       talkViewFlg: false,
-      talkSentence: null
+      talkSentence: null,
+      dialog:false
     }
   },
   apollo: {

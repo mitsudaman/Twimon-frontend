@@ -2,7 +2,7 @@ query GetMeWithLikes ($page:Int!){
     me{
       id
       name
-      likes(count: 4, page: $page){
+      likes(count: 12, page: $page){
         data{
           id
           user_id

@@ -4,12 +4,12 @@
       <v-snackbar
         v-model="snackbar"
         top
-        :color="snackbar_color"
+        :color="snackbarColor"
         :timeout=3000
       >
-        <span class="snackbar_text">{{ snackbar_text }}</span>
+        <span class="snackbarText">{{ snackbarText }}</span>
       </v-snackbar>
-      <my-page-nav></my-page-nav>
+      <my-page-nav></my-page-nav>{{isUpdatable}}
       <v-layout row justify-center align-center mt-5>
         <v-flex>
           <v-card class="rounded-card">
@@ -23,7 +23,8 @@
                 <v-text-field
                   v-model="me.name"
                   outline
-                  hide-details
+                  :rules="[rules.length(20)]"
+                  counter="20"
                   placeholder="ツイモン"
                   single-line
                 ></v-text-field>
@@ -39,41 +40,9 @@
                 <v-text-field
                   v-model="me.title"
                   outline
-                  hide-details
+                  :rules="[rules.length(20)]"
+                  counter="20"
                   placeholder="ほのぼのツイモン"
-                  single-line
-                ></v-text-field>
-              </v-flex>
-            </v-layout>
-            <v-layout justify-center align-center>
-              <v-flex xs11 d-flex pb-0>
-                <label class="ml-1 font-weight-bold">たかさ</label>
-              </v-flex>
-            </v-layout>
-            <v-layout row justify-center align-center>
-              <v-flex xs11 d-flex>
-                <v-text-field
-                  v-model="me.feature1_content"
-                  outline
-                  hide-details
-                  placeholder="15cm"
-                  single-line
-                ></v-text-field>
-              </v-flex>
-            </v-layout>
-            <v-layout justify-center align-center>
-              <v-flex xs11 d-flex pb-0>
-                <label class="ml-1 font-weight-bold">おもさ</label>
-              </v-flex>
-            </v-layout>
-            <v-layout row justify-center align-center>
-              <v-flex xs11 d-flex>
-                <v-text-field
-                  v-model="me.feature2_content"
-                  outline
-                  hide-details
-                  placeholder="2kg"
-                  single-line
                 ></v-text-field>
               </v-flex>
             </v-layout>
@@ -93,15 +62,6 @@
                 </v-textarea>
               </v-flex>
             </v-layout>
-            <v-layout column justify-center align-center>
-              <v-flex xs12 sm8 md6>{{imageRadioButton}}
-                <v-radio-group v-model="imageRadioButton" row>
-                  <v-radio label="ツイッター画像" value="1"></v-radio>
-                  <v-radio label="アップロード画像" value="2"></v-radio>
-                </v-radio-group>
-                <input v-if="imageRadioButton=='2'" type="file" v-on:change="onFileChange">
-              </v-flex>
-            </v-layout>
           </v-card>
         </v-flex>
       </v-layout>
@@ -111,15 +71,7 @@
           <v-btn
             :block=true
             :large=true
-            @click="commandTalk"
-            color="grey darken-3 white--text">
-            <span><i class="far fa-comment-dots"></i> はなす</span>
-          </v-btn>
-        </v-flex>
-        <v-flex xs12 sm8 md6>
-          <v-btn
-            :block=true
-            :large=true
+            :disabled="!isUpdatable"
             @click="onUpdateUser"
             color="grey darken-3 white--text">
             <span><i class="far fa-comment-dots"></i> 保存</span>
@@ -143,22 +95,14 @@ export default {
   },
   data() {
     return {
-      name: '',
-      title: '',
-      height: '',
-      weight: '',
-      description: '',
-      imageRadioButton: "1",
-      uploadedImage: '',
-      items: [
-        { icon: 'apps', title: 'プロフィール', to: '/' },
-        { icon: 'bubble_chart', title: 'はなす', to: '/create' }
-      ],
+      rules: {
+        length: len => v => (v || '').length <= len || `${len}文字以下で入力してください `,
+      },
       me: {
       },
       snackbar:false,
-      snackbar_color: 'success',
-      snackbar_text:"",
+      snackbarColor: 'success',
+      snackbarText:"",
     }
   },
   apollo: {
@@ -169,16 +113,12 @@ export default {
       }
     }
   },
+  computed: {
+    isUpdatable(){
+      return String(this.me.name).length <= 20 && String(this.me.title).length <= 20
+    }
+  },
   methods: {
-    commandTalk (){
-      this.me.name = "テスト"
-      this.me.title = "えんじにあニセモン"
-      this.me.feature1_content = "1.7mm"
-      this.me.feature2_content = "りんご3こぶん"
-      this.me.description = `ふくおかに せいそくする うぇぶの ぷろぐらまー。
-ぶらっくな かいしゃから すぐいなくなる。2びょう
-かんに 1000もじの コードを かくことができる。`;
-    },
     onUpdateUser (){
        // ユーザー情報アップデート
         this.$apollo.mutate({
@@ -196,11 +136,11 @@ export default {
           },
         }).then(() => { 
           this.snackbar = true
-          this.snackbar_text = 'プロフィールを更新しました'
+          this.snackbarText = 'プロフィールを更新しました'
         }).catch(() => {
           this.snackbar = true
-          this.snackbar_color = 'error'
-          this.snackbar_text = 'プロフィールを更新できませんでした'
+          this.snackbarColor = 'error'
+          this.snackbarText = 'プロフィールを更新できませんでした'
         });
     },
   }

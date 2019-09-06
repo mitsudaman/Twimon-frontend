@@ -39,7 +39,7 @@
                   </svg>
                 </div>
                 <p class="ml-1 font-weight-bold">会話を追加する</p>
-                <p class="reactionListText">ユーザーが【はなす】コマンドを押したときに表示されるメッセージです。複数設定すると、押される度に順番に表示されます。最大5個設定できます。(140文字以内)</p>
+                <p class="reaction_list_text">ユーザーが【はなす】コマンドを押したときに表示されるメッセージです。複数設定すると、押される度に順番に表示されます。最大5個設定できます。(140文字以内)</p>
               </v-flex>
             </v-layout>
             <v-layout justify-center align-center>
@@ -57,7 +57,7 @@
                   </svg>
                 </div>
                 <p class="ml-1 font-weight-bold">リンクを追加する</p>
-                <p class="font-weight-thin reactionListText">ユーザーが【しらべる】コマンドを押したときに表示されるリンクの一覧です。最大5個設定できます。</p>
+                <p class="font-weight-thin reaction_list_text">ユーザーが【しらべる】コマンドを押したときに表示されるリンクの一覧です。最大5個設定できます。</p>
               </v-flex>
             </v-layout>
             
@@ -295,7 +295,7 @@ export default {
 }
 </script>
 <style type="text/css">
-.reactionListText{
+.reaction_list_text{
   color: #787c7b;
   font-size: 13px;
 }

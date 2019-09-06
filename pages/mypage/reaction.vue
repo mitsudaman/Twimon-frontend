@@ -5,12 +5,23 @@
         v-model="snackbar"
         top
         :color="snackbar_color"
-        :timeout=3000
-      >
-      <span class="snackbar_text">{{ snackbar_text }}</span>
-    </v-snackbar>
+        :timeout=3000>
+        <span class="snackbar_text">{{ snackbar_text }}</span>
+      </v-snackbar>
       <my-page-nav></my-page-nav>
-      <v-layout row justify-center align-center mt-5>
+      <v-layout column justify-center align-center>
+        <v-flex xs12 sm8 md6>
+          <v-btn
+            :block=true
+            :large=true
+            @click="onVisibleTalkPanel"
+            color="grey darken-3 white--text">
+            <span><i class="far fa-comment-dots"></i> みる</span>
+          </v-btn>
+        </v-flex>
+      </v-layout>
+      <v-layout v-if="settingPanel"
+       row justify-center align-center mt-5>
         <v-flex>
           <v-card class="rounded-card pb-5">
             <v-layout justify-center align-center>
@@ -56,7 +67,7 @@
         </v-flex>
       </v-layout>
 
-      <v-layout row justify-center align-center mt-5>
+      <v-layout v-if="talkPanel" row justify-center align-center mt-5>
         <v-flex d-flex sm8>
           <div>
             <v-card 
@@ -117,7 +128,7 @@
               <v-layout 
               justify-space-between align-center>
                 <v-flex xs6 d-flex mt-4 pb-0>
-                  <label class="ml-1 font-weight-bold">新規会話{{index+1}}</label>
+                  <label class="ml-1 font-weight-bold">会話{{me.talks.length + index + 1}}</label>
                 </v-flex>
                 <v-flex xs3  mt-4 pb-0>
                   <v-btn @click="onDeleteUserNewTalk(index)" fab dark small color="primary">
@@ -199,17 +210,6 @@ export default {
   },
   data() {
     return {
-      name: '',
-      title: '',
-      height: '',
-      weight: '',
-      description: '',
-      imageRadioButton: "1",
-      uploadedImage: '',
-      items: [
-        { icon: 'apps', title: 'プロフィール', to: '/' },
-        { icon: 'bubble_chart', title: 'はなす', to: '/create' }
-      ],
       me: {
       },
       snackbar:false,
@@ -220,6 +220,9 @@ export default {
       talkSentence1Rules: [
         v => !!v || '文章1は必須です',
       ],
+      settingPanel: true,
+      talkPanel: false,
+      searchPanel: false,
     }
   },
   apollo: {
@@ -231,14 +234,14 @@ export default {
     }
   },
   methods: {
-    commandTalk (){
-      this.me.name = "テスト"
-      this.me.title = "えんじにあニセモン"
-      this.me.feature1_content = "1.7mm"
-      this.me.feature2_content = "りんご3こぶん"
-      this.me.description = `ふくおかに せいそくする うぇぶの ぷろぐらまー。
-ぶらっくな かいしゃから すぐいなくなる。2びょう
-かんに 1000もじの コードを かくことができる。`;
+    onVisibleTalkPanel (){
+      this.settingPanel = !this.settingPanel;
+      this.talkPanel = !this.talkPanel;
+    },
+    onResetPanel (){
+      this.settingPanel = false;
+      this.talkPanel = false;
+      this.searchPanel = false;
     },
     onDeleteUserTalk(delId){
       this.me.talks = _.reject(this.me.talks, { 'id': delId});
@@ -248,6 +251,12 @@ export default {
       this.newTalks.splice(index, 1);
     },
     onCreateUserTalk(){
+      if(this.me.talks.length+this.newTalks.length>=5) {
+        this.snackbar = true
+        this.snackbar_color = 'error'
+        this.snackbar_text = '会話は5個までです'
+        return ;
+      }
       this.newTalks.push({
           sentence1: "",
           sentence2: "",
@@ -263,15 +272,18 @@ export default {
         mutation: UPDATE_USER_TALKS_GQL,
         variables: {
           UpdateUserTalksInput:{
-          talks: {
-            create: this.newTalks,
-            update: updateTalks,
-            delete: this.delTalks
+            talks: {
+              create: this.newTalks,
+              update: updateTalks,
+              delete: this.delTalks
+            }
           }
-        }
         },
-      }).then(() => { 
+      }).then((data) => { 
+        this.me = data.data.updateUserTalks
+        this.newTalks = []
         this.snackbar = true
+        this.snackbar_color = 'success'
         this.snackbar_text = '会話を更新しました'
       }).catch(() => {
         this.snackbar = true

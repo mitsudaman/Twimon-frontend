@@ -1,7 +1,25 @@
 mutation updateUserTalks($UpdateUserTalksInput:UpdateUserTalksInput!){
   updateUserTalks(input: $UpdateUserTalksInput){
     id
-    talks {
+    serial_number
+    name
+    title
+    feature1
+    feature1_content
+    feature2
+    feature2_content
+    description
+    sns_img_url
+    ogp_img_url
+    hall_of_fame_flg
+    legend_flg
+    like_ct
+    talks(orderBy: [
+            {
+                field: "id"
+                order: ASC
+            }
+        ]) {
       id
       sentence1
       sentence2

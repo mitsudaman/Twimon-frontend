@@ -1,5 +1,6 @@
 <template>
-  <v-app >
+  <v-app>
+
 
      <!-- <v-card
       flat
@@ -89,7 +90,7 @@
 
 
 
-    <v-card height="100px" flat>
+    <v-card height="50px" flat>
       <v-bottom-nav
         :value="true"
         fixed>
@@ -170,5 +171,4 @@
 	font-family: 'PixelMplus';
 	src: url(~assets/font/PixelMplus10-Regular.ttf);
 }
-
 </style>

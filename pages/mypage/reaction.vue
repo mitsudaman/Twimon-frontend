@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-container grid-list-xl>
+    <v-container grid-list-xl class="test">
       <v-snackbar
         v-model="snackbar"
         top
@@ -9,23 +9,12 @@
         <span class="snackbar_text">{{ snackbar_text }}</span>
       </v-snackbar>
       <my-page-nav></my-page-nav>
-      <v-layout column justify-center align-center>
-        <v-flex xs12 sm8 md6>
-          <v-btn
-            :block=true
-            :large=true
-            @click="onVisibleTalkPanel"
-            color="grey darken-3 white--text">
-            <span><i class="far fa-comment-dots"></i> みる</span>
-          </v-btn>
-        </v-flex>
-      </v-layout>
-      <v-layout v-if="settingPanel"
-       row justify-center align-center mt-5>
-        <v-flex>
-          <v-card class="rounded-card pb-5">
-            <v-layout justify-center align-center>
-              <v-flex xs11  mt-4 pb-0  align-center>
+      <v-card class="rounded-card pb-5">
+        <v-layout v-if="settingPanel"
+        row justify-center align-center mt-5 px-5>
+          <v-flex>
+            <v-layout row wrap>
+              <v-flex sm3 xs11  mt-4 pb-0  align-center>
                 <div class="svg_area">
                   <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                     viewBox="0 0 512.05 512.05" class="reaction_list_svg" style="enable-background:new 0 0 512.05 512.05;" xml:space="preserve">
@@ -38,12 +27,19 @@
                     l110.933-60.48l69.077,59.2c4.232,3.628,10.544,3.387,14.485-0.555l128-128C427.35,185.148,427.75,179.215,424.558,174.983z"/>
                   </svg>
                 </div>
-                <p class="ml-1 font-weight-bold">会話を追加する</p>
+              </v-flex>
+              <v-flex sm9 xs12  mt-4 pb-0  align-center>
+                <div class="reaction_list_title">
+                  会話を追加する
+                  <div class="reaction_list_edit" @click="onVisibleTalkPanel">
+                    編集
+                  </div>
+                </div>
                 <p class="reaction_list_text">ユーザーが【はなす】コマンドを押したときに表示されるメッセージです。複数設定すると、押される度に順番に表示されます。最大5個設定できます。(140文字以内)</p>
               </v-flex>
             </v-layout>
-            <v-layout justify-center align-center>
-              <v-flex xs11  mt-4 pb-0 border-top>
+            <v-layout row wrap justify-center align-center mt-2 border-top>
+              <v-flex sm3 xs11  mt-4 pb-0>
                 <div class="svg_area">
                   <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                     viewBox="0 0 512.05 512.05" class="reaction_list_svg" style="enable-background:new 0 0 512.05 512.05;" xml:space="preserve">
@@ -56,143 +52,117 @@
                     l110.933-60.48l69.077,59.2c4.232,3.628,10.544,3.387,14.485-0.555l128-128C427.35,185.148,427.75,179.215,424.558,174.983z"/>
                   </svg>
                 </div>
-                <p class="ml-1 font-weight-bold">リンクを追加する</p>
-                <p class="font-weight-thin reaction_list_text">ユーザーが【しらべる】コマンドを押したときに表示されるリンクの一覧です。最大5個設定できます。</p>
+              </v-flex>
+              <v-flex sm9 xs11  mt-4 pb-0>
+                <div class="reaction_list_title">
+                  リンクを追加する
+                  <div class="reaction_list_edit" @click="onVisibleTalkPanel">
+                    編集
+                  </div>
+                </div>
+                <p class="font-weight-thin reaction_list_text">ユーザーが【しらべる】コマンドを押したときに表示されるリンクの一覧です。リンク名とURLを最大5個設定できます。</p>
               </v-flex>
             </v-layout>
-            
+          </v-flex>
+        </v-layout>
 
-            
-          </v-card>
-        </v-flex>
-      </v-layout>
-
-      <v-layout v-if="talkPanel" row justify-center align-center mt-5>
-        <v-flex d-flex sm8>
-          <div>
-            <v-card 
-              v-for="(talk,index) in me.talks"
-              v-bind:key="talk.id"
-              class="rounded-card mt-5">
-              <v-layout 
-              justify-space-between align-center>
-                <v-flex xs6 d-flex mt-4 pb-0>
-                  <label class="ml-1 font-weight-bold">会話{{index+1}}</label>
-                </v-flex>
-                <v-flex xs3  mt-4 pb-0>
-                  <v-btn @click="onDeleteUserTalk(talk.id)" fab dark small color="primary">
-                    <v-icon dark>remove</v-icon>
-                  </v-btn>
-                </v-flex>
-              </v-layout>
-              <v-layout row wrap justify-center align-center>
-                <v-flex d-flex xs11>
-                <label class="ml-1 font-weight-bold">文章1</label>
-                </v-flex>
-                <v-flex d-flex xs11>
-                  <v-text-field
-                    v-model="talk.sentence1"
-                    outline
-                    :rules="talkSentence1Rules"
-                    single-line
-                  ></v-text-field>
-                </v-flex>
-                <v-flex d-flex xs11>
-                <label class="ml-1 font-weight-bold">文章2</label>
-                </v-flex>
-                <v-flex d-flex xs11>
-                  <v-text-field
-                    v-model="talk.sentence2"
-                    outline
-                    hide-details
-                    single-line
-                  ></v-text-field>
-                </v-flex>
-                <v-flex d-flex xs11>
-                <label class="ml-1 font-weight-bold">文章3</label>
-                </v-flex>
-                <v-flex d-flex xs11>
-                  <v-text-field
-                    v-model="talk.sentence3"
-                    outline
-                    hide-details
-                    single-line
-                  ></v-text-field>
-                </v-flex>
-              </v-layout>
-            </v-card>
-            <v-card
-              v-for="(talk,index) in newTalks"
-              v-bind:key="talk.id"
-              class="rounded-card mt-5">
-              <v-layout 
-              justify-space-between align-center>
-                <v-flex xs6 d-flex mt-4 pb-0>
-                  <label class="ml-1 font-weight-bold">会話{{me.talks.length + index + 1}}</label>
-                </v-flex>
-                <v-flex xs3  mt-4 pb-0>
-                  <v-btn @click="onDeleteUserNewTalk(index)" fab dark small color="primary">
-                    <v-icon dark>remove</v-icon>
-                  </v-btn>
-                </v-flex>
-              </v-layout>
-              <v-layout row wrap justify-center align-center>
-                <v-flex d-flex xs11>
-                <label class="ml-1 font-weight-bold">文章1</label>
-                </v-flex>
-                <v-flex d-flex xs11>
-                  <v-text-field
-                    v-model="talk.sentence1"
-                    outline
-                    single-line
-                    :rules="talkSentence1Rules"
-                  ></v-text-field>
-                </v-flex>
-                <v-flex d-flex xs11>
-                <label class="ml-1 font-weight-bold">文章2</label>
-                </v-flex>
-                <v-flex d-flex xs11>
-                  <v-text-field
-                    v-model="talk.sentence2"
-                    outline
-                    hide-details
-                    single-line
-                  ></v-text-field>
-                </v-flex>
-                <v-flex d-flex xs11>
-                <label class="ml-1 font-weight-bold">文章3</label>
-                </v-flex>
-                <v-flex d-flex xs11>
-                  <v-text-field
-                    v-model="talk.sentence3"
-                    outline
-                    hide-details
-                    single-line
-                  ></v-text-field>
-                </v-flex>
-              </v-layout>
-            </v-card>
-          </div>
-        </v-flex>
-      </v-layout>
-      <v-layout column justify-center align-center>
-        <v-flex xs12 sm8 md6>
-          <v-btn
-            :block=true
-            :large=true
-            @click="onCreateUserTalk"
-            color="grey darken-3 white--text">
-            <span><i class="far fa-comment-dots"></i> 追加</span>
-          </v-btn>
-          <v-btn
-            :block=true
-            :large=true
-            @click="onUpdateUserTalks"
-            color="grey darken-3 white--text">
-            <span><i class="far fa-comment-dots"></i> 会話保存</span>
-          </v-btn>
-        </v-flex>
-      </v-layout>
+        <v-layout v-if="talkPanel" row wrap justify-center align-center mt-5  px-5>
+          <v-flex xs12>
+            <div>
+              <div
+                v-for="(talk,index) in me.talks"
+                v-bind:key="talk.id"
+                class="mt-5">
+                <v-layout justify-space-between align-center>
+                  <v-flex xs10 pb-0>
+                    <label class="ml-1 font-weight-bold headline">会話{{index+1}}</label>
+                  </v-flex>
+                  <v-flex v-if="me.talks.length + newTalks.length >1" xs2 pb-0 text-xs-right>
+                    <button class="red--text" @click="onDeleteUserTalk(talk.id)">
+                      <i class="fas fa-times"></i> 削除
+                    </button>
+                  </v-flex>
+                </v-layout>
+                <v-layout row wrap justify-center align-center>
+                  <v-flex>
+                    <v-textarea
+                      v-model="talk.sentence1"
+                      outline
+                      hide-details
+                      placeholder="こんにちわ">
+                    </v-textarea>
+                    <v-textarea
+                      v-model="talk.sentence2"
+                      outline
+                      hide-details
+                      class="mt-2">
+                    </v-textarea>
+                    <v-textarea
+                      v-model="talk.sentence3"
+                      outline
+                      hide-details
+                      class="mt-2">
+                    </v-textarea>
+                  </v-flex>
+                </v-layout>
+              </div>
+              <div
+                v-for="(talk,index) in newTalks"
+                v-bind:key="talk.id"
+                class="mt-5">
+                <v-layout justify-space-between align-center>
+                  <v-flex xs6 pb-0>
+                    <label class="ml-1 font-weight-bold headline">会話{{me.talks.length + index + 1}}</label>
+                  </v-flex>
+                  <v-flex v-if="me.talks.length + newTalks.length >1" xs3 pb-0 text-xs-right>
+                    <button class="red--text" @click="onDeleteUserNewTalk(index)">
+                      <i class="fas fa-times"></i> 削除
+                    </button>
+                  </v-flex>
+                </v-layout>
+                <v-layout row wrap justify-center align-center>
+                  <v-flex>
+                    <v-textarea
+                      v-model="talk.sentence1"
+                      outline
+                      hide-details
+                      placeholder="こんにちわ">
+                    </v-textarea>
+                    <v-textarea
+                      v-model="talk.sentence2"
+                      outline
+                      hide-details
+                      class="mt-2">
+                    </v-textarea>
+                    <v-textarea
+                      v-model="talk.sentence3"
+                      outline
+                      hide-details
+                      class="mt-2">
+                    </v-textarea>
+                  </v-flex>
+                </v-layout>
+              </div>
+            </div>
+          </v-flex>
+          <v-flex>
+            <v-btn
+              :block=true
+              :large=true
+              @click="onCreateUserTalk"
+              color="grey darken-3 white--text">
+              <span><i class="far fa-comment-dots"></i> 追加</span>
+            </v-btn>
+            <v-btn
+              :block=true
+              :large=true
+              @click="onUpdateUserTalks"
+              color="grey darken-3 white--text">
+              <span><i class="far fa-comment-dots"></i> 会話保存</span>
+            </v-btn>
+          </v-flex>
+        </v-layout>
+      </v-card>
     </v-container>
   </div>
 </template>
@@ -229,6 +199,7 @@ export default {
     me: {
       query: GET_ME,
       update(data){
+        console.log(this.$vuetify.theme.light)
         return _.cloneDeep(data.me)
       }
     }
@@ -237,6 +208,13 @@ export default {
     onVisibleTalkPanel (){
       this.settingPanel = !this.settingPanel;
       this.talkPanel = !this.talkPanel;
+      if(this.me.talks.length + this.newTalks.length == 0){
+        this.newTalks.push({
+          sentence1: "",
+          sentence2: "",
+          sentence3: ""
+        });
+      }
     },
     onResetPanel (){
       this.settingPanel = false;
@@ -251,7 +229,7 @@ export default {
       this.newTalks.splice(index, 1);
     },
     onCreateUserTalk(){
-      if(this.me.talks.length+this.newTalks.length>=5) {
+      if(this.me.talks.length + this.newTalks.length >= 5) {
         this.snackbar = true
         this.snackbar_color = 'error'
         this.snackbar_text = '会話は5個までです'
@@ -308,6 +286,27 @@ export default {
     margin-bottom: 8px;
 }
 .reaction_list_svg{
-  width: 128px;
+  width: 104px;
+}
+.reaction_list_title {
+    font-weight: bold;
+    font-size: 16px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+.reaction_list_edit {
+    font-size: 14px;
+    line-height: 1.5;
+    margin-left: 16px;
+    color: #2CB696;
+    white-space: nowrap;
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
 }
 </style>

@@ -188,9 +188,6 @@ export default {
       snackbar_text:"",
       newTalks: [],
       delTalks: [],
-      talkSentence1Rules: [
-        v => !!v || '文章1は必須です',
-      ],
       settingPanel: true,
       talkPanel: false,
       searchPanel: false,
@@ -204,15 +201,27 @@ export default {
       }
     }
   },
+  computed: {
+    isTalkUpdatable(){
+      let updatableFlg = true
+      _.forEach(this.me.talks, (n) => {
+        if(String(n.sentence1).length >=50 || String(n.sentence2).length >=50 || String(n.sentence3).length >=50) updatableFlg = false
+      });
+      _.forEach(this.newTalks, (n) => {
+        if(String(n.sentence1).length >=50 || String(n.sentence2).length >=50 || String(n.sentence3).length >=50) updatableFlg = false
+      });
+      return updatableFlg
+    }
+  },
   methods: {
     onVisibleTalkPanel (){
       this.settingPanel = !this.settingPanel;
       this.talkPanel = !this.talkPanel;
       if(this.me.talks.length + this.newTalks.length == 0){
         this.newTalks.push({
-          sentence1: "",
-          sentence2: "",
-          sentence3: ""
+          sentence1: '',
+          sentence2: '',
+          sentence3: ''
         });
       }
     },
@@ -236,9 +245,9 @@ export default {
         return ;
       }
       this.newTalks.push({
-          sentence1: "",
-          sentence2: "",
-          sentence3: ""
+          sentence1: '',
+          sentence2: '',
+          sentence3: ''
       });
     },
     onUpdateUserTalks (){

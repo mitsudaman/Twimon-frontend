@@ -13,13 +13,11 @@
       <v-layout row justify-center align-center mt-5>
         <v-flex>
           <v-card class="rounded-card">
-            <v-layout justify-center align-center>
-              <v-flex xs11 d-flex mt-4 pb-0>
+            <v-layout row wrap justify-center align-center>
+              <v-flex xs11 mt-4 pb-0>
                 <label class="ml-1 font-weight-bold">ニックネーム</label>
               </v-flex>
-            </v-layout>
-            <v-layout justify-center align-center>
-              <v-flex xs11 d-flex>
+              <v-flex xs11>
                 <v-text-field
                   v-model="me.name"
                   outline
@@ -30,36 +28,56 @@
                 ></v-text-field>
               </v-flex>
             </v-layout>
-            <v-layout justify-center align-center>
-              <v-flex xs11 d-flex pb-0>
+            <v-layout row wrap justify-center align-center>
+              <v-flex xs11 pb-0>
                 <label class="ml-1 font-weight-bold">タイトル</label>
               </v-flex>
-            </v-layout>
-            <v-layout row justify-center align-center>
-              <v-flex xs11 d-flex>
+              <v-flex xs11>
                 <v-text-field
                   v-model="me.title"
                   outline
                   :rules="[rules.length(20)]"
                   counter="20"
                   placeholder="ほのぼのツイモン"
+                  single-line
                 ></v-text-field>
               </v-flex>
             </v-layout>
             <v-layout justify-center align-center>
-              <v-flex xs11 d-flex pb-0>
+              <v-flex xs11 pb-0>
                 <label class="ml-1 font-weight-bold">せつめい</label>
               </v-flex>
             </v-layout>
-            <v-layout row justify-center align-center>
-              <v-flex xs11 d-flex>
-                <v-textarea
-                  v-model="me.description"
+            <v-layout row wrap justify-center align-center pb-4>
+              <v-flex xs11>
+                <v-text-field
+                  v-model="me.description1"
                   outline
-                  hide-details
-                  :auto-grow="true"
-                  placeholder="ほのぼのしてるツイットモンスター">
-                </v-textarea>
+                  :rules="[rules.length(25)]"
+                  counter="25"
+                  placeholder="ほのぼのツイモン"
+                  single-line
+                ></v-text-field>
+              </v-flex>
+              <v-flex xs11>
+                <v-text-field
+                  v-model="me.description2"
+                  outline
+                  :rules="[rules.length(25)]"
+                  counter="25"
+                  placeholder="ほのぼのツイモン"
+                  single-line
+                ></v-text-field>
+              </v-flex>
+              <v-flex xs11>
+                <v-text-field
+                  v-model="me.description3"
+                  outline
+                  :rules="[rules.length(25)]"
+                  counter="25"
+                  placeholder="ほのぼのツイモン"
+                  single-line
+                ></v-text-field>
               </v-flex>
             </v-layout>
           </v-card>
@@ -115,7 +133,11 @@ export default {
   },
   computed: {
     isUpdatable(){
-      return String(this.me.name).length <= 20 && String(this.me.title).length <= 20
+      return String(this.me.name).length <= 20 && 
+              String(this.me.title).length <= 20 && 
+              String(this.me.description1).length <= 25 && 
+              String(this.me.description2).length <= 25 && 
+              String(this.me.description3).length <= 25
     }
   },
   methods: {
@@ -131,7 +153,9 @@ export default {
               feature1_content: this.me.feature1_content,
               feature2: this.me.feature2,
               feature2_content: this.me.feature2_content,
-              description: this.me.description,
+              description1: this.me.description1,
+              description2: this.me.description2,
+              description3: this.me.description3,
             }
           },
         }).then(() => { 

@@ -8,7 +8,9 @@ mutation updateUserTalks($UpdateUserTalksInput:UpdateUserTalksInput!){
     feature1_content
     feature2
     feature2_content
-    description
+    description1
+    description2
+    description3
     sns_img_url
     ogp_img_url
     hall_of_fame_flg

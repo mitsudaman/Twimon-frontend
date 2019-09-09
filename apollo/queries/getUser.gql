@@ -9,6 +9,9 @@ query getUser($userId:ID!){
       feature1_content
       feature2
       feature2_content
+      description1
+      description2
+      description3
       sns_img_url
       ogp_img_url
     	hall_of_fame_flg

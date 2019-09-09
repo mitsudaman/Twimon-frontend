@@ -66,7 +66,8 @@
           </v-flex>
         </v-layout>
 
-        <v-layout v-if="talkPanel" row wrap justify-center align-center mt-5  px-5>
+        <v-layout v-if="talkPanel" row wrap justify-center align-center mt-5 
+        :class="{'px-1': $vuetify.breakpoint.xsOnly,'px-5': $vuetify.breakpoint.smAndUp}">
           <v-flex xs12>
             <div>
               <div
@@ -74,10 +75,10 @@
                 v-bind:key="talk.id"
                 class="mt-5">
                 <v-layout justify-space-between align-center>
-                  <v-flex xs10 pb-0>
+                  <v-flex xs8 pb-0>
                     <label class="ml-1 font-weight-bold headline">会話{{index+1}}</label>
                   </v-flex>
-                  <v-flex v-if="me.talks.length + newTalks.length >1" xs2 pb-0 text-xs-right>
+                  <v-flex v-if="me.talks.length + newTalks.length >1" xs4 pb-0 text-xs-right>
                     <button class="red--text" @click="onDeleteUserTalk(talk.id)">
                       <i class="fas fa-times"></i> 削除
                     </button>
@@ -199,7 +200,6 @@ export default {
     me: {
       query: GET_ME,
       update(data){
-        console.log(this.$vuetify.theme.light)
         return _.cloneDeep(data.me)
       }
     }

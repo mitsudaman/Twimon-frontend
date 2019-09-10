@@ -9,7 +9,7 @@
       >
         <span class="snackbarText">{{ snackbarText }}</span>
       </v-snackbar>
-      <my-page-nav></my-page-nav>{{isUpdatable}}
+      <my-page-nav></my-page-nav>
       <v-layout row justify-center align-center mt-5>
         <v-flex>
           <v-card class="rounded-card">
@@ -21,11 +21,22 @@
                 <v-text-field
                   v-model="me.name"
                   outline
-                  :rules="[rules.length(20)]"
-                  counter="20"
                   placeholder="ツイモン"
+                  hide-details
                   single-line
+                  :error="getLen(me.name) > 20"
                 ></v-text-field>
+                <div v-bind:class="{'red--text': getLen(me.name) > 20}">
+                  <v-layout row wrap justify-center align-center px-2>
+                    <v-flex xs9>
+                      <small
+                      v-if="getLen(me.name) > 20">20文字以下で入力してください</small>
+                    </v-flex>
+                    <v-flex xs3 class="text-xs-right">
+                      <small>{{getLen(me.name)}} / 20</small>
+                    </v-flex>
+                  </v-layout>
+                </div>
               </v-flex>
             </v-layout>
             <v-layout row wrap justify-center align-center>
@@ -36,11 +47,22 @@
                 <v-text-field
                   v-model="me.title"
                   outline
-                  :rules="[rules.length(20)]"
-                  counter="20"
                   placeholder="ほのぼのツイモン"
+                  hide-details
                   single-line
+                  :error="getLen(me.title) > 20"
                 ></v-text-field>
+                <div v-bind:class="{'red--text': getLen(me.title) > 20}">
+                  <v-layout row wrap justify-center align-center px-2>
+                    <v-flex xs9>
+                      <small
+                      v-if="getLen(me.title) > 20">20文字以下で入力してください</small>
+                    </v-flex>
+                    <v-flex xs3 class="text-xs-right">
+                      <small>{{getLen(me.title)}} / 20</small>
+                    </v-flex>
+                  </v-layout>
+                </div>
               </v-flex>
             </v-layout>
             <v-layout justify-center align-center>
@@ -53,31 +75,62 @@
                 <v-text-field
                   v-model="me.description1"
                   outline
-                  :rules="[rules.length(25)]"
-                  counter="25"
-                  placeholder="ほのぼのツイモン"
+                  placeholder=""
+                  hide-details
                   single-line
+                  :error="getLen(me.description1) > 25"
                 ></v-text-field>
+                <div v-bind:class="{'red--text': getLen(me.description1) > 25}">
+                  <v-layout row wrap justify-center align-center px-2>
+                    <v-flex xs9>
+                      <small
+                      v-if="getLen(me.description1) > 25">25文字以下で入力してください</small>
+                    </v-flex>
+                    <v-flex xs3 class="text-xs-right">
+                      <small>{{getLen(me.description1)}} / 25</small>
+                    </v-flex>
+                  </v-layout>
+                </div>
               </v-flex>
               <v-flex xs11>
                 <v-text-field
                   v-model="me.description2"
                   outline
-                  :rules="[rules.length(25)]"
-                  counter="25"
-                  placeholder="ほのぼのツイモン"
+                  hide-details
                   single-line
+                  :error="getLen(me.description2) > 25"
                 ></v-text-field>
+                <div v-bind:class="{'red--text': getLen(me.description2) > 25}">
+                  <v-layout row wrap justify-center align-center px-2>
+                    <v-flex xs9>
+                      <small
+                      v-if="getLen(me.description2) > 25">25文字以下で入力してください</small>
+                    </v-flex>
+                    <v-flex xs3 class="text-xs-right">
+                      <small>{{getLen(me.description2)}} / 25</small>
+                    </v-flex>
+                  </v-layout>
+                </div>
               </v-flex>
               <v-flex xs11>
                 <v-text-field
                   v-model="me.description3"
                   outline
-                  :rules="[rules.length(25)]"
-                  counter="25"
-                  placeholder="ほのぼのツイモン"
+                  hide-details
                   single-line
+                  :error="getLen(me.description3) > 25"
                 ></v-text-field>
+                <div v-bind:class="{'red--text': getLen(me.description3) > 25}">
+                  <v-layout row wrap justify-center align-center px-2>
+                    <v-flex xs9>
+                      <small
+                      v-if="getLen(me.description3) > 25">25文字以下で入力してください</small>
+                    </v-flex>
+                    <v-flex xs3 class="text-xs-right">
+                      <small>{{getLen(me.description3)}} / 25</small>
+                    </v-flex>
+                  </v-layout>
+                </div>
               </v-flex>
             </v-layout>
           </v-card>
@@ -133,15 +186,21 @@ export default {
   },
   computed: {
     isUpdatable(){
-      return String(this.me.name).length <= 20 && 
-              String(this.me.title).length <= 20 && 
-              String(this.me.description1).length <= 25 && 
-              String(this.me.description2).length <= 25 && 
-              String(this.me.description3).length <= 25
+      return this.getLen(this.me.name) <= 20 && 
+              this.getLen(this.me.title) <= 20 && 
+              this.getLen(this.me.description1) <= 25 && 
+              this.getLen(this.me.description2) <= 25 && 
+              this.getLen(this.me.description3) <= 25
     }
   },
   methods: {
     onUpdateUser (){
+      if(!this.isUpdatable){
+        this.snackbar = true
+        this.snackbarColor = 'error'
+        this.snackbarText = 'プロフィールを更新できませんでした'
+        return
+      }
        // ユーザー情報アップデート
         this.$apollo.mutate({
           mutation: UPDATE_USER_PROF_GQL,
@@ -167,6 +226,25 @@ export default {
           this.snackbarText = 'プロフィールを更新できませんでした'
         });
     },
+    getLen(str){
+      if(str == null || str == '') return 0
+      var result = 0;
+      for(var i=0;i<str.length;i++){
+        var chr = str.charCodeAt(i);
+        if((chr >= 0x00 && chr < 0x81) ||
+          (chr === 0xf8f0) ||
+          (chr >= 0xff61 && chr < 0xffa0) ||
+          (chr >= 0xf8f1 && chr < 0xf8f4)){
+          //半角文字の場合は1を加算
+          result += 0.5;
+        }else{
+          //それ以外の文字の場合は2を加算
+          result += 1;
+        }
+      }
+      //結果を返す
+      return result;
+    }
   }
 }
 </script>

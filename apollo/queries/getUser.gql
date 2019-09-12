@@ -12,6 +12,16 @@ query getUser($userId:ID!){
       description1
       description2
       description3
+      url1_name
+      url1
+      url2_name
+      url2
+      url3_name
+      url3
+      url4_name
+      url4
+      url5_name
+      url5
       sns_img_url
       ogp_img_url
     	hall_of_fame_flg

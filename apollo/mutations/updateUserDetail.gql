@@ -1,0 +1,15 @@
+mutation  updateUserDetail($UpdateUserDetailInput:UpdateUserDetailInput!){
+  updateUserDetail(input:$UpdateUserDetailInput){
+    id
+   	url1_name
+    url1
+    url2_name
+    url2
+    url3_name
+    url3
+    url4_name
+    url4
+    url5_name
+    url5
+  }
+}

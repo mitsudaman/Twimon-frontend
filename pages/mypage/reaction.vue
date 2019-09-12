@@ -56,7 +56,7 @@
               <v-flex sm9 xs11  mt-4 pb-0>
                 <div class="reaction_list_title">
                   リンクを追加する
-                  <div class="reaction_list_edit" @click="onVisibleTalkPanel">
+                  <div class="reaction_list_edit" @click="onVisibleSearchPanel">
                     編集
                   </div>
                 </div>
@@ -163,6 +163,111 @@
             </v-btn>
           </v-flex>
         </v-layout>
+        <v-layout v-if="searchPanel" row wrap justify-center align-center mt-5 
+        :class="{'px-1': $vuetify.breakpoint.xsOnly,'px-5': $vuetify.breakpoint.smAndUp}">
+          <v-flex xs12>
+            <div>
+              <v-layout row wrap justify-center align-center>
+                <v-flex xs11 mt-4 pb-0>
+                  <label class="ml-1 font-weight-bold">{{me.url1_name}}</label>
+                </v-flex>
+                <v-flex xs11>
+                  <v-text-field
+                    v-model="me.url1"
+                    outline
+                    hide-details
+                    single-line
+                  ></v-text-field>
+                </v-flex>
+              </v-layout>
+            </div>
+          </v-flex>
+          <v-flex xs12>
+            <div>
+              <v-layout row wrap justify-center align-center>
+                <v-flex xs11 mt-4 pb-0>
+                  <label class="ml-1 font-weight-bold">{{me.url2_name}}</label>
+                </v-flex>
+                <v-flex xs11>
+                  <v-text-field
+                    v-model="me.url2"
+                    outline
+                    hide-details
+                    single-line
+                  ></v-text-field>
+                </v-flex>
+              </v-layout>
+            </div>
+          </v-flex>
+          <v-flex xs12>
+            <div>
+              <v-layout row wrap justify-center align-center>
+                <v-flex xs11 mt-4 pb-0>
+                  <label class="ml-1 font-weight-bold">{{me.url3_name}}</label>
+                </v-flex>
+                <v-flex xs11>
+                  <v-text-field
+                    v-model="me.url3"
+                    outline
+                    hide-details
+                    single-line
+                  ></v-text-field>
+                </v-flex>
+              </v-layout>
+            </div>
+          </v-flex>
+          <v-flex xs12>
+            <div>
+              <v-layout row wrap justify-center align-center>
+                <v-flex xs11 mt-4 pb-0>
+                  <label class="ml-1 font-weight-bold">{{me.url4_name}}</label>
+                </v-flex>
+                <v-flex xs11>
+                  <v-text-field
+                    v-model="me.url4"
+                    outline
+                    hide-details
+                    single-line
+                  ></v-text-field>
+                </v-flex>
+              </v-layout>
+            </div>
+          </v-flex>
+          <v-flex xs12>
+            <div>
+              <v-layout row wrap justify-center align-center>
+                <v-flex xs11 mt-4 pb-0>
+                  <label class="ml-1 font-weight-bold">{{me.url5_name}}</label>
+                </v-flex>
+                <v-flex xs11>
+                  <v-text-field
+                    v-model="me.url5"
+                    outline
+                    hide-details
+                    single-line
+                  ></v-text-field>
+                </v-flex>
+              </v-layout>
+            </div>
+          </v-flex>
+          <v-flex>
+            <v-btn
+              :block=true
+              :large=true
+              @click="onCreateUserTalk"
+              color="grey darken-3 white--text">
+              <span><i class="far fa-comment-dots"></i> 追加</span>
+            </v-btn>
+            <v-btn
+              :block=true
+              :large=true
+              :loading="isLoadingUpdateUserDetailBtn"
+              @click="onUpdateUserDetail"
+              color="grey darken-3 white--text">
+              <span><i class="far fa-comment-dots"></i> リンク保存</span>
+            </v-btn>
+          </v-flex>
+        </v-layout>
       </v-card>
     </v-container>
   </div>
@@ -172,6 +277,7 @@
 import GET_ME from '~/apollo/queries/getMe.gql'
 import MyPageNav from '~/components/MyPageNav.vue'
 import UPDATE_USER_TALKS_GQL from '~/apollo/mutations/updateUserTalks.gql'
+import UPDATE_USER_DETAIL_GQL from '~/apollo/mutations/updateUserDetail.gql'
 import _ from 'lodash'
 
 export default {
@@ -191,6 +297,7 @@ export default {
       settingPanel: true,
       talkPanel: false,
       searchPanel: false,
+      isLoadingUpdateUserDetailBtn: false
     }
   },
   apollo: {
@@ -215,8 +322,8 @@ export default {
   },
   methods: {
     onVisibleTalkPanel (){
-      this.settingPanel = !this.settingPanel;
-      this.talkPanel = !this.talkPanel;
+      this.onResetPanel();
+      this.talkPanel = true;
       if(this.me.talks.length + this.newTalks.length == 0){
         this.newTalks.push({
           sentence1: '',
@@ -224,6 +331,10 @@ export default {
           sentence3: ''
         });
       }
+    },
+    onVisibleSearchPanel (){
+      this.onResetPanel();
+      this.searchPanel = true;
     },
     onResetPanel (){
       this.settingPanel = false;
@@ -278,6 +389,51 @@ export default {
         this.snackbar_text = '会話を更新できませんでした'
       });
     },
+    onUpdateUserDetail (){
+      this.isLoadingUpdateUserDetailBtn = true
+      // ユーザー会話情報アップデート
+      this.$apollo.mutate({
+        mutation: UPDATE_USER_DETAIL_GQL,
+        variables: {
+          UpdateUserDetailInput:{
+              url1: this.me.url1,
+              url2: this.me.url2,
+              url3: this.me.url3,
+              url4: this.me.url4,
+              url5: this.me.url5,
+          }
+        },
+      }).then((data) => { 
+        this.me = data.data.updateUserDetail
+        this.isLoadingUpdateUserDetailBtn = false
+        this.newTalks = []
+        this.snackbar = true
+        this.snackbar_color = 'success'
+        this.snackbar_text = 'リンクを更新しました'
+      }).catch(() => {
+        this.isLoadingUpdateUserDetailBtn = false
+        this.snackbar = true
+        this.snackbar_color = 'error'
+        this.snackbar_text = 'リンクを更新できませんでした'
+      });
+    },
+    getLen(str){
+      if(str == null || str == '') return 0
+      var result = 0;
+      for(var i=0;i<str.length;i++){
+        var chr = str.charCodeAt(i);
+        if((chr >= 0x00 && chr < 0x81) ||
+          (chr === 0xf8f0) ||
+          (chr >= 0xff61 && chr < 0xffa0) ||
+          (chr >= 0xf8f1 && chr < 0xf8f4)){
+          result += 0.5;
+        }else{
+          result += 1;
+        }
+      }
+      //結果を返す
+      return result;
+    }
   }
 }
 </script>

@@ -150,6 +150,7 @@
             <v-btn
               :block=true
               :large=true
+              :disabled="this.me.talks.length + this.newTalks.length >= 5"
               @click="onCreateUserTalk"
               color="grey darken-3 white--text">
               <span><i class="far fa-comment-dots"></i> 追加</span>

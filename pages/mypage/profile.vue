@@ -15,7 +15,7 @@
           <v-card class="rounded-card">
             <v-layout row wrap justify-center align-center>
               <v-flex xs11 mt-4 pb-0>
-                <label class="ml-1 font-weight-bold">ニックネーム</label>
+                <label class="ml-1 font-weight-bold">ニックネーム<small class="red--text">*</small></label>
               </v-flex>
               <v-flex xs11>
                 <v-text-field
@@ -24,13 +24,15 @@
                   placeholder="ツイモン"
                   hide-details
                   single-line
-                  :error="getLen(me.name) > 20"
+                  :error="getLen(me.name) > 20 || getLen(me.name) == 0"
                 ></v-text-field>
-                <div v-bind:class="{'red--text': getLen(me.name) > 20}">
+                <div v-bind:class="{'red--text': getLen(me.name) > 20 || getLen(me.name) == 0}">
                   <v-layout row wrap justify-center align-center px-2>
                     <v-flex xs9>
                       <small
                       v-if="getLen(me.name) > 20">20文字以下で入力してください</small>
+                      <small
+                      v-if="getLen(me.name) == 0">入力してください</small>
                     </v-flex>
                     <v-flex xs3 class="text-xs-right">
                       <small>{{getLen(me.name)}} / 20</small>
@@ -186,7 +188,8 @@ export default {
   },
   computed: {
     isUpdatable(){
-      return this.getLen(this.me.name) <= 20 && 
+      return this.getLen(this.me.name) > 0 && 
+              this.getLen(this.me.name) <= 20 && 
               this.getLen(this.me.title) <= 20 && 
               this.getLen(this.me.description1) <= 25 && 
               this.getLen(this.me.description2) <= 25 && 

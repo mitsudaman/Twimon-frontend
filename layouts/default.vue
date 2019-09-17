@@ -58,7 +58,7 @@
 
                   <v-list>
                     <v-btn 
-                    v-if="this.$store.state.isLoggedIn" 
+                    v-if="this.$cookies.get('twimonToken')" 
                     round
                     @click="logOut">ログアウト</v-btn>
                     <v-btn 

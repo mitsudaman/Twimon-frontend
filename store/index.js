@@ -33,19 +33,3 @@ export const mutations = {
     this.$cookies.remove('twimonToken')
   }
 }
-
-export const actions = {
-  nuxtClientInit({ commit }, context) {
-    const token = this.$cookies.get('twimonToken')
-    if (!token) {
-      return Promise.resolve()
-    }
-    const client = this.app.apolloProvider.defaultClient
-    client.query({
-        query: GET_ME_GQL,
-      }).then(({data}) => {
-          const me = data.me
-          commit('setUser',  { user: data.me})
-      })
-  },
-}

@@ -32,6 +32,7 @@ import GET_ME_WITH_LIKES_GQL from '~/apollo/queries/getMeWithLikes.gql'
 import _ from 'lodash'
 
 export default {
+  middleware: 'authenticated',
   transition (to, from) {
     if(from && from.name == 'read-id') return 'index'
     return 

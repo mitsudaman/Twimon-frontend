@@ -90,19 +90,56 @@
                       v-model="talk.sentence1"
                       outline
                       hide-details
-                      placeholder="こんにちわ">
+                      placeholder="こんにちわ"
+                      :error="getLen(talk.sentence1) > 50">
                     </v-textarea>
+                    <div v-bind:class="{'red--text': getLen(talk.sentence1) > 50}">
+                      <v-layout row wrap justify-center align-center px-2>
+                        <v-flex xs9>
+                          <small
+                          v-if="getLen(talk.sentence1) > 50">50文字以下で入力してください</small>
+                        </v-flex>
+                        <v-flex xs3 class="text-xs-right">
+                          <small>{{getLen(talk.sentence1)}} / 50</small>
+                        </v-flex>
+                      </v-layout>
+                    </div>
                     <v-textarea
                       v-model="talk.sentence2"
                       outline
                       hide-details
-                      class="mt-2">
+                      class="mt-3"
+                      :error="getLen(talk.sentence2) > 50">
                     </v-textarea>
+                    <div v-bind:class="{'red--text': getLen(talk.sentence2) > 50}">
+                      <v-layout row wrap justify-center align-center px-2>
+                        <v-flex xs9>
+                          <small
+                          v-if="getLen(talk.sentence2) > 50">50文字以下で入力してください</small>
+                        </v-flex>
+                        <v-flex xs3 class="text-xs-right">
+                          <small>{{getLen(talk.sentence2)}} / 50</small>
+                        </v-flex>
+                      </v-layout>
+                    </div>
                     <v-textarea
                       v-model="talk.sentence3"
                       outline
                       hide-details
-                      class="mt-2">
+                      class="mt-3"
+                      :error="getLen(talk.sentence3) > 50">
+                    </v-textarea>
+                    <div v-bind:class="{'red--text': getLen(talk.sentence3) > 50}">
+                      <v-layout row wrap justify-center align-center px-2>
+                        <v-flex xs9>
+                          <small
+                          v-if="getLen(talk.sentence3) > 50">50文字以下で入力してください</small>
+                        </v-flex>
+                        <v-flex xs3 class="text-xs-right">
+                          <small>{{getLen(talk.sentence3)}} / 50</small>
+                        </v-flex>
+                      </v-layout>
+                    </div>
                     </v-textarea>
                   </v-flex>
                 </v-layout>
@@ -127,20 +164,56 @@
                       v-model="talk.sentence1"
                       outline
                       hide-details
-                      placeholder="こんにちわ">
+                      placeholder="こんにちわ"
+                      :error="getLen(talk.sentence1) > 50">
                     </v-textarea>
+                    <div v-bind:class="{'red--text': getLen(talk.sentence1) > 50}">
+                      <v-layout row wrap justify-center align-center px-2>
+                        <v-flex xs9>
+                          <small
+                          v-if="getLen(talk.sentence1) > 50">50文字以下で入力してください</small>
+                        </v-flex>
+                        <v-flex xs3 class="text-xs-right">
+                          <small>{{getLen(talk.sentence1)}} / 50</small>
+                        </v-flex>
+                      </v-layout>
+                    </div>
                     <v-textarea
                       v-model="talk.sentence2"
                       outline
                       hide-details
-                      class="mt-2">
+                      class="mt-3"
+                      :error="getLen(talk.sentence2) > 50">
                     </v-textarea>
+                    <div v-bind:class="{'red--text': getLen(talk.sentence2) > 50}">
+                      <v-layout row wrap justify-center align-center px-2>
+                        <v-flex xs9>
+                          <small
+                          v-if="getLen(talk.sentence2) > 50">50文字以下で入力してください</small>
+                        </v-flex>
+                        <v-flex xs3 class="text-xs-right">
+                          <small>{{getLen(talk.sentence2)}} / 50</small>
+                        </v-flex>
+                      </v-layout>
+                    </div>
                     <v-textarea
                       v-model="talk.sentence3"
                       outline
                       hide-details
-                      class="mt-2">
+                      class="mt-3"
+                      :error="getLen(talk.sentence3) > 50">
                     </v-textarea>
+                    <div v-bind:class="{'red--text': getLen(talk.sentence3) > 50}">
+                      <v-layout row wrap justify-center align-center px-2>
+                        <v-flex xs9>
+                          <small
+                          v-if="getLen(talk.sentence3) > 50">50文字以下で入力してください</small>
+                        </v-flex>
+                        <v-flex xs3 class="text-xs-right">
+                          <small>{{getLen(talk.sentence3)}} / 50</small>
+                        </v-flex>
+                      </v-layout>
+                    </div>
                   </v-flex>
                 </v-layout>
               </div>
@@ -159,6 +232,7 @@
               :block=true
               :large=true
               @click="onUpdateUserTalks"
+              :disabled="!isTalkUpdatable"
               color="grey darken-3 white--text">
               <span><i class="far fa-comment-dots"></i> 会話保存</span>
             </v-btn>
@@ -313,10 +387,10 @@ export default {
     isTalkUpdatable(){
       let updatableFlg = true
       _.forEach(this.me.talks, (n) => {
-        if(String(n.sentence1).length >=50 || String(n.sentence2).length >=50 || String(n.sentence3).length >=50) updatableFlg = false
+        if(this.getLen(n.sentence1) >50 || this.getLen(n.sentence2) >50 || this.getLen(n.sentence3) >50) updatableFlg = false
       });
       _.forEach(this.newTalks, (n) => {
-        if(String(n.sentence1).length >=50 || String(n.sentence2).length >=50 || String(n.sentence3).length >=50) updatableFlg = false
+        if(this.getLen(n.sentence1) >50 || this.getLen(n.sentence2) >50 || this.getLen(n.sentence3) >50) updatableFlg = false
       });
       return updatableFlg
     }

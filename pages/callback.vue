@@ -1,9 +1,11 @@
 <template>
   <div>
-    <p v-if="attempting">Twitterでログインしています。</p>
-    <template v-else>
-      <p>{{failedMessage}}</p>
-    </template>
+    <v-container>
+      <p v-if="attempting">Twitterでログインしています。</p>
+      <template v-else>
+        <p>{{failedMessage}}</p>
+      </template>
+    </v-container>
   </div>
 </template>
 

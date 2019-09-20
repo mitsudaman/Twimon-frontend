@@ -211,10 +211,6 @@ export default {
             UpdateUserProfInput:  {
               name: this.me.name,
               title: this.me.title,
-              feature1: this.me.feature1,
-              feature1_content: this.me.feature1_content,
-              feature2: this.me.feature2,
-              feature2_content: this.me.feature2_content,
               description1: this.me.description1,
               description2: this.me.description2,
               description3: this.me.description3,
@@ -222,6 +218,7 @@ export default {
           },
         }).then(() => { 
           this.snackbar = true
+          this.snackbarColor = 'success'
           this.snackbarText = 'プロフィールを更新しました'
         }).catch(() => {
           this.snackbar = true
@@ -238,14 +235,11 @@ export default {
           (chr === 0xf8f0) ||
           (chr >= 0xff61 && chr < 0xffa0) ||
           (chr >= 0xf8f1 && chr < 0xf8f4)){
-          //半角文字の場合は1を加算
           result += 0.5;
         }else{
-          //それ以外の文字の場合は2を加算
           result += 1;
         }
       }
-      //結果を返す
       return result;
     }
   }

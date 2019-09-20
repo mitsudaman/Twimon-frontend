@@ -140,7 +140,6 @@
                         </v-flex>
                       </v-layout>
                     </div>
-                    </v-textarea>
                   </v-flex>
                 </v-layout>
               </div>
@@ -506,7 +505,6 @@ export default {
           result += 1;
         }
       }
-      //結果を返す
       return result;
     }
   }

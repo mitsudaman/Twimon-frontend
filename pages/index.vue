@@ -96,16 +96,6 @@ export default {
     }
   },
   methods: {
-    commandTalk (){
-      console.log("aaaaaaaaa")
-      // this.$apollo.mutate({
-      //   mutation: CREATE_USER_GQL,
-      //   variables: {
-      //     // name: this.customer.name,
-      //     // gender: this.customer.gender,
-      //   }
-      // })
-    },
   }
 }
 </script>

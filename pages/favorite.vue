@@ -2,6 +2,11 @@
   <div>
     <v-container grid-list-lg text-xs-center> 
       <v-layout row wrap>
+        <v-flex v-if="likeUsers && likeUsers.length==0" v-bind:key="user.id">
+          <p class="mb-5 title">お気に入りのモンスターが登録されていません！</p>
+        </v-flex>
+      </v-layout>
+      <v-layout row wrap>
         <v-flex v-for="user in likeUsers" v-bind:key="user.id" xs3>
           <v-card  :hover="true" class="rounded-card"
           :to="'/read/' + user.id">
@@ -26,7 +31,6 @@
 </template>
 
 <script>
-import GET_USERS_GQL from '~/apollo/queries/getUsers.gql'
 import GET_ME_WITH_LIKES_GQL from '~/apollo/queries/getMeWithLikes.gql'
 // import CREATE_USER_GQL from '~/apollo/mutations/createUser.gql'
 import _ from 'lodash'
@@ -34,20 +38,19 @@ import _ from 'lodash'
 export default {
   middleware: 'authenticated',
   transition (to, from) {
-    if(from && from.name == 'read-id') return 'index'
-    return 
+    if (from && from.name === 'read-id') return 'index'
   },
-  data() {
+  data () {
     return {
-      name: "",
-      title: "",
-      height: "",
-      weight: "",
+      name: '',
+      title: '',
+      height: '',
+      weight: '',
       user: {
       },
-      page:1,
+      page: 1,
       users: null,
-      lastPage:0
+      lastPage: 0
     }
   },
   computed: {
@@ -60,14 +63,14 @@ export default {
   apollo: {
     likeUsers: {
       query: GET_ME_WITH_LIKES_GQL,
-      variables() {
+      variables () {
         return {
-          page: this.page,
-        };
+          page: this.page
+        }
       },
-      update(data){
-        this.lastPage= data.me.likes.paginatorInfo.lastPage
-        return _.map(data.me.likes.data,(n)=>{
+      update (data) {
+        this.lastPage = data.me.likes.paginatorInfo.lastPage
+        return _.map(data.me.likes.data, (n) => {
           return n.user
         })
       }

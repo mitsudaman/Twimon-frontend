@@ -166,81 +166,81 @@ export default {
   components: {
     MyPageNav
   },
-  data() {
+  data () {
     return {
       rules: {
-        length: len => v => (v || '').length <= len || `${len}文字以下で入力してください `,
+        length: len => v => (v || '').length <= len || `${len}文字以下で入力してください `
       },
       me: {
       },
-      snackbar:false,
+      snackbar: false,
       snackbarColor: 'success',
-      snackbarText:"",
+      snackbarText: ''
     }
   },
   apollo: {
     me: {
       query: GET_ME,
-      update(data){
+      update (data) {
         return _.cloneDeep(data.me)
       }
     }
   },
   computed: {
-    isUpdatable(){
-      return this.getLen(this.me.name) > 0 && 
-              this.getLen(this.me.name) <= 20 && 
-              this.getLen(this.me.title) <= 20 && 
-              this.getLen(this.me.description1) <= 25 && 
-              this.getLen(this.me.description2) <= 25 && 
+    isUpdatable () {
+      return this.getLen(this.me.name) > 0 &&
+              this.getLen(this.me.name) <= 20 &&
+              this.getLen(this.me.title) <= 20 &&
+              this.getLen(this.me.description1) <= 25 &&
+              this.getLen(this.me.description2) <= 25 &&
               this.getLen(this.me.description3) <= 25
     }
   },
   methods: {
-    onUpdateUser (){
-      if(!this.isUpdatable){
+    onUpdateUser () {
+      if (!this.isUpdatable) {
         this.snackbar = true
         this.snackbarColor = 'error'
         this.snackbarText = 'プロフィールを更新できませんでした'
         return
       }
-       // ユーザー情報アップデート
-        this.$apollo.mutate({
-          mutation: UPDATE_USER_PROF_GQL,
-          variables: {
-            UpdateUserProfInput:  {
-              name: this.me.name,
-              title: this.me.title,
-              description1: this.me.description1,
-              description2: this.me.description2,
-              description3: this.me.description3,
-            }
-          },
-        }).then(() => { 
-          this.snackbar = true
-          this.snackbarColor = 'success'
-          this.snackbarText = 'プロフィールを更新しました'
-        }).catch(() => {
-          this.snackbar = true
-          this.snackbarColor = 'error'
-          this.snackbarText = 'プロフィールを更新できませんでした'
-        });
+      // ユーザー情報アップデート
+      this.$apollo.mutate({
+        mutation: UPDATE_USER_PROF_GQL,
+        variables: {
+          UpdateUserProfInput: {
+            name: this.me.name,
+            title: this.me.title,
+            description1: this.me.description1,
+            description2: this.me.description2,
+            description3: this.me.description3
+          }
+        }
+      }).then(() => {
+        this.snackbar = true
+        this.snackbarColor = 'success'
+        this.snackbarText = 'プロフィールを更新しました'
+      }).catch(() => {
+        this.snackbar = true
+        this.snackbarColor = 'error'
+        this.snackbarText = 'プロフィールを更新できませんでした'
+      })
     },
-    getLen(str){
-      if(str == null || str == '') return 0
-      var result = 0;
-      for(var i=0;i<str.length;i++){
-        var chr = str.charCodeAt(i);
-        if((chr >= 0x00 && chr < 0x81) ||
+    getLen (str) {
+      if (str == null || str === '') return 0
+      var result = 0
+      for (var i = 0; i < str.length; i++) {
+        var chr = str.charCodeAt(i)
+        if ((chr >= 0x00 && chr < 0x81) ||
           (chr === 0xf8f0) ||
           (chr >= 0xff61 && chr < 0xffa0) ||
-          (chr >= 0xf8f1 && chr < 0xf8f4)){
-          result += 0.5;
-        }else{
-          result += 1;
+          (chr >= 0xf8f1 && chr < 0xf8f4)) {
+          result += 0.5
+        } else {
+          result += 1
         }
       }
-      return result;
+      return result
     }
   }
 }

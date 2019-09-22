@@ -18,9 +18,9 @@
       //   .get('http://localhost:8001/oauth/scopes')
       //   .then(response => (this.info = response))
 
-      axios.get('/oauth/scopes').then(response => {
-          console.log(response.data);
-      });
+    //   axios.get('/oauth/scopes').then(response => {
+    //     console.log(response.data)
+    // })
     }
   }
 </script>

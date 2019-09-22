@@ -359,13 +359,13 @@ export default {
   components: {
     MyPageNav
   },
-  data() {
+  data () {
     return {
       me: {
       },
-      snackbar:false,
+      snackbar: false,
       snackbar_color: 'success',
-      snackbar_text:"",
+      snackbar_text: '',
       newTalks: [],
       delTalks: [],
       settingPanel: true,
@@ -377,81 +377,81 @@ export default {
   apollo: {
     me: {
       query: GET_ME,
-      update(data){
+      update (data) {
         return _.cloneDeep(data.me)
       }
     }
   },
   computed: {
-    isTalkUpdatable(){
+    isTalkUpdatable () {
       let updatableFlg = true
       _.forEach(this.me.talks, (n) => {
-        if(this.getLen(n.sentence1) >50 || this.getLen(n.sentence2) >50 || this.getLen(n.sentence3) >50) updatableFlg = false
-      });
+        if (this.getLen(n.sentence1) > 50 || this.getLen(n.sentence2) > 50 || this.getLen(n.sentence3) > 50) updatableFlg = false
+      })
       _.forEach(this.newTalks, (n) => {
-        if(this.getLen(n.sentence1) >50 || this.getLen(n.sentence2) >50 || this.getLen(n.sentence3) >50) updatableFlg = false
-      });
+        if (this.getLen(n.sentence1) > 50 || this.getLen(n.sentence2) > 50 || this.getLen(n.sentence3) > 50) updatableFlg = false
+      })
       return updatableFlg
     }
   },
   methods: {
-    onVisibleTalkPanel (){
-      this.onResetPanel();
-      this.talkPanel = true;
-      if(this.me.talks.length + this.newTalks.length == 0){
+    onVisibleTalkPanel () {
+      this.onResetPanel()
+      this.talkPanel = true
+      if (this.me.talks.length + this.newTalks.length === 0) {
         this.newTalks.push({
           sentence1: '',
           sentence2: '',
           sentence3: ''
-        });
+        })
       }
     },
-    onVisibleSearchPanel (){
-      this.onResetPanel();
-      this.searchPanel = true;
+    onVisibleSearchPanel () {
+      this.onResetPanel()
+      this.searchPanel = true
     },
-    onResetPanel (){
-      this.settingPanel = false;
-      this.talkPanel = false;
-      this.searchPanel = false;
+    onResetPanel () {
+      this.settingPanel = false
+      this.talkPanel = false
+      this.searchPanel = false
     },
-    onDeleteUserTalk(delId){
-      this.me.talks = _.reject(this.me.talks, { 'id': delId});
-      this.delTalks.push(delId);
+    onDeleteUserTalk (delId) {
+      this.me.talks = _.reject(this.me.talks, { 'id': delId })
+      this.delTalks.push(delId)
     },
-    onDeleteUserNewTalk(index){
-      this.newTalks.splice(index, 1);
+    onDeleteUserNewTalk (index) {
+      this.newTalks.splice(index, 1)
     },
-    onCreateUserTalk(){
-      if(this.me.talks.length + this.newTalks.length >= 5) {
+    onCreateUserTalk () {
+      if (this.me.talks.length + this.newTalks.length >= 5) {
         this.snackbar = true
         this.snackbar_color = 'error'
         this.snackbar_text = '会話は5個までです'
-        return ;
+        return
       }
       this.newTalks.push({
-          sentence1: '',
-          sentence2: '',
-          sentence3: ''
-      });
+        sentence1: '',
+        sentence2: '',
+        sentence3: ''
+      })
     },
-    onUpdateUserTalks (){
-      let updateTalks = _.map(this.me.talks,(n)=>{
-        return _.pick(n, ['id','sentence1', 'sentence2','sentence3']);
+    onUpdateUserTalks () {
+      let updateTalks = _.map(this.me.talks, (n) => {
+        return _.pick(n, ['id', 'sentence1', 'sentence2', 'sentence3'])
       })
       // ユーザー会話情報アップデート
       this.$apollo.mutate({
         mutation: UPDATE_USER_TALKS_GQL,
         variables: {
-          UpdateUserTalksInput:{
+          UpdateUserTalksInput: {
             talks: {
               create: this.newTalks,
               update: updateTalks,
               delete: this.delTalks
             }
           }
-        },
-      }).then((data) => { 
+        }
+      }).then((data) => {
         this.me = data.data.updateUserTalks
         this.newTalks = []
         this.snackbar = true
@@ -461,23 +461,23 @@ export default {
         this.snackbar = true
         this.snackbar_color = 'error'
         this.snackbar_text = '会話を更新できませんでした'
-      });
+      })
     },
-    onUpdateUserDetail (){
+    onUpdateUserDetail () {
       this.isLoadingUpdateUserDetailBtn = true
       // ユーザー会話情報アップデート
       this.$apollo.mutate({
         mutation: UPDATE_USER_DETAIL_GQL,
         variables: {
-          UpdateUserDetailInput:{
-              url1: this.me.url1,
-              url2: this.me.url2,
-              url3: this.me.url3,
-              url4: this.me.url4,
-              url5: this.me.url5,
+          UpdateUserDetailInput: {
+            url1: this.me.url1,
+            url2: this.me.url2,
+            url3: this.me.url3,
+            url4: this.me.url4,
+            url5: this.me.url5
           }
-        },
-      }).then((data) => { 
+        }
+      }).then((data) => {
         this.me = data.data.updateUserDetail
         this.isLoadingUpdateUserDetailBtn = false
         this.newTalks = []
@@ -489,23 +489,23 @@ export default {
         this.snackbar = true
         this.snackbar_color = 'error'
         this.snackbar_text = 'リンクを更新できませんでした'
-      });
+      })
     },
-    getLen(str){
-      if(str == null || str == '') return 0
-      var result = 0;
-      for(var i=0;i<str.length;i++){
-        var chr = str.charCodeAt(i);
-        if((chr >= 0x00 && chr < 0x81) ||
+    getLen (str) {
+      if (str == null || str === '') return 0
+      var result = 0
+      for (var i = 0; i < str.length; i++) {
+        var chr = str.charCodeAt(i)
+        if ((chr >= 0x00 && chr < 0x81) ||
           (chr === 0xf8f0) ||
           (chr >= 0xff61 && chr < 0xffa0) ||
-          (chr >= 0xf8f1 && chr < 0xf8f4)){
-          result += 0.5;
-        }else{
-          result += 1;
+          (chr >= 0xf8f1 && chr < 0xf8f4)) {
+          result += 0.5
+        } else {
+          result += 1
         }
       }
-      return result;
+      return result
     }
   }
 }

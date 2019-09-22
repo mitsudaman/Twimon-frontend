@@ -104,7 +104,6 @@
 </template>
 
 <script>
-  import { mapMutations } from 'vuex'
   export default {
     data () {
       return {
@@ -112,7 +111,7 @@
         drawer: false,
         fixed: false,
         items: [
-          { icon: 'apps', title: 'ホーム', to: '/' },
+          { icon: 'apps', title: 'ホーム', to: '/' }
         ],
         miniVariant: false,
         right: true,
@@ -121,17 +120,17 @@
       }
     },
     methods: {
-      logOut (){
+      logOut () {
         this.$store.commit('logOut')
-        this.$router.replace({ path: '/' });
-        // this.$apollo.mutate({
-        //   mutation: CREATE_USER_GQL,
-        //   variables: {
-        //     // name: this.customer.name,
-        //     // gender: this.customer.gender,
-        //   }
-        // })
-      },
+        this.$router.replace({ path: '/' })
+      // this.$apollo.mutate({
+      //   mutation: CREATE_USER_GQL,
+      //   variables: {
+      //     // name: this.customer.name,
+      //     // gender: this.customer.gender,
+      //   }
+      // })
+      }
     }
   }
 </script>

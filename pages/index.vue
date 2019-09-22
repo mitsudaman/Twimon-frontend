@@ -58,20 +58,19 @@ import GET_USERS_GQL from '~/apollo/queries/getUsers.gql'
 
 export default {
   transition (to, from) {
-    if(from && from.name == 'read-id') return 'index'
-    return 
+    if (from && from.name === 'read-id') return 'index'
   },
-  data() {
+  data () {
     return {
-      name: "",
-      title: "",
-      height: "",
-      weight: "",
+      name: '',
+      title: '',
+      height: '',
+      weight: '',
       user: {
       },
-      page:1,
+      page: 1,
       users: null,
-      lastPage:0
+      lastPage: 0
     }
   },
   computed: {
@@ -84,13 +83,13 @@ export default {
   apollo: {
     users: {
       query: GET_USERS_GQL,
-      variables() {
+      variables () {
         return {
-          page: this.page,
-        };
+          page: this.page
+        }
       },
-      update(data){
-        this.lastPage= data.users.paginatorInfo.lastPage
+      update (data) {
+        this.lastPage = data.users.paginatorInfo.lastPage
         return data.users.data
       }
     }

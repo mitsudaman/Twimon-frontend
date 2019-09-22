@@ -2,7 +2,7 @@
   <div>
     <v-container grid-list-xl>
       <v-layout row justify-center align-center>
-        <v-flex sm8 >
+        <v-flex xs10>
           <v-card class="rounded-card">
             <v-layout justify-center align-center>
               <v-flex xs11 mt-4 pb-0 title>
@@ -24,7 +24,7 @@
         </v-flex>
       </v-layout>
       <v-layout row justify-center align-center mt-5>
-        <v-flex sm8 >
+        <v-flex xs10>
           <v-card class="rounded-card">
             <v-layout justify-center align-center>
               <v-flex xs11 mt-4 pb-4>
@@ -44,29 +44,27 @@
 </template>
 
 <script>
-import GET_REDIRECT_URL_GQL from '~/apollo/queries/getRedirectUrl.gql'
-import axios from 'axios';
+import axios from 'axios'
 
 export default {
   components: {
   },
-  data() {
+  data () {
     return {
-      loading:false
+      loading: false
     }
   },
   methods: {
-    onLogin (){
-      this.loading=true;
+    onLogin () {
+      this.loading = true
       // this.$apollo.query({
       //     query: GET_REDIRECT_URL_GQL
       // }).then(({data}) => {
       //   window.location.href = data.getRedirectUrl
       // })
-      
       axios.get('http://localhost:8001/api/login/twitter', { withCredentials: true }).then(response => {
-          window.location.href = response.data
-      });
+        window.location.href = response.data
+      })
     }
   }
 }

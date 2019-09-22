@@ -156,11 +156,10 @@ import ADD_OR_DELETE_LIKE_UAER_GQL from '~/apollo/mutations/addOrDeleteLikeUser.
 
 export default {
   transition (to, from) {
-    if(from && (from.name == 'index' || from.name == 'favorite')) return 'read'
-    return
+    if (from && (from.name === 'index' || from.name === 'favorite')) return 'read'
   },
   middleware: 'authenticated',
-  data() {
+  data () {
     return {
       likeSum: 0,
       likedFlg: false,
@@ -169,22 +168,22 @@ export default {
       },
       talkIndex: 0,
       sentenceIndex: 1,
-      talks:[],
-      nowTalk:[],
+      talks: [],
+      nowTalk: [],
       talkViewFlg: false,
       talkSentence: null,
-      dialog:false
+      dialog: false
     }
   },
   apollo: {
     user: {
       query: GET_USER_GQL,
-      variables() {
+      variables () {
         return {
           userId: this.$route.params.id
-        };
+        }
       },
-      update(data){
+      update (data) {
         this.talks = data.user.talks
         this.likeSum = data.user.like_ct
         this.likedFlg = data.user.liked
@@ -193,59 +192,55 @@ export default {
     }
   },
   methods: {
-    addLikeUsr(){
-      this.likeSum ++ 
+    addLikeUsr () {
+      this.likeSum++
       this.likedFlg = true
       this.onLikedFlg = true
       this.updateLike()
     },
-    delLikeUsr(){
-      this.likeSum --
+    delLikeUsr () {
+      this.likeSum--
       this.likedFlg = false
       this.onLikedFlg = false
       this.updateLike()
     },
-    updateLike(){
+    updateLike () {
       this.$apollo.mutate({
         mutation: ADD_OR_DELETE_LIKE_UAER_GQL,
         variables: {
           user_id: this.$route.params.id
-        },
-      }).then(({data})=>{
+        }
+      }).then(({ data }) => {
       })
     },
-    commandTalk (){
+    commandTalk () {
       this.talkViewFlg = true
       this.sentenceIndex = 1
       // console.log(this.talkIndex)
       // console.log(this.talkIndex%this.talks.length)
-      this.nowTalk = this.talks[this.talkIndex%this.talks.length]
+      this.nowTalk = this.talks[this.talkIndex % this.talks.length]
       this.talkSentence = this.nowTalk.sentence1
     },
-    talkNext() {
+    talkNext () {
       this.sentenceIndex++
-      if(this.sentenceIndex == 2){
-        if(this.nowTalk.sentence2){
+      if (this.sentenceIndex === 2) {
+        if (this.nowTalk.sentence2) {
           this.talkSentence = this.nowTalk.sentence2
+        } else {
+          this.talkSentence = ''
         }
-        else{
-          this.talkSentence = ""
-        }
-      }
-      else if(this.sentenceIndex == 3){
-        if(this.nowTalk.sentence3){
+      } else if (this.sentenceIndex === 3) {
+        if (this.nowTalk.sentence3) {
           this.talkSentence = this.nowTalk.sentence3
-        }
-        else{
+        } else {
           this.talkEnd()
         }
-      }
-      else{
+      } else {
         this.talkEnd()
       }
     },
-    talkEnd(){
-      this.talkIndex ++
+    talkEnd () {
+      this.talkIndex++
       this.talkViewFlg = false
     }
   }

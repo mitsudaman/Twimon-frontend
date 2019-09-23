@@ -4,6 +4,7 @@ query getUser($userId:ID!){
       id
     	serial_number
       name
+      nickname
       title
       feature1
       feature1_content
@@ -28,6 +29,7 @@ query getUser($userId:ID!){
     	legend_flg
       liked
     	like_ct
+      twitter_followers_count
       talks(orderBy: [
             {
                 field: "id"

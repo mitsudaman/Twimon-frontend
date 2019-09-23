@@ -50,18 +50,18 @@
             <v-flex xs6
             :class="{'mt-0': $vuetify.breakpoint.smAndDown, 'mt-4': $vuetify.breakpoint.lgAndUp}">
               <div class="pl-2 text-xs-left">
+                <p>@{{ user.nickname }}</p>
                 <p>{{ user.name }}</p>
                 <p>{{ user.title }}</p>
-                <p>{{ user.feature1 }} {{ user.feature1_content }}</p>
-                <p>{{ user.feature1 }} {{ user.feature1_content }}</p>
+                <p>戦闘力 {{ user.twitter_followers_count}}</p>
               </div>
             </v-flex>
           </v-layout>
           <hr style="border: 1px solid #000;">
           <div class="mt-3">
-            <p>ふくおかに せいそくする うぇぶの ぷろぐらまー。</p>
-            <p>ぶらっくな かいしゃから すぐいなくなる。2びょう</p>
-            <p>かんに 1000もじの コードを かくことができる。</p>
+            <p>{{user.description1}}</p>
+            <p>{{user.description2}}</p>
+            <p>{{user.description3}}</p>
           </div>
         </v-flex>
       </v-layout>
@@ -78,8 +78,11 @@
             </v-card-actions>
             <v-card-title class="headline">{{user.name}}のひみつ</v-card-title>
             <v-card-text>
-              <p><i class="fas fa-link"></i><a class="ml-1" href="aaaaaaaaaaa">ポートフォリオ</a></p>
-              <p><i class="fas fa-link"></i><a class="ml-1" href="aaaaaaaaaaa">HP</a></p>
+              <p><i class="fas fa-link"></i><a class="ml-1" :href="user.url1">{{user.url1}}</a></p>
+              <p><i class="fas fa-link"></i><a class="ml-1" :href="user.url2">{{user.url2}}</a></p>
+              <p><i class="fas fa-link"></i><a class="ml-1" :href="user.url3">{{user.url3}}</a></p>
+              <p><i class="fas fa-link"></i><a class="ml-1" :href="user.url4">{{user.url4}}</a></p>
+              <p><i class="fas fa-link"></i><a class="ml-1" :href="user.url5">{{user.url5}}</a></p>
             </v-card-text>
           </v-card>
         </v-dialog>
@@ -216,21 +219,19 @@ export default {
     commandTalk () {
       this.talkViewFlg = true
       this.sentenceIndex = 1
-      // console.log(this.talkIndex)
-      // console.log(this.talkIndex%this.talks.length)
       this.nowTalk = this.talks[this.talkIndex % this.talks.length]
-      this.talkSentence = this.nowTalk.sentence1
+      this.talkSentence = this.nowTalk ? this.nowTalk.sentence1 : ''
     },
     talkNext () {
       this.sentenceIndex++
       if (this.sentenceIndex === 2) {
-        if (this.nowTalk.sentence2) {
+        if (this.nowTalk && this.nowTalk.sentence2) {
           this.talkSentence = this.nowTalk.sentence2
         } else {
           this.talkSentence = ''
         }
       } else if (this.sentenceIndex === 3) {
-        if (this.nowTalk.sentence3) {
+        if (this.nowTalk && this.nowTalk.sentence3) {
           this.talkSentence = this.nowTalk.sentence3
         } else {
           this.talkEnd()

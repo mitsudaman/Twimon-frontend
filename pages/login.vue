@@ -62,7 +62,7 @@ export default {
       // }).then(({data}) => {
       //   window.location.href = data.getRedirectUrl
       // })
-      axios.get('http://localhost:8001/api/login/twitter', { withCredentials: true }).then(response => {
+      axios.get(process.env.baseUrl + 'api/login/twitter', { withCredentials: true }).then(response => {
         window.location.href = response.data
       })
     }

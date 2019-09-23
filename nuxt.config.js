@@ -16,14 +16,14 @@ module.exports = {
     ]
   },
   plugins: [
-    '~/plugins/vuetify.js',
+    '~/plugins/vuetify.js'
     // '~/plugins/konva',
   ],
   css: [
     '~/assets/style/app.styl',
     '~/assets/style/main.styl',
     '~/assets/main.css',
-    '@fortawesome/fontawesome-free/css/all.css',
+    '@fortawesome/fontawesome-free/css/all.css'
   ],
   /*
   ** Customize the progress bar color
@@ -31,28 +31,31 @@ module.exports = {
   loading: { color: '#3B8070' },
   modules: [
     '@nuxtjs/apollo',
-    ['cookie-universal-nuxt', {parseJSON: false}],
-    'nuxt-client-init-module',
+    ['cookie-universal-nuxt', { parseJSON: false }],
+    'nuxt-client-init-module'
   ],
   apollo: {
     tokenName: 'twimonToken',
     defaultOptions: {
       $query: {
-        fetchPolicy: 'cache-and-network',
-      },
+        fetchPolicy: 'cache-and-network'
+      }
     },
     clientConfigs: {
-      default:{
+      default: {
         // Graphpack側のエンドポイントを指定します。
         // httpEndpoint: 'http://stark-ravine-37952.herokuapp.com/graphql',
-        httpEndpoint: process.env.HTTP_ENDPOINT,
+        httpEndpoint: process.env.HTTP_ENDPOINT
         // httpEndpoint: 'https://twimon-backend.herokuapp.com/graphql',
         // httpEndpoint: 'https://damp-wildwood-50383.herokuapp.com/graphql',
         // // Subscription用にWebSocketの設定も追加します。
         // wsEndpoint: 'ws://localhost:4000/graphql',
-        // websocketsOnly: true, 
+        // websocketsOnly: true,
       }
     }
+  },
+  env: {
+    baseUrl: process.env.APP_URL
   },
   /*
   ** Build configuration

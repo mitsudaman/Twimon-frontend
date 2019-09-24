@@ -2,6 +2,9 @@ version: '3'
 services:
   nuxt:
     build: .
+    environment:
+      - "HTTP_ENDPOINT=http://localhost:8001/graphql"
+      - "APP_URL=http://localhost:8001/"
     tty: true
     volumes:
       - ".:/Twimon"

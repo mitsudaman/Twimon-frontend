@@ -243,7 +243,11 @@
             <div>
               <v-layout row wrap justify-center align-center>
                 <v-flex xs11 mt-4 pb-0>
-                  <label class="ml-1 font-weight-bold">{{me.url1_name}}</label>
+                  <label class="ml-1 font-weight-bold">
+                    <i class="fas fa-link"></i>
+                    <template v-if="me.url1_name">{{me.url1_name}}</template>
+                    <template v-else>リンク</template>
+                  </label>
                 </v-flex>
                 <v-flex xs11>
                   <v-text-field
@@ -260,7 +264,11 @@
             <div>
               <v-layout row wrap justify-center align-center>
                 <v-flex xs11 mt-4 pb-0>
-                  <label class="ml-1 font-weight-bold">{{me.url2_name}}</label>
+                  <label class="ml-1 font-weight-bold">
+                    <i class="fas fa-link"></i>
+                    <template v-if="me.url2_name">{{me.url2_name}}</template>
+                    <template v-else>リンク</template>
+                  </label>
                 </v-flex>
                 <v-flex xs11>
                   <v-text-field
@@ -277,7 +285,11 @@
             <div>
               <v-layout row wrap justify-center align-center>
                 <v-flex xs11 mt-4 pb-0>
-                  <label class="ml-1 font-weight-bold">{{me.url3_name}}</label>
+                  <label class="ml-1 font-weight-bold">
+                    <i class="fas fa-link"></i>
+                    <template v-if="me.url3_name">{{me.url3_name}}</template>
+                    <template v-else>リンク</template>
+                  </label>
                 </v-flex>
                 <v-flex xs11>
                   <v-text-field
@@ -294,7 +306,11 @@
             <div>
               <v-layout row wrap justify-center align-center>
                 <v-flex xs11 mt-4 pb-0>
-                  <label class="ml-1 font-weight-bold">{{me.url4_name}}</label>
+                  <label class="ml-1 font-weight-bold">
+                    <i class="fas fa-link"></i>
+                    <template v-if="me.url4_name">{{me.url4_name}}</template>
+                    <template v-else>リンク</template>
+                  </label>
                 </v-flex>
                 <v-flex xs11>
                   <v-text-field
@@ -311,7 +327,11 @@
             <div>
               <v-layout row wrap justify-center align-center>
                 <v-flex xs11 mt-4 pb-0>
-                  <label class="ml-1 font-weight-bold">{{me.url5_name}}</label>
+                  <label class="ml-1 font-weight-bold">
+                    <i class="fas fa-link"></i>
+                    <template v-if="me.url5_name">{{me.url5_name}}</template>
+                    <template v-else>リンク</template>
+                  </label>
                 </v-flex>
                 <v-flex xs11>
                   <v-text-field

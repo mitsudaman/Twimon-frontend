@@ -78,11 +78,41 @@
             </v-card-actions>
             <v-card-title class="headline">{{user.name}}のひみつ</v-card-title>
             <v-card-text>
-              <p><i class="fas fa-link"></i><a class="ml-1" :href="user.url1">{{user.url1}}</a></p>
-              <p><i class="fas fa-link"></i><a class="ml-1" :href="user.url2">{{user.url2}}</a></p>
-              <p><i class="fas fa-link"></i><a class="ml-1" :href="user.url3">{{user.url3}}</a></p>
-              <p><i class="fas fa-link"></i><a class="ml-1" :href="user.url4">{{user.url4}}</a></p>
-              <p><i class="fas fa-link"></i><a class="ml-1" :href="user.url5">{{user.url5}}</a></p>
+              <p v-if="user.url1">
+                <i class="fas fa-link"></i>
+                <a class="ml-1" :href="user.url1">
+                  <template v-if="user.url1_name">{{user.url1_name}}</template>
+                  <template v-else>{{user.url1}}</template>
+                </a>
+              </p>
+              <p v-if="user.url2">
+                <i class="fas fa-link"></i>
+                <a class="ml-1" :href="user.url2">
+                  <template v-if="user.url2_name">{{user.url2_name}}</template>
+                  <template v-else>{{user.url2}}</template>
+                </a>
+              </p>
+              <p v-if="user.url3">
+                <i class="fas fa-link"></i>
+                <a class="ml-1" :href="user.url3">
+                  <template v-if="user.url3_name">{{user.url3_name}}</template>
+                  <template v-else>{{user.url3}}</template>
+                </a>
+              </p>
+              <p v-if="user.url4">
+                <i class="fas fa-link"></i>
+                <a class="ml-1" :href="user.url4">
+                  <template v-if="user.url4_name">{{user.url4_name}}</template>
+                  <template v-else>{{user.url4}}</template>
+                </a>
+              </p>
+              <p v-if="user.url5">
+                <i class="fas fa-link"></i>
+                <a class="ml-1" :href="user.url5">
+                  <template v-if="user.url5_name">{{user.url5_name}}</template>
+                  <template v-else>{{user.url5}}</template>
+                </a>
+              </p>
             </v-card-text>
           </v-card>
         </v-dialog>

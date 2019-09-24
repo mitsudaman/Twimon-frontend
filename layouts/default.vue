@@ -28,7 +28,7 @@
 
                   <v-list>
                     <v-btn 
-                    v-if="this.$cookies.get('twimonToken')" 
+                    v-if="this.$cookies.get('twimonToken') && !onLogOut" 
                     round
                     @click="logOut">ログアウト</v-btn>
                     <v-btn 
@@ -56,9 +56,6 @@
     <v-content>
       <nuxt />
     </v-content>
-
-
-
 
     <v-card height="50px" flat>
       <v-bottom-nav
@@ -116,13 +113,15 @@
         miniVariant: false,
         right: true,
         rightDrawer: false,
-        title: 'ツイモン'
+        title: 'ツイモン',
+        onLogOut: false
       }
     },
     methods: {
       logOut () {
         this.$store.commit('logOut')
         this.$router.replace({ path: '/' })
+        this.onLogOut = true;
       // this.$apollo.mutate({
       //   mutation: CREATE_USER_GQL,
       //   variables: {

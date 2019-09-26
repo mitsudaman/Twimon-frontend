@@ -21,6 +21,7 @@ export default {
   async mounted () {
     try {
       const callbackData = await axios.get(process.env.baseUrl + 'api/login/callback', {
+        headers: { 'Cache-Control': 'no-cache' },
         params: this.$route.query,
         withCredentials: true
       })

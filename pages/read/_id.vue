@@ -8,24 +8,28 @@
       </v-layout> -->
       <v-layout row wrap justify-center text-xs-right>
         <v-flex sm8 class="title">
-          <div 
-            class="like_panel"
-            v-bind:class="{ like_active: likedFlg }">
+          <a 
+            v-bind:href="'https://twitter.com/share?text=やせいの' + user.name + 'があらわれた！&hashtags=ツイットモンスター&url=https://twimon-backend.herokuapp.com/og/'+ $route.params.id"
+            target="_blank" 
+            rel="noopener"
+            class="mr-2"
+            role="button">
+            <i class="fab fa-twitter blue--text"></i>
+          </a>
             <button 
             v-if="likedFlg"
             @click="delLikeUsr()">
               <i  
-                v-bind:class="{ heart_break: onLikedFlg }"
+                v-bind:class="{ like_active: likedFlg, heart_break: onLikedFlg }"
               class="fas fa-heart"></i>
             </button>
             <button 
             v-else
             @click="addLikeUsr()">
               <i 
-                class="far fa-heart"></i>
+                class="far fa-heart text-grey"></i>
             </button>
-            <span class="ml-1">{{likeSum}}</span>
-          </div>
+            <span class="text-grey ml-1">{{likeSum}}</span>
         </v-flex>
       </v-layout>
       <v-layout row wrap justify-center mt-3>
@@ -33,7 +37,7 @@
           <v-layout row wrap align-center justify-center pt-2>
             <v-flex xs5>
               <div>
-                <v-img 
+                <v-img
                 class="image"
                 v-if="user.sns_img_url"
                 v-bind:src="user.sns_img_url" aspect-ratio="1"></v-img>
@@ -121,7 +125,6 @@
       row wrap justify-center>
         <v-flex
           d-flex
-          xs11
           sm8
           class="balloon_area mt-5 pa-3"
         > 
@@ -334,7 +337,7 @@ h2 {
 .heart_break{
   animation: anime1 0.1s  ;
 }
-.like_panel{
+.text-grey{
   color: #a8abb1;
 }
 .like_active {

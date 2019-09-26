@@ -108,7 +108,8 @@
         drawer: false,
         fixed: false,
         items: [
-          { icon: 'apps', title: 'ホーム', to: '/' }
+          { icon: 'apps', title: 'ホーム', to: '/' },
+          { icon: 'apps', title: '利用規約', to: '/term' }
         ],
         miniVariant: false,
         right: true,

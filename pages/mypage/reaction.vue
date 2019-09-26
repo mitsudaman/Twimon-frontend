@@ -53,7 +53,7 @@
                   </svg>
                 </div>
               </v-flex>
-              <v-flex sm9 xs11  mt-4 pb-0>
+              <v-flex sm9 xs12 mt-4 pb-0>
                 <div class="reaction_list_title">
                   リンクを追加する
                   <div class="reaction_list_edit" @click="onVisibleSearchPanel">

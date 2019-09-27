@@ -32,7 +32,7 @@ module.exports = {
   modules: [
     '@nuxtjs/apollo',
     ['cookie-universal-nuxt', { parseJSON: false }],
-    'nuxt-client-init-module'
+    // 'nuxt-client-init-module'
   ],
   apollo: {
     tokenName: 'twimonToken',

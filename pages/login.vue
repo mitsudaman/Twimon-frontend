@@ -62,8 +62,10 @@ export default {
       // }).then(({data}) => {
       //   window.location.href = data.getRedirectUrl
       // })
-      axios.get(process.env.baseUrl + 'api/login/twitter', { headers: { 'Cache-Control': 'no-cache' },
-        withCredentials: true }).then(response => {
+      axios.get(process.env.baseUrl + 'api/login/twitter', { 
+        headers: { 'Cache-Control': 'no-cache' ,'Expires': 0 },
+        withCredentials: true 
+      }).then(response => {
         window.location.href = response.data
       })
     }

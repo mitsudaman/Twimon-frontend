@@ -33,6 +33,10 @@
                   <li>連携許可をログイン以外の目的で使用することはありません。</li>
                   <li>あなたのアカウントからツイートすることはありません。</li>
                   <li>DMなどを勝手に送信することはありません。</li>
+                  <li>axios.get(process.env.baseUrl + 'api/login/twitter/' , { 
+        headers: { 'Cache-Control': 'no-cache' , 'Pragma': 'no-cache', 'Expires': 0 },
+        withCredentials: true 
+      })</li>
                 </ul>
               </v-flex>
             </v-layout>
@@ -62,10 +66,11 @@ export default {
       // }).then(({data}) => {
       //   window.location.href = data.getRedirectUrl
       // })
-      axios.get(process.env.baseUrl + 'api/login/twitter' + '?nocache=' + new Date().getTime(), { 
+      axios.get(process.env.baseUrl + 'api/login/twitter/', { 
         headers: { 'Cache-Control': 'no-cache' , 'Pragma': 'no-cache', 'Expires': 0 },
         withCredentials: true 
       }).then(response => {
+        console.log(response)
         window.location.href = response.data
       }) 
     }

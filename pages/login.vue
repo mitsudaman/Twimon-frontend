@@ -70,8 +70,8 @@ export default {
         headers: { 'Cache-Control': 'no-cache' , 'Pragma': 'no-cache', 'Expires': 0 },
         withCredentials: true 
       }).then(response => {
-        console.log(response)
-        window.location.href = response.data
+        console.log(process.env.baseUrl)
+        // window.location.href = response.data
       }) 
     }
   }

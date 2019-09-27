@@ -61,6 +61,7 @@ export default {
   methods: {
     onLogin () {
       this.loading = true
+        console.log(process.env.baseUrl)
       // this.$apollo.query({
       //     query: GET_REDIRECT_URL_GQL
       // }).then(({data}) => {
@@ -70,7 +71,6 @@ export default {
         headers: { 'Cache-Control': 'no-cache' , 'Pragma': 'no-cache', 'Expires': 0 },
         withCredentials: true 
       }).then(response => {
-        console.log(process.env.baseUrl)
         // window.location.href = response.data
       }) 
     }

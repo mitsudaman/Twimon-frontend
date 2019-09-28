@@ -71,7 +71,7 @@ export default {
         headers: { 'Cache-Control': 'no-cache', 'Pragma': 'no-cache', 'Expires': 0 },
         withCredentials: true
       }).then(response => {
-        // window.location.href = response.data
+        window.location.href = response.data
       })
     }
   }

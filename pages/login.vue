@@ -61,18 +61,18 @@ export default {
   methods: {
     onLogin () {
       this.loading = true
-        console.log(process.env.baseUrl)
+      console.log(process.env.baseUrl)
       // this.$apollo.query({
       //     query: GET_REDIRECT_URL_GQL
       // }).then(({data}) => {
       //   window.location.href = data.getRedirectUrl
       // })
-      axios.get(process.env.baseUrl + 'api/login/twitter/', { 
-        headers: { 'Cache-Control': 'no-cache' , 'Pragma': 'no-cache', 'Expires': 0 },
-        withCredentials: true 
+      axios.get(process.env.baseUrl + 'api/login/twitter', {
+        headers: { 'Cache-Control': 'no-cache', 'Pragma': 'no-cache', 'Expires': 0 },
+        withCredentials: true
       }).then(response => {
         // window.location.href = response.data
-      }) 
+      })
     }
   }
 }

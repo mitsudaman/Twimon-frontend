@@ -20,11 +20,10 @@ export default {
   },
   async mounted () {
     try {
-      const callbackData = await axios.get(process.env.baseUrl + 'api/login/callback/' + '?nocache=' + new Date().getTime(), {
+      const callbackData = await axios.get(process.env.baseUrl, {
         headers: { 'Cache-Control': 'no-cache', 'Pragma': 'no-cache', 'Expires': 0 },
         params: this.$route.query,
-        withCredentials: true,
-        xsrfHeaderName: 'X-CSRF-Token'
+        withCredentials: true
       })
       this.$store.commit('setToken', { token: callbackData.data.access_token })
       this.$store.commit('setUser', { user: callbackData.data.me })

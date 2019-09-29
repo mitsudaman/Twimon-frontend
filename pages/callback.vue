@@ -20,7 +20,7 @@ export default {
   },
   async mounted () {
     try {
-      const callbackData = await axios.get(process.env.baseUrl, {
+      const callbackData = await axios.get(process.env.baseUrl + 'api/login/callback', {
         headers: { 'Cache-Control': 'no-cache', 'Pragma': 'no-cache', 'Expires': 0 },
         params: this.$route.query,
         withCredentials: true

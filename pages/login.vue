@@ -67,9 +67,10 @@ export default {
       // }).then(({data}) => {
       //   window.location.href = data.getRedirectUrl
       // })
-      axios.get(process.env.baseUrl + 'api/login/twitter', {
+      axios.get(process.env.baseUrl + 'api/login/twitter' + '?nocache=' + new Date().getTime(), {
         headers: { 'Cache-Control': 'no-cache', 'Pragma': 'no-cache', 'Expires': 0 },
-        withCredentials: true
+        withCredentials: true,
+        xsrfHeaderName: 'X-CSRF-Token'
       }).then(response => {
         window.location.href = response.data
       })

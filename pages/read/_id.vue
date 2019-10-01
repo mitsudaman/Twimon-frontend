@@ -32,6 +32,33 @@
             <span class="text-grey ml-1">{{likeSum}}</span>
         </v-flex>
       </v-layout>
+      <v-layout row justify-center>
+        <v-dialog
+          v-model="loginDialog"
+          max-width="400">
+          <v-card>
+            <v-card-title class="headline">ログインしちゃう？</v-card-title>
+            <!-- <v-card-text>
+              Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.
+            </v-card-text> -->
+            <v-card-actions>
+              <div class="flex-grow-1"></div>
+              <v-btn
+                color="green darken-1"
+                text
+                @click="$router.replace({ path: '/login'})">
+                ログイン
+              </v-btn>
+              <v-btn
+                color="green darken-1"
+                text
+                @click="loginDialog = false">
+                OK
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
+      </v-layout>
       <v-layout row wrap justify-center mt-3>
         <v-flex  sm8 class="profile">
           <v-layout row wrap align-center justify-center pt-2>
@@ -191,10 +218,10 @@ import GET_USER_GQL from '~/apollo/queries/getUser.gql'
 import ADD_OR_DELETE_LIKE_UAER_GQL from '~/apollo/mutations/addOrDeleteLikeUser.gql'
 
 export default {
+  middleware: 'authenticate',
   transition (to, from) {
     if (from && (from.name === 'index' || from.name === 'favorite')) return 'read'
   },
-  middleware: 'authenticated',
   data () {
     return {
       likeSum: 0,
@@ -208,7 +235,8 @@ export default {
       nowTalk: [],
       talkViewFlg: false,
       talkSentence: null,
-      dialog: false
+      dialog: false,
+      loginDialog: false
     }
   },
   apollo: {
@@ -229,6 +257,10 @@ export default {
   },
   methods: {
     addLikeUsr () {
+      if(!this.$store.state.isLoggedIn) {
+        this.loginDialog = true;
+        return;
+      }
       this.likeSum++
       this.likedFlg = true
       this.onLikedFlg = true

@@ -244,7 +244,7 @@ export default {
       this.$apollo.mutate({
         mutation: ADD_OR_DELETE_LIKE_UAER_GQL,
         variables: {
-          user_id: this.$route.params.id
+          like_user_id: this.$route.params.id
         }
       }).then(({ data }) => {
       })

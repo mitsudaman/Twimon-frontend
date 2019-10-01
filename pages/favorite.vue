@@ -31,8 +31,7 @@
 </template>
 
 <script>
-import GET_ME_WITH_LIKES_GQL from '~/apollo/queries/getMeWithLikes.gql'
-// import CREATE_USER_GQL from '~/apollo/mutations/createUser.gql'
+import GET_LIKE_USERS_GQL from '~/apollo/queries/getLikeUsers.gql'
 import _ from 'lodash'
 
 export default {
@@ -42,14 +41,7 @@ export default {
   },
   data () {
     return {
-      name: '',
-      title: '',
-      height: '',
-      weight: '',
-      user: {
-      },
       page: 1,
-      users: null,
       lastPage: 0
     }
   },
@@ -62,17 +54,16 @@ export default {
   },
   apollo: {
     likeUsers: {
-      query: GET_ME_WITH_LIKES_GQL,
+      query: GET_LIKE_USERS_GQL,
       variables () {
         return {
+          perPage: 12,
           page: this.page
         }
       },
       update (data) {
-        this.lastPage = data.me.likes.paginatorInfo.lastPage
-        return _.map(data.me.likes.data, (n) => {
-          return n.user
-        })
+        this.lastPage = data.getLikeUsers.paginatorInfo.lastPage
+        return data.getLikeUsers.likeUsers
       }
     }
   },

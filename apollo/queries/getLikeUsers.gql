@@ -1,0 +1,28 @@
+# Write your query or mutation here
+query GetLikeUsers ($perPage:Int!,$page:Int!){
+  getLikeUsers(perPage: $perPage, page: $page){
+    likeUsers{
+          id
+          serial_number
+          name
+          feature1
+          feature1_content
+          feature2
+          feature2_content
+          description1
+          description2
+          description3
+          sns_img_url
+          ogp_img_url
+          hall_of_fame_flg
+          legend_flg
+          like_ct
+          liked
+    }
+    paginatorInfo{
+      currentPage
+      lastPage
+    }
+    
+  }
+}

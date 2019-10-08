@@ -20,9 +20,13 @@ export default {
   },
   async mounted () {
     try {
-      const callbackData = await axios.get(process.env.baseUrl + '/api/login/callback' + '?nocache=' + new Date().getTime(), {
-        headers: { 'Cache-Control': 'no-cache', 'Pragma': 'no-cache', 'Expires': 0 },
-        xsrfHeaderName: 'X-CSRF-Token',
+      // const callbackData = await axios.get(process.env.baseUrl + '/api/login/callback' + '?nocache=' + new Date().getTime(), {
+      //   headers: { 'Cache-Control': 'no-cache', 'Pragma': 'no-cache', 'Expires': 0 },
+      //   xsrfHeaderName: 'X-CSRF-Token',
+      //   params: this.$route.query,
+      //   withCredentials: true
+      // })
+      const callbackData = await axios.get(process.env.baseUrl + '/api/login/callback', {
         params: this.$route.query,
         withCredentials: true
       })

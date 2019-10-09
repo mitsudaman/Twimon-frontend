@@ -66,10 +66,11 @@ export default {
     onLogin () {
       this.loading = true
       console.log(process.env.baseUrl)
+      axios.defaults.withCredentials = true;
       axios.get(process.env.baseUrl + '/api/login/twitter' + '?nocache=' + new Date().getTime(), {
         headers: { 'Cache-Control': 'no-cache', 'Pragma': 'no-cache', 'Expires': 0 },
         xsrfHeaderName: 'X-CSRF-Token',
-        withCredentials: true
+        // withCredentials: true
       }).then(response => {
         console.log(response)
         window.location.href = response.data

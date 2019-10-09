@@ -72,7 +72,7 @@ export default {
         withCredentials: true
       }).then(response => {
         console.log(response)
-        // window.location.href = response.data
+        window.location.href = response.data
       })
       // axios.get(process.env.baseUrl + '/api/login/twitter/', {
       //   withCredentials: true

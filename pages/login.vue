@@ -33,9 +33,13 @@
                   <li>連携許可をログイン以外の目的で使用することはありません。</li>
                   <li>あなたのアカウントからツイートすることはありません。</li>
                   <li>DMなどを勝手に送信することはありません。</li>
-                  <li>axios.get(process.env.baseUrl + 'api/login/twitter/' , { 
-        headers: { 'Cache-Control': 'no-cache' , 'Pragma': 'no-cache', 'Expires': 0 },
-        withCredentials: true 
+                  <li>
+      axios.get(process.env.baseUrl + '/api/login/twitter' + '?nocache=' + new Date().getTime(), {
+        headers: { 'Cache-Control': 'no-cache', 'Pragma': 'no-cache', 'Expires': 0 },
+        xsrfHeaderName: 'X-CSRF-Token',
+        withCredentials: true
+      }).then(response => {
+        window.location.href = response.data
       })</li>
                 </ul>
               </v-flex>
@@ -62,18 +66,18 @@ export default {
     onLogin () {
       this.loading = true
       console.log(process.env.baseUrl)
-      // axios.get(process.env.baseUrl + '/api/login/twitter' + '?nocache=' + new Date().getTime(), {
-      //   headers: { 'Cache-Control': 'no-cache', 'Pragma': 'no-cache', 'Expires': 0 },
-      //   xsrfHeaderName: 'X-CSRF-Token',
-      //   withCredentials: true
-      // }).then(response => {
-      //   window.location.href = response.data
-      // })
-      axios.get(process.env.baseUrl + '/api/login/twitter/', {
+      axios.get(process.env.baseUrl + '/api/login/twitter/' + '?nocache=' + new Date().getTime(), {
+        headers: { 'Cache-Control': 'no-cache', 'Pragma': 'no-cache', 'Expires': 0 },
+        xsrfHeaderName: 'X-CSRF-Token',
         withCredentials: true
       }).then(response => {
         window.location.href = response.data
       })
+      // axios.get(process.env.baseUrl + '/api/login/twitter/', {
+      //   withCredentials: true
+      // }).then(response => {
+      //   window.location.href = response.data
+      // })
     }
   }
 }

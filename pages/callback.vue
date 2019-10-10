@@ -26,7 +26,7 @@ export default {
       //   params: this.$route.query,
       //   withCredentials: true
       // })
-      const callbackData = await axios.get(process.env.baseUrl + '/api/login/callback/', {
+      const callbackData = await axios.get(process.env.baseUrl + '/api/login/callback', {
         params: this.$route.query,
         withCredentials: true
       })

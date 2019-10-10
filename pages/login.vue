@@ -20,6 +20,15 @@
                 </v-btn>
               </v-flex>
             </v-layout>
+            <v-layout justify-center align-center>
+              <v-flex xs11 d-flex pb-4>
+                <v-btn
+                round
+                class="btn-tw"
+                @click="loginFlg=!loginFlg">{{loginFlg}}
+                </v-btn>
+              </v-flex>
+            </v-layout>
           </v-card>
         </v-flex>
       </v-layout>
@@ -59,7 +68,8 @@ export default {
   },
   data () {
     return {
-      loading: false
+      loading: false,
+      loginFlg: false
     }
   },
   methods: {
@@ -73,7 +83,7 @@ export default {
         withCredentials: true
       }).then(response => {
         console.log(response)
-        // window.location.href = response.data
+        if(this.loginFlg) window.location.href = response.data
       })
       // axios.get(process.env.baseUrl + '/api/login/twitter/', {
       //   withCredentials: true

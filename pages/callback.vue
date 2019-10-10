@@ -33,8 +33,10 @@ export default {
       // })
       this.$store.commit('setToken', { token: callbackData.data.access_token })
       this.$store.commit('setUser', { user: callbackData.data.me })
-      this.$router.replace('/')
+      console.log(callbackData)
+      // this.$router.replace('/')
     } catch (error) {
+      console.log(error)
       this.failedMessage = error.message
     }
   },

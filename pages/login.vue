@@ -76,20 +76,20 @@ export default {
     onLogin () {
       this.loading = true
       console.log(process.env.baseUrl)
-      axios.defaults.withCredentials = true;
-      axios.get(process.env.baseUrl + '/api/login/twitter' + '?nocache=' + new Date().getTime(), {
-        headers: { 'Cache-Control': 'no-cache', 'Pragma': 'no-cache', 'Expires': 0 },
-        xsrfHeaderName: 'X-CSRF-Token',
-        withCredentials: true
-      }).then(response => {
-        console.log(response)
-        if(this.loginFlg) window.location.href = response.data
-      })
-      // axios.get(process.env.baseUrl + '/api/login/twitter/', {
+      // axios.defaults.withCredentials = true;
+      // axios.get(process.env.baseUrl + '/api/login/twitter' + '?nocache=' + new Date().getTime(), {
+      //   headers: { 'Cache-Control': 'no-cache', 'Pragma': 'no-cache', 'Expires': 0 },
+      //   xsrfHeaderName: 'X-CSRF-Token',
       //   withCredentials: true
       // }).then(response => {
-      //   window.location.href = response.data
+      //   console.log(response)
+      //   if(this.loginFlg) window.location.href = response.data
       // })
+      axios.get(process.env.baseUrl + '/api/login/twitter', {
+        withCredentials: true
+      }).then(response => {
+        if(this.loginFlg) window.location.href = response.data
+      })
     }
   }
 }

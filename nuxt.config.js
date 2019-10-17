@@ -1,5 +1,5 @@
 module.exports = {
-  // mode: 'spa',
+  // mode: 'universal',
   /*
   ** Headers of the page
   */
@@ -77,9 +77,10 @@ module.exports = {
     }
   },
   axios: {
-    browserBaseURL: process.env.APP_URL,
+    baseURL: process.env.APP_URL,
+    // browserBaseURL: process.env.APP_URL,
     credentials: true,
-    proxy: true 
+    // proxy: true 
   },
   proxy: {
     '/api': process.env.APP_URL,

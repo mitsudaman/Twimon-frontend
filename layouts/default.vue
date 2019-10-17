@@ -35,7 +35,7 @@
                     v-else 
                     round
                     class="btn-tw"
-                    @click="$router.replace({ path: '/login'})">
+                    @click="$router.replace({ path: '/redirect'})">
                       <i class="fab fa-twitter"></i>ログイン
                     </v-btn>
                     <v-list-tile

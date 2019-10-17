@@ -31,6 +31,8 @@ module.exports = {
   loading: { color: '#3B8070' },
   modules: [
     '@nuxtjs/apollo',
+    '@nuxtjs/axios',
+    '@nuxtjs/proxy',
     ['cookie-universal-nuxt', { parseJSON: false }],
     // 'nuxt-client-init-module'
   ],
@@ -73,5 +75,13 @@ module.exports = {
       //   })
       // }
     }
+  },
+  axios: {
+    browserBaseURL: process.env.APP_URL,
+    credentials: true,
+    proxy: true 
+  },
+  proxy: {
+    '/api': process.env.APP_URL,
   }
 }

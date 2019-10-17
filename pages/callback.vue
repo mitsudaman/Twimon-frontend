@@ -26,10 +26,7 @@ export default {
       //   params: this.$route.query,
       //   withCredentials: true
       // })
-      const callbackData = await axios.get(process.env.baseUrl + '/api/login/callback', {
-        params: this.$route.query,
-        withCredentials: true
-      })
+      const callbackData = await this.$axios.get('/api/login/callback', { params: this.$route.query })
       this.$store.commit('setToken', { token: callbackData.data.access_token })
       this.$store.commit('setUser', { user: callbackData.data.me })
       console.log(callbackData)

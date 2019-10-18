@@ -1,5 +1,5 @@
 module.exports = {
-  // mode: 'universal',
+  // mode: 'spa',
   /*
   ** Headers of the page
   */
@@ -82,7 +82,7 @@ module.exports = {
     credentials: true,
     // proxy: true 
   },
-  proxy: {
-    '/api': process.env.APP_URL,
-  }
+  // proxy: {
+  //   '/api': process.env.APP_URL,
+  // }
 }

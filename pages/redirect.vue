@@ -1,23 +1,20 @@
 <template>
   <div>
-  <p>Twitterへリダイレクトしています</p>
+    <my-page-nav></my-page-nav>
+    <p>Twitterへリダイレクトしています</p>
   </div>
 </template>
 
 <script>
 // import axios from 'axios'
+import MyPageNav from '~/components/MyPageNav.vue'
 
 export default {
   components: {
+    MyPageNav
   },
-  // data () {
-  //     return {
-  //       twitterAuthUrl: null,
-  //     }
-  // },
-
   asyncData ({ app,context, error }) {
-    return app.$axios.$get('api/login/twitter')
+    return app.$axios.$get('/api/login/twitter')
       .then(data => {
         return { twitterAuthUrl: data }
       })

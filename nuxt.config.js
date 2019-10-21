@@ -1,3 +1,4 @@
+require('dotenv').config()
 module.exports = {
   // mode: 'spa',
   /*
@@ -30,6 +31,7 @@ module.exports = {
   */
   loading: { color: '#3B8070' },
   modules: [
+    '@nuxtjs/dotenv',
     '@nuxtjs/apollo',
     '@nuxtjs/axios',
     '@nuxtjs/proxy',
@@ -57,7 +59,7 @@ module.exports = {
     }
   },
   env: {
-    baseUrl: process.env.APP_URL
+    baseUrl: process.env.API_URL
   },
   /*
   ** Build configuration
@@ -77,12 +79,17 @@ module.exports = {
     }
   },
   axios: {
-    baseURL: process.env.APP_URL,
-    // browserBaseURL: process.env.APP_URL,
+    baseURL: process.env.API_URL,
+    browserBaseURL: process.env.API_URL_BROWSER,
     credentials: true,
-    // proxy: true 
+    // proxy: true
   },
   // proxy: {
-  //   '/api': process.env.APP_URL,
+  //   '/api': {
+  //     target: process.env.API_URL,
+  //     // pathRewrite: {
+  //     //   '^/api' : '/'
+  //     //   }
+  //     }
   // }
 }

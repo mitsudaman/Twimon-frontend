@@ -27,10 +27,8 @@
                   </template>
 
                   <v-list>
-                    <!-- <v-btn 
-                    v-if="this.$cookies.get('twimonToken') && !onLogOut"  -->
                     <v-btn 
-                    v-if="this.$cookies.cookies.twimonToken && !onLogOut" 
+                    v-if="this.$cookies.get('twimonToken') && !onLogOut" 
                     round
                     @click="logOut">ログアウト</v-btn>
                     <v-btn 

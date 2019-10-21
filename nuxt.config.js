@@ -19,7 +19,6 @@ module.exports = {
   plugins: [
     '~/plugins/vuetify.js',
     // '~/plugins/konva',
-    { src: '~/plugins/cookies' }
   ],
   css: [
     '~/assets/style/app.styl',
@@ -80,17 +79,18 @@ module.exports = {
     }
   },
   axios: {
-    baseURL: process.env.API_URL || 'https://twimon-backend.herokuapp.com',
-    browserBaseURL: process.env.API_URL_BROWSER,
+    // baseURL: process.env.API_URL || 'https://twimon-backend.herokuapp.com',
+    // browserBaseURL: process.env.API_URL_BROWSER,
     credentials: true,
-    // proxy: true
+    proxy: true
   },
-  // proxy: {
-  //   '/api': {
-  //     target: process.env.API_URL,
-  //     // pathRewrite: {
-  //     //   '^/api' : '/'
-  //     //   }
-  //     }
-  // }
+  proxy: {
+    '/api/': {
+      // target: 'http://localhost:8001',
+      target: 'https://twimon-backend.herokuapp.com',
+      // pathRewrite: {
+      //   '^/api' : '/'
+      //   }
+      }
+  }
 }

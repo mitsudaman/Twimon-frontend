@@ -35,6 +35,13 @@ heroku config:set HTTP_ENDPOINT=http://localhost:8001/graphql
 
 
 
+## error
+
+heroku buildpacks:set heroku/nodejs
+
+▼Troubleshooting Node.js Deploys
+https://devcenter.heroku.com/articles/troubleshooting-node-deploys
+
 # lodash
 
 ## フィールドを絞るとき

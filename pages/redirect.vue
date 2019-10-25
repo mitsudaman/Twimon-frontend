@@ -16,7 +16,7 @@ export default {
   asyncData ({ app,context, error }) {
     return app.$axios.$get('/api/login/twitter')
       .then(data => {
-        return { twitterAuthUrl: data }
+        return { twitterAuthUrl: data.redirect_url }
       })
       .catch(e => error({ message: e.message, statusCode: e.statusCode }))
   },

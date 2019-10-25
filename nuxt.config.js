@@ -1,6 +1,6 @@
 require('dotenv').config()
 module.exports = {
-  // mode: 'spa',
+  mode: 'universal',
   /*
   ** Headers of the page
   */
@@ -84,13 +84,16 @@ module.exports = {
     credentials: true,
     proxy: true
   },
+  // proxy: {
+  //   '/api/': {
+  //     // target: 'http://localhost:8001',
+  //     target: 'https://twimon-backend.herokuapp.com',
+  //     // pathRewrite: {
+  //     //   '^/api' : '/'
+  //     //   }
+  //     }
+  // }
   proxy: {
-    '/api/': {
-      // target: 'http://localhost:8001',
-      target: 'https://twimon-backend.herokuapp.com',
-      // pathRewrite: {
-      //   '^/api' : '/'
-      //   }
-      }
-  }
+    '/api': process.env.API_URL,
+  },
 }

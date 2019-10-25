@@ -42,15 +42,6 @@
                   <li>連携許可をログイン以外の目的で使用することはありません。</li>
                   <li>あなたのアカウントからツイートすることはありません。</li>
                   <li>DMなどを勝手に送信することはありません。</li>
-                  <li>{{this.$cookies.get('laravel_session')}}</li>
-                  <li>
-      axios.get(process.env.baseUrl + '/api/login/twitter' + '?nocache=' + new Date().getTime(), {
-        headers: { 'Cache-Control': 'no-cache', 'Pragma': 'no-cache', 'Expires': 0 },
-        xsrfHeaderName: 'X-CSRF-Token',
-        withCredentials: true
-      }).then(response => {
-        window.location.href = response.data
-      })</li>
                 </ul>
               </v-flex>
             </v-layout>
@@ -76,27 +67,10 @@ export default {
   methods: {
     async onLogin () {
       this.loading = true
-      // console.log(process.env.baseUrl)
-      //   console.log(this.$cookies.get('aaaa'))
-      //   return
-      // axios.defaults.withCredentials = true;
-      // axios.get(process.env.baseUrl + '/api/login/twitter' + '?nocache=' + new Date().getTime(), {
-      //   headers: { 'Cache-Control': 'no-cache', 'Pragma': 'no-cache', 'Expires': 0 },
-      //   xsrfHeaderName: 'X-CSRF-Token',
-      //   withCredentials: true
-      // }).then(response => {
-      //   console.log(response)
-      //   if(this.loginFlg) window.location.href = response.data
-      // })
       await this.$axios.$get('/api/login/twitter').then(response => {
-        console.log(response)
-        if(this.loginFlg) window.location.href = response
+        console.log(response.redirect_url)
+        if(this.loginFlg) window.location.href = response.redirect_url
       })
-      // axios.get(process.env.baseUrl + '/api/login/twitter', {
-      //   withCredentials: true
-      // }).then(response => {
-      //   if(this.loginFlg) window.location.href = response.data
-      // })
     }
   }
 }

@@ -79,20 +79,9 @@ module.exports = {
     }
   },
   axios: {
-    // baseURL: process.env.API_URL || 'https://twimon-backend.herokuapp.com',
-    // browserBaseURL: process.env.API_URL_BROWSER,
     credentials: true,
     proxy: true
   },
-  // proxy: {
-  //   '/api/': {
-  //     // target: 'http://localhost:8001',
-  //     target: process.env.API_URL,
-  //     // pathRewrite: {
-  //     //   '^/api' : '/'
-  //     //   }
-  //     }
-  // }
   proxy: {
     '/api': process.env.API_URL,
   },

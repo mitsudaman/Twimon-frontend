@@ -84,16 +84,16 @@ module.exports = {
     credentials: true,
     proxy: true
   },
-  // proxy: {
-  //   '/api/': {
-  //     // target: 'http://localhost:8001',
-  //     target: 'https://twimon-backend.herokuapp.com',
-  //     // pathRewrite: {
-  //     //   '^/api' : '/'
-  //     //   }
-  //     }
-  // }
   proxy: {
-    '/api': process.env.API_URL,
-  },
+    '/api/': {
+      // target: 'http://localhost:8001',
+      target: process.env.API_URL,
+      // pathRewrite: {
+      //   '^/api' : '/'
+      //   }
+      }
+  }
+  // proxy: {
+  //   '/api': process.env.API_URL,
+  // },
 }

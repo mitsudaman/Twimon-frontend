@@ -121,7 +121,7 @@
     methods: {
       logOut () {
         this.$store.commit('logOut')
-        // this.$router.replace({ path: '/' })
+        this.$router.replace({ path: '/' })
         this.onLogOut = true;
       // this.$apollo.mutate({
       //   mutation: CREATE_USER_GQL,

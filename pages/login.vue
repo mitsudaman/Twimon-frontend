@@ -20,15 +20,6 @@
                 </v-btn>
               </v-flex>
             </v-layout>
-            <v-layout justify-center align-center>
-              <v-flex xs11 d-flex pb-4>
-                <v-btn
-                round
-                class="btn-tw"
-                @click="loginFlg=!loginFlg">{{loginFlg}}
-                </v-btn>
-              </v-flex>
-            </v-layout>
           </v-card>
         </v-flex>
       </v-layout>
@@ -53,23 +44,19 @@
 </template>
 
 <script>
-// import axios from 'axios'
-
 export default {
   components: {
   },
   data () {
     return {
       loading: false,
-      loginFlg: false
     }
   },
   methods: {
     async onLogin () {
       this.loading = true
       await this.$axios.$get('/api/login/twitter').then(response => {
-        console.log(response.redirect_url)
-        if(this.loginFlg) window.location.href = response.redirect_url
+        window.location.href = response.redirect_url
       })
     }
   }

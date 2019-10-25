@@ -6,7 +6,6 @@
 </template>
 
 <script>
-// import axios from 'axios'
 import MyPageNav from '~/components/MyPageNav.vue'
 
 export default {

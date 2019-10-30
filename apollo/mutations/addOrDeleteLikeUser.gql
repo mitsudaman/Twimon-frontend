@@ -1,6 +1,7 @@
-mutation addOrDeleteLikeUser($user_id: ID){
-  addOrDeleteLikeUser(user_id:$user_id){
+mutation addOrDeleteLikeUser($like_user_id: ID){
+  addOrDeleteLikeUser(like_user_id:$like_user_id){
     id
-    liked_user_id
+    user_id
+    like_user_id
   }
 }

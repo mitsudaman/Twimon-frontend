@@ -38,22 +38,20 @@
           max-width="400">
           <v-card>
             <v-card-title class="headline">ログインしちゃう？</v-card-title>
-            <!-- <v-card-text>
-              Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.
-            </v-card-text> -->
-            <v-card-actions>
-              <div class="flex-grow-1"></div>
+            <v-card-actions class="text-xs-right">
+              <v-spacer></v-spacer>
               <v-btn
-                color="green darken-1"
+                round
+                color="blue darken-1"
                 text
                 @click="$router.replace({ path: '/login'})">
-                ログイン
+                ログインする
               </v-btn>
               <v-btn
-                color="green darken-1"
-                text
+                round
+                color="darken-1"
                 @click="loginDialog = false">
-                OK
+                ログインしない
               </v-btn>
             </v-card-actions>
           </v-card>

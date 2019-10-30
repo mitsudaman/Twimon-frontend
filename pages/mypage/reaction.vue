@@ -220,20 +220,22 @@
           </v-flex>
           <v-flex>
             <v-btn
-              :block=true
+              round
+              block
               :large=true
               :disabled="this.me.talks.length + this.newTalks.length >= 5"
               @click="onCreateUserTalk"
-              color="grey darken-3 white--text">
-              <span><i class="far fa-comment-dots"></i> 追加</span>
+              color="primary">
+              <span><i class="fas fa-plus"></i> 追加する</span>
             </v-btn>
             <v-btn
-              :block=true
+              round
+              block
               :large=true
               @click="onUpdateUserTalks"
               :disabled="!isTalkUpdatable"
-              color="grey darken-3 white--text">
-              <span><i class="far fa-comment-dots"></i> 会話保存</span>
+              color="primary">
+              <span><i class="fas fa-pen"></i> 更新する</span>
             </v-btn>
           </v-flex>
         </v-layout>
@@ -346,19 +348,12 @@
           </v-flex>
           <v-flex>
             <v-btn
-              :block=true
-              :large=true
-              @click="onCreateUserTalk"
-              color="grey darken-3 white--text">
-              <span><i class="far fa-comment-dots"></i> 追加</span>
-            </v-btn>
-            <v-btn
-              :block=true
-              :large=true
+              round
+              block
               :loading="isLoadingUpdateUserDetailBtn"
               @click="onUpdateUserDetail"
-              color="grey darken-3 white--text">
-              <span><i class="far fa-comment-dots"></i> リンク保存</span>
+              color="primary">
+              <span><i class="fas fa-pen"></i> 更新する</span>
             </v-btn>
           </v-flex>
         </v-layout>

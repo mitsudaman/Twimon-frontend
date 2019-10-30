@@ -2,7 +2,7 @@
   <div>
     <v-container grid-list-lg text-xs-center> 
       <v-layout row wrap>
-        <v-flex v-if="likeUsers && likeUsers.length==0" v-bind:key="user.id">
+        <v-flex v-if="likeUsers && likeUsers.length==0">
           <p class="mb-5 title">お気に入りのモンスターが登録されていません！</p>
         </v-flex>
       </v-layout>

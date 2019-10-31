@@ -9,7 +9,7 @@
       <v-layout row wrap justify-center text-xs-right>
         <v-flex sm8 class="title">
           <a 
-            v-bind:href="'https://twitter.com/share?text=やせいの' + user.name + 'があらわれた！&hashtags=ツイットモンスター&url=https://twimon-backend.herokuapp.com/og/'+ $route.params.id"
+            v-bind:href="'https://twitter.com/share?text=やせいの ' + user.name + ' が あらわれた！&hashtags=ツイットモンスター&url=https://twimon-backend.herokuapp.com/og/'+ $route.params.id"
             target="_blank" 
             rel="noopener"
             class="mr-2"
@@ -234,23 +234,33 @@ export default {
       talkViewFlg: false,
       talkSentence: null,
       dialog: false,
-      loginDialog: false
+      loginDialog: false,
+      test: "",
     }
   },
-  apollo: {
-    user: {
+  asyncData (context) {
+    let client = context.app.apolloProvider.defaultClient
+    const userData = client.query({
       query: GET_USER_GQL,
-      variables () {
-        return {
-          userId: this.$route.params.id
+      variables: { userId: context.params.id},
+    }).then(({data}) => {
+        return { 
+          user: data.user, 
+          talks: data.user.talks,
+          likeSum: data.user.like_ct,
+          likedFlg: data.user.liked
         }
-      },
-      update (data) {
-        this.talks = data.user.talks
-        this.likeSum = data.user.like_ct
-        this.likedFlg = data.user.liked
-        return data.user
-      }
+    }).catch(() => {
+    })
+    return userData
+  },
+  head () {
+    return {
+      title: "ツイットモンスター | " + this.user.name + "のせつめい",
+      meta: [
+        { hid: 'og:description', name: 'description', content: this.user.description1 + " " + this.user.description2 + " " + this.user.description3 },
+        { hid: 'og:image', property: 'og:image', content: this.user.ogp_img_url },
+      ],
     }
   },
   methods: {

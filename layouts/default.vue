@@ -13,7 +13,8 @@
                 <nuxt-link
                 v-else
                 class="title"
-                to='/'><i class="fab fa-twitter"></i>
+                to='/'>
+                <img src="~/assets/img/twimon.png"/>
                 </nuxt-link>
                 <v-spacer></v-spacer>
                 <v-menu bottom left color="primary">
@@ -122,14 +123,14 @@
       logOut () {
         this.$store.commit('logOut')
         this.$router.replace({ path: '/' })
-        this.onLogOut = true;
-      // this.$apollo.mutate({
-      //   mutation: CREATE_USER_GQL,
-      //   variables: {
-      //     // name: this.customer.name,
-      //     // gender: this.customer.gender,
-      //   }
-      // })
+        this.onLogOut = true
+        // this.$apollo.mutate({
+        //   mutation: CREATE_USER_GQL,
+        //   variables: {
+        //     // name: this.customer.name,
+        //     // gender: this.customer.gender,
+        //   }
+        // })
       }
     }
   }

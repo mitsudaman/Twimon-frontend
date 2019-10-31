@@ -9,8 +9,7 @@
         column
         justify-center
       >
-        <h1 class="display-2 font-weight-thin mb-3">ツイットモンスター(仮)</h1>
-        <h4 class="subheading">Build your application today!</h4>
+        <h1 class="display-4 title_text font-weight-thin mb-3">ツイットモンスター</h1>
       </v-layout>
     </v-parallax>
     <v-container grid-list-lg text-xs-center> 
@@ -99,11 +98,11 @@ export default {
 }
 </script>
 <style type="text/css">
-.header{
-  background-color:blue; 
-  height:300px;
-  font-size: 100px;
-  font-family: 'PixelMplus';
+.title_text{
+  /* background-color:blue;  */
+  /* height:300px; */
+  /* font-size: 100px; */
+  font-family: 'PixelMplus' !important;
   text-align: center;
   padding-top:60px;
 }

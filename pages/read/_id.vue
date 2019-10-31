@@ -256,7 +256,7 @@ export default {
   },
   head () {
     return {
-      title: "ツイットモンスター | " + this.user.name + "のせつめい",
+      title: "ツイットモンスター | " + this.user.name,
       meta: [
         { hid: 'og:description', name: 'description', content: this.user.description1 + " " + this.user.description2 + " " + this.user.description3 },
         { hid: 'og:image', property: 'og:image', content: this.user.ogp_img_url },

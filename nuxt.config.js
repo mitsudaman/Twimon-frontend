@@ -44,6 +44,9 @@ module.exports = {
     '@nuxtjs/proxy',
     ['cookie-universal-nuxt', { parseJSON: false }],
     // 'nuxt-client-init-module'
+    ['@nuxtjs/google-analytics', {
+      id: 'UA-117897189-4'
+    }]
   ],
   apollo: {
     tokenName: 'twimonToken',

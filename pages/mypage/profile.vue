@@ -142,12 +142,12 @@
       <v-layout column justify-center align-center>
         <v-flex xs12 sm8 md6>
           <v-btn
-            :block=true
+            round
             :large=true
             :disabled="!isUpdatable"
             @click="onUpdateUser"
-            color="grey darken-3 white--text">
-            <span><i class="far fa-comment-dots"></i> 保存</span>
+            color="primary">
+            <span>こうしん</span>
           </v-btn>
         </v-flex>
       </v-layout>

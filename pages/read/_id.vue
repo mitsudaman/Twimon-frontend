@@ -37,7 +37,7 @@
           v-model="loginDialog"
           max-width="400">
           <v-card>
-            <v-card-title class="headline">ログインしちゃう？</v-card-title>
+            <v-card-title class="headline">いいね するにはログインが必要です。ログインしますか？</v-card-title>
             <v-card-actions class="text-xs-right">
               <v-spacer></v-spacer>
               <v-btn

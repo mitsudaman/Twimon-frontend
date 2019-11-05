@@ -275,7 +275,7 @@
               :disabled="this.me.talks.length + this.newTalks.length >= 5"
               @click="onCreateUserTalk"
               color="primary">
-              <span><i class="fas fa-plus"></i> 追加する</span>
+              <span><i class="fas fa-plus"></i> ついか </span>
             </v-btn>
             <v-btn
               round
@@ -284,7 +284,7 @@
               @click="onUpdateUserTalks"
               :disabled="!isTalkUpdatable"
               color="primary">
-              <span><i class="fas fa-pen"></i> 更新する</span>
+              <span><i class="fas fa-pen"></i> こうしん</span>
             </v-btn>
           </v-flex>
         </v-layout>
@@ -402,7 +402,7 @@
               :loading="isLoadingUpdateUserDetailBtn"
               @click="onUpdateUserDetail"
               color="primary">
-              <span><i class="fas fa-pen"></i> 更新する</span>
+              <span><i class="fas fa-pen"></i> こうしん</span>
             </v-btn>
           </v-flex>
         </v-layout>

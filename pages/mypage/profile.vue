@@ -140,7 +140,7 @@
       </v-layout>
 
       <v-layout column justify-center align-center>
-        <v-flex xs12 sm8 md6>
+        <v-flex xs12 sm8 md6 mt-2>
           <v-btn
             round
             :large=true

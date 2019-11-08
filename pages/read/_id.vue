@@ -151,7 +151,7 @@
         <v-flex
           d-flex
           sm8
-          class="balloon_area mt-5 pa-3"
+          class="balloon_area mt-3 pa-3"
         > 
           <v-layout v-if="!talkViewFlg" row wrap>
             <v-flex

@@ -267,11 +267,10 @@
               </div>
             </div>
           </v-flex>
-          <v-flex>
+          <v-flex xs11>
             <v-btn
               round
               block
-              :large=true
               :disabled="this.me.talks.length + this.newTalks.length >= 5"
               @click="onCreateUserTalk"
               color="primary">
@@ -280,7 +279,7 @@
             <v-btn
               round
               block
-              :large=true
+              class="mt-4"
               @click="onUpdateUserTalks"
               :disabled="!isTalkUpdatable"
               color="primary">
@@ -395,7 +394,7 @@
               </v-layout>
             </div>
           </v-flex>
-          <v-flex>
+          <v-flex xs11>
             <v-btn
               round
               block

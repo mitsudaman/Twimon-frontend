@@ -3,19 +3,20 @@
     <v-layout row>
       <v-flex >
         <v-card height="60px">
-          <v-container grid-list-xl text-xs-center>
+          <v-container grid-list-lg text-xs-center>
             <v-layout row wrap>
                 <button
                 v-if="$route.name=='read-id'"
                 class="title"
                 @click="$router.go(-1)"><i class="fas fa-chevron-left pl-3"></i>
                 </button>
-                <nuxt-link
-                v-else
-                class="title"
-                to='/'>
-                <img src="~/assets/img/twimon.png"/>
-                </nuxt-link>
+                <template v-else>
+                  <nuxt-link
+                  to='/'>
+                  <img src="~/assets/img/twimon.png" class="pt-1 mr-1"/>
+                  </nuxt-link>
+                  <span class="title_name pt-1">ツイモン</span>
+                </template>
                 <v-spacer></v-spacer>
                 <v-menu bottom left color="primary">
                   <template v-slot:activator="{ on }">
@@ -88,16 +89,6 @@
         </v-btn>
       </v-bottom-nav>
     </v-card>
-
-
-
-
-
-
-
-    <!-- <v-footer :fixed="fixed" app>
-      <span>&copy; {{ new Date().getFullYear() }}</span>
-    </v-footer> -->
   </v-app>
 </template>
 
@@ -140,5 +131,9 @@
 @font-face {
 	font-family: 'PixelMplus';
 	src: url(~assets/font/PixelMplus10-Regular.ttf);
+}
+.title_name{
+  font-size:24px;
+  font-family: 'PixelMplus';
 }
 </style>

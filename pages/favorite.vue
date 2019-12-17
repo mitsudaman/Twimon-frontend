@@ -1,33 +1,33 @@
 <template>
-  <div>
-    <v-container grid-list-lg text-xs-center> 
-      <v-layout row wrap>
-        <v-flex v-if="likeUsers && likeUsers.length==0">
-          <p class="mb-5 title">お気に入りのモンスターが登録されていません！</p>
-        </v-flex>
-      </v-layout>
-      <v-layout row wrap>
-        <v-flex v-for="user in likeUsers" v-bind:key="user.id" xs3>
-          <v-card  :hover="true" class="rounded-card"
-          :to="'/read/' + user.id">
-            <v-img v-bind:src="user.sns_img_url" aspect-ratio="1"></v-img>
-          </v-card>
-          <p class="mb-0 mt-2 nameText text-truncate ">{{ user.name }}</p>
-        </v-flex>
-      </v-layout>
-      <v-layout row wrap>
-        <v-flex>
-          <div class="text-xs-center">
+  <v-container fluid fill-height text-center>
+    <v-row 
+      align="center"
+      justify="center">
+      <v-col>
+        <v-row>
+          <v-col v-if="likeUsers && likeUsers.length==0">
+            <p class="mb-5 title">お気に入りのモンスターが登録されていません！</p>
+          </v-col>
+          <v-col cols="3" v-for="user in likeUsers" v-bind:key="user.id">
+            <v-card  :hover="true" class="rounded-card"
+              :to="'/read/' + user.id">
+                <v-img v-bind:src="user.sns_img_url" aspect-ratio="1"></v-img>
+              </v-card>
+              <p class="mb-0 mt-2 nameText text-truncate ">{{ user.name }}</p>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col>
             <v-pagination
               v-model="page"
               :length="this.lastPage"
               circle
             ></v-pagination>
-          </div>
-        </v-flex>
-      </v-layout>
-    </v-container>
-  </div>
+          </v-col>
+        </v-row>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>

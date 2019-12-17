@@ -1,94 +1,89 @@
 <template>
   <v-app>
-    <v-layout row>
-      <v-flex >
-        <v-card height="60px">
-          <v-container grid-list-lg text-xs-center>
-            <v-layout row wrap>
-                <button
-                v-if="$route.name=='read-id'"
-                class="title"
-                @click="$router.go(-1)"><i class="fas fa-chevron-left pl-3"></i>
-                </button>
-                <template v-else>
-                  <nuxt-link
-                  to='/'>
-                  <img src="~/assets/img/twimon.png" class="pt-1 mr-1"/>
-                  </nuxt-link>
-                  <span class="title_name pt-1">ツイモン</span>
-                </template>
-                <v-spacer></v-spacer>
-                <v-menu bottom left color="primary">
-                  <template v-slot:activator="{ on }">
-                    <v-btn
-                      icon
-                      v-on="on"
-                    >
-                      <v-icon>dehaze</v-icon>
-                    </v-btn>
-                  </template>
+    <v-card color="grey lighten-4" flat height="60px">
+      <v-toolbar flat>
+        <button
+          v-if="$route.name=='read-id'"
+          class="title"
+          @click="$router.go(-1)"><i class="fas fa-chevron-left pl-3"></i>
+        </button>
+        <template v-else>
+          <nuxt-link to='/'>
+            <!-- <img src="~/assets/img/twimon.png" class="pt-1 mr-1"/> -->
+          </nuxt-link>
+        </template>
+        <v-toolbar-title>
+          <!-- <span class="title_name pt-1">ツイモン</span> -->
+        </v-toolbar-title>
+        <v-spacer></v-spacer>
+        <v-menu>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn
+              icon
+              v-bind="attrs"
+              v-on="on">
+                <v-app-bar-nav-icon></v-app-bar-nav-icon>
+            </v-btn>
+          </template>
 
-                  <v-list>
-                    <v-btn 
-                    v-if="this.$cookies.get('twimonToken') && !onLogOut" 
-                    round
-                    @click="logOut">ログアウト</v-btn>
-                    <v-btn 
-                    v-else 
-                    round
-                    class="btn-tw"
-                    @click="$router.replace({ path: '/login'})">
-                      <i class="fab fa-twitter"></i>ログイン
-                    </v-btn>
-                    <v-list-tile
-                      v-for="(item, i) in items"
-                      :key="i"
-                      @click="$router.push(item.to)">
-                      <v-list-tile-title>{{ item.title }}</v-list-tile-title>
-                    </v-list-tile>
-                  </v-list>
-                </v-menu>
-            </v-layout>
-          </v-container>
-        </v-card>
-      </v-flex>
-    </v-layout>
-
+          <v-list>
+            <v-list-item>
+              <v-btn 
+                v-if="this.$cookies.get('twimonToken') && !onLogOut" 
+                rounded
+                @click="logOut">ログアウト</v-btn>
+              <v-btn 
+                v-else 
+                rounded
+                class="btn-tw"
+                @click="$router.replace({ path: '/login'})">
+                <i class="fab fa-twitter"></i>ログイン
+              </v-btn>
+            </v-list-item>
+            <v-list-item
+              v-for="(item, i) in items"
+              :key="i"
+              @click="$router.push(item.to)">
+              <v-list-item-title>{{ item.title }}</v-list-item-title>
+            </v-list-item>
+          </v-list>
+        </v-menu>
+      </v-toolbar>
+    </v-card>
 
     <v-content>
-      <nuxt />
+        <nuxt/>
     </v-content>
 
-    <v-card height="50px" flat>
-      <v-bottom-nav
-        :value="true"
-        fixed>
-        <v-btn
-          color="teal"
-          flat
-          value="recent"
-          @click="$router.push('/')">
-          <span>HOME</span>
-          <v-icon>home</v-icon>
-        </v-btn>
-        <v-btn
-          color="teal"
-          flat
-          value="favorites"
-          @click="$router.push('/favorite')">
-          <span>Favorites</span>
-          <v-icon>favorite</v-icon>
-        </v-btn>
-        <v-btn
-          color="teal"
-          flat
-          value="nearby"
-          @click="$router.push('/mypage/profile')">
-          <span>MyPage</span>
-          <v-icon>face</v-icon>
-        </v-btn>
-      </v-bottom-nav>
-    </v-card>
+    <v-bottom-navigation app
+      :value="true"
+      fixed>
+      <v-btn
+        color="teal"
+        text
+        value="recent"
+        @click="$router.push('/')">
+        <span>HOME</span>
+        <v-icon>mdi-home</v-icon>
+      </v-btn>
+      <v-btn
+        color="teal"
+        text
+        value="favorites"
+        @click="$router.push('/favorite')">
+        <span>Favorites</span>
+        <v-icon>mdi-heart</v-icon>
+      </v-btn>
+      <v-btn
+        color="teal"
+        text
+        value="nearby"
+        @click="$router.push('/mypage/profile')">
+        <span>MyPage</span>
+        <v-icon>mdi-face</v-icon>
+      </v-btn>
+    </v-bottom-navigation>
+    
   </v-app>
 </template>
 
@@ -107,7 +102,28 @@
         right: true,
         rightDrawer: false,
         title: 'ツイモン',
-        onLogOut: false
+        onLogOut: false,
+
+
+
+
+        alignmentsAvailable: [
+          'start',
+          'center',
+          'end',
+          'baseline',
+          'stretch',
+        ],
+        alignment: 'center',
+        dense: false,
+        justifyAvailable: [
+          'start',
+          'center',
+          'end',
+          'space-around',
+          'space-between',
+        ],
+        justify: 'center',
       }
     },
     methods: {

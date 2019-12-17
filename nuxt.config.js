@@ -21,15 +21,13 @@ module.exports = {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' }
     ]
   },
   plugins: [
-    '~/plugins/vuetify.js',
+    // '~/plugins/vuetify.js',
+    // '@plugins/vuetify'
   ],
   css: [
-    '~/assets/style/app.styl',
-    '~/assets/style/main.styl',
     '~/assets/main.css',
     '@fortawesome/fontawesome-free/css/all.css'
   ],
@@ -47,6 +45,9 @@ module.exports = {
     ['@nuxtjs/google-analytics', {
       id: 'UA-117897189-4'
     }]
+  ],
+  buildModules: [
+    '@nuxtjs/vuetify',
   ],
   apollo: {
     tokenName: 'twimonToken',
@@ -75,6 +76,7 @@ module.exports = {
   ** Build configuration
   */
   build: {
+    transpile: ['vuetify/lib'],	
     extractCSS: true,
     extend (config, ctx) {
       // // Run ESLint on save

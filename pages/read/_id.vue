@@ -57,7 +57,7 @@
           </v-card>
         </v-dialog>
       </v-layout>
-      <v-layout row wrap justify-center mt-3>
+      <!-- <v-layout row wrap justify-center mt-3>
         <v-flex  sm8 class="profile">
           <v-layout row wrap align-center justify-center pt-2>
             <v-flex xs5>
@@ -93,7 +93,7 @@
             <p>{{user.description3}}</p>
           </div>
         </v-flex>
-      </v-layout>
+      </v-layout> -->
       <v-layout row justify-center>
         <v-dialog
           v-model="dialog"
@@ -159,7 +159,7 @@
               <v-btn
               :block=true
               :large=true
-              round
+              rounded
               @click="commandTalk"
               color="grey darken-3 white--text">
                 <span class="command_context">
@@ -172,7 +172,7 @@
               <v-btn
               :block=true
               :large=true
-              round
+              rounded
               @click.stop="dialog = true"
               color="grey darken-3 white--text">
                 <span class="command_context">
@@ -184,7 +184,7 @@
               <v-btn
               :block=true
               :large=true
-              round
+              rounded
               @click="commandMagic"
               color="grey darken-3 white--text">
                 <span class="command_context">

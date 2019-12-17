@@ -142,7 +142,7 @@
       <v-layout column justify-center align-center>
         <v-flex xs12 sm8 md6 mt-2>
           <v-btn
-            round
+            rounded
             :large=true
             :disabled="!isUpdatable"
             @click="onUpdateUser"

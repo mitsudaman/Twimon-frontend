@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-container grid-list-xl>
+    <v-container  fluid fill-height>
       <v-snackbar
         v-model="snackbar"
         top
@@ -9,138 +9,166 @@
       >
         <span class="snackbarText">{{ snackbarText }}</span>
       </v-snackbar>
-      <my-page-nav></my-page-nav>
-      <v-layout row justify-center align-center mt-5>
-        <v-flex>
-          <v-card class="rounded-card">
-            <v-layout row wrap justify-center align-center>
-              <v-flex xs11 mt-4 pb-0>
-                <label class="ml-1 font-weight-bold">ニックネーム<small class="red--text">*</small></label>
-              </v-flex>
-              <v-flex xs11>
+      <v-row 
+        align="center"
+        justify="center"
+        no-gutters
+        class="text-center">
+        <v-col>
+          <my-page-nav></my-page-nav>
+        </v-col>
+      </v-row>
+      <v-row
+        justify="center"
+        no-gutters
+        class="mt-5">
+        <v-col>
+          <v-card>
+            <v-row
+              align="center"
+              justify="center">
+              <v-col cols="11" class="mt-5 pb-0 ml-3">
+                <label class="font-weight-bold">ニックネーム<small class="red--text">*</small></label>
+              </v-col>
+              <v-col cols="11" class="pb-0">
                 <v-text-field
                   v-model="me.name"
-                  outline
+                  outlined
                   placeholder="ツイモン"
                   hide-details
                   single-line
                   :error="getLen(me.name) > 20 || getLen(me.name) == 0"
                 ></v-text-field>
-                <div v-bind:class="{'red--text': getLen(me.name) > 20 || getLen(me.name) == 0}">
-                  <v-layout row wrap justify-center align-center px-2>
-                    <v-flex xs9>
+                  <v-row 
+                    no-gutters
+                    v-bind:class="{'red--text': getLen(me.name) > 20 || getLen(me.name) == 0}">
+                    <v-col cols="9" class="pl-5">
                       <small
                       v-if="getLen(me.name) > 20">20文字以下で入力してください</small>
                       <small
                       v-if="getLen(me.name) == 0">入力してください</small>
-                    </v-flex>
-                    <v-flex xs3 class="text-xs-right">
+                    </v-col>
+                    <v-col cols="3" class="text-right">
                       <small>{{getLen(me.name)}} / 20</small>
-                    </v-flex>
-                  </v-layout>
-                </div>
-              </v-flex>
-            </v-layout>
-            <v-layout row wrap justify-center align-center>
-              <v-flex xs11 pb-0>
-                <label class="ml-1 font-weight-bold">タイトル</label>
-              </v-flex>
-              <v-flex xs11>
+                    </v-col>
+                  </v-row>
+              </v-col>
+            </v-row>
+            <v-row
+              align="center"
+              justify="center">
+              <v-col cols="11" class="pb-0 ml-3">
+                <label class="font-weight-bold">タイトル</label>
+              </v-col>
+              <v-col cols="11" class="pb-0">
                 <v-text-field
                   v-model="me.title"
-                  outline
+                  outlined
                   placeholder="ほのぼのツイモン"
                   hide-details
                   single-line
-                  :error="getLen(me.title) > 20"
+                  :error="getLen(me.title) > 20 || getLen(me.title) == 0"
                 ></v-text-field>
-                <div v-bind:class="{'red--text': getLen(me.title) > 20}">
-                  <v-layout row wrap justify-center align-center px-2>
-                    <v-flex xs9>
+                  <v-row 
+                    no-gutters
+                    v-bind:class="{'red--text': getLen(me.title) > 20 || getLen(me.title) == 0}">
+                    <v-col cols="9" class="pl-5">
                       <small
                       v-if="getLen(me.title) > 20">20文字以下で入力してください</small>
-                    </v-flex>
-                    <v-flex xs3 class="text-xs-right">
+                      <small
+                      v-if="getLen(me.title) == 0">入力してください</small>
+                    </v-col>
+                    <v-col cols="3" class="text-right">
                       <small>{{getLen(me.title)}} / 20</small>
-                    </v-flex>
-                  </v-layout>
-                </div>
-              </v-flex>
-            </v-layout>
-            <v-layout justify-center align-center>
-              <v-flex xs11 pb-0>
-                <label class="ml-1 font-weight-bold">せつめい</label>
-              </v-flex>
-            </v-layout>
-            <v-layout row wrap justify-center align-center pb-4>
-              <v-flex xs11>
+                    </v-col>
+                  </v-row>
+              </v-col>
+            </v-row>
+            <v-row
+              align="center"
+              justify="center"
+              class="pb-7">
+              <v-col cols="11" class="pb-0 ml-3">
+                <label class="font-weight-bold">せつめい</label>
+              </v-col>
+              <v-col cols="11" class="pb-0">
                 <v-text-field
                   v-model="me.description1"
-                  outline
+                  outlined
                   placeholder=""
                   hide-details
                   single-line
-                  :error="getLen(me.description1) > 25"
+                  :error="getLen(me.description1) > 25 || getLen(me.description1) == 0"
                 ></v-text-field>
-                <div v-bind:class="{'red--text': getLen(me.description1) > 25}">
-                  <v-layout row wrap justify-center align-center px-2>
-                    <v-flex xs9>
+                  <v-row 
+                    no-gutters
+                    v-bind:class="{'red--text': getLen(me.description1) > 25 || getLen(me.description1) == 0}">
+                    <v-col cols="9" class="pl-5">
                       <small
                       v-if="getLen(me.description1) > 25">25文字以下で入力してください</small>
-                    </v-flex>
-                    <v-flex xs3 class="text-xs-right">
+                      <small
+                      v-if="getLen(me.description1) == 0">入力してください</small>
+                    </v-col>
+                    <v-col cols="3" class="text-right">
                       <small>{{getLen(me.description1)}} / 25</small>
-                    </v-flex>
-                  </v-layout>
-                </div>
-              </v-flex>
-              <v-flex xs11>
+                    </v-col>
+                  </v-row>
+              </v-col>
+              <v-col cols="11" class="pb-0">
                 <v-text-field
                   v-model="me.description2"
-                  outline
+                  outlined
+                  placeholder=""
                   hide-details
                   single-line
-                  :error="getLen(me.description2) > 25"
+                  :error="getLen(me.description2) > 25 || getLen(me.description2) == 0"
                 ></v-text-field>
-                <div v-bind:class="{'red--text': getLen(me.description2) > 25}">
-                  <v-layout row wrap justify-center align-center px-2>
-                    <v-flex xs9>
-                      <small
-                      v-if="getLen(me.description2) > 25">25文字以下で入力してください</small>
-                    </v-flex>
-                    <v-flex xs3 class="text-xs-right">
-                      <small>{{getLen(me.description2)}} / 25</small>
-                    </v-flex>
-                  </v-layout>
-                </div>
-              </v-flex>
-              <v-flex xs11>
+                <v-row 
+                  no-gutters
+                  v-bind:class="{'red--text': getLen(me.description2) > 25 || getLen(me.description2) == 0}">
+                  <v-col cols="9" class="pl-5">
+                    <small
+                    v-if="getLen(me.description2) > 25">25文字以下で入力してください</small>
+                    <small
+                    v-if="getLen(me.description2) == 0">入力してください</small>
+                  </v-col>
+                  <v-col cols="3" class="text-right">
+                    <small>{{getLen(me.description2)}} / 25</small>
+                  </v-col>
+                </v-row>
+              </v-col>
+              <v-col cols="11" class="pb-0">
                 <v-text-field
                   v-model="me.description3"
-                  outline
+                  outlined
+                  placeholder=""
                   hide-details
                   single-line
-                  :error="getLen(me.description3) > 25"
+                  :error="getLen(me.description3) > 25 || getLen(me.description3) == 0"
                 ></v-text-field>
-                <div v-bind:class="{'red--text': getLen(me.description3) > 25}">
-                  <v-layout row wrap justify-center align-center px-2>
-                    <v-flex xs9>
+                  <v-row 
+                    no-gutters
+                    v-bind:class="{'red--text': getLen(me.description3) > 25 || getLen(me.description3) == 0}">
+                    <v-col cols="9" class="pl-5">
                       <small
                       v-if="getLen(me.description3) > 25">25文字以下で入力してください</small>
-                    </v-flex>
-                    <v-flex xs3 class="text-xs-right">
+                      <small
+                      v-if="getLen(me.description3) == 0">入力してください</small>
+                    </v-col>
+                    <v-col cols="3" class="text-right">
                       <small>{{getLen(me.description3)}} / 25</small>
-                    </v-flex>
-                  </v-layout>
-                </div>
-              </v-flex>
-            </v-layout>
+                    </v-col>
+                  </v-row>
+              </v-col>
+            </v-row>
           </v-card>
-        </v-flex>
-      </v-layout>
-
-      <v-layout column justify-center align-center>
-        <v-flex xs12 sm8 md6 mt-2>
+        </v-col>
+      </v-row>
+      <v-row
+        align="center"
+        justify="center"
+        class="mt-3">
+        <v-col class="text-center">
           <v-btn
             rounded
             :large=true
@@ -149,8 +177,8 @@
             color="primary">
             <span>こうしん</span>
           </v-btn>
-        </v-flex>
-      </v-layout>
+        </v-col>
+      </v-row>
     </v-container>
   </div>
 </template>

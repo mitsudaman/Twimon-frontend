@@ -1,21 +1,17 @@
 <template>
-  <v-layout text-xs-center row wrap justify-center>
-    <v-flex>
       <v-card class="rounded-card">
-        <v-layout row align-center>
-          <v-flex d-flex justify-center>
+        <v-row>
+          <v-col>
             <div class="headline mt-3">アカウント設定</div> 
-          </v-flex>
-        </v-layout>
-        <v-layout row justify-center align-center>
-          <v-flex class="mypage_link" mt-3 px-5 d-flex justify-center>
+          </v-col>
+        </v-row>
+        <v-row class="mt-5">
+          <v-col class="mypage_link">
             <router-link class="font-weight-bold mr-3" to="profile">プロフィール</router-link> 
             <router-link class="font-weight-bold" to="reaction">リアクション</router-link>
-          </v-flex>
-        </v-layout>
+          </v-col>
+        </v-row>
       </v-card>
-    </v-flex>
-  </v-layout>
 </template>
 
 <style>

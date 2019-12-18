@@ -2,7 +2,8 @@
   <v-container fluid fill-height text-center>
     <v-row 
       align="center"
-      justify="center">
+      justify="center"
+      no-gutters>
       <v-col>
         <v-row>
           <v-col v-if="likeUsers && likeUsers.length==0">

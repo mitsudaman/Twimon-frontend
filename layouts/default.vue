@@ -22,7 +22,9 @@
               icon
               v-bind="attrs"
               v-on="on">
+              <client-only>
                 <v-app-bar-nav-icon></v-app-bar-nav-icon>
+              </client-only>
             </v-btn>
           </template>
 

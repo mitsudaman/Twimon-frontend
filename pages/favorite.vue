@@ -5,18 +5,12 @@
       justify="center"
       no-gutters>
       <v-col>
-        <v-row>
-          <v-col v-if="likeUsers && likeUsers.length==0">
+        <v-row v-if="likeUsers && likeUsers.length==0">
+          <v-col >
             <p class="mb-5 title">お気に入りのモンスターが登録されていません！</p>
           </v-col>
-          <v-col cols="3" v-for="user in likeUsers" v-bind:key="user.id">
-            <v-card  :hover="true" class="rounded-card"
-              :to="'/read/' + user.id">
-                <v-img v-bind:src="user.sns_img_url" aspect-ratio="1"></v-img>
-              </v-card>
-              <p class="mb-0 mt-2 nameText text-truncate ">{{ user.name }}</p>
-          </v-col>
         </v-row>
+        <monster-list :users="likeUsers"/>
         <v-row>
           <v-col>
             <v-pagination
@@ -32,6 +26,7 @@
 </template>
 
 <script>
+import MonsterList from '~/components/MonsterList.vue'
 import GET_LIKE_USERS_GQL from '~/apollo/queries/getLikeUsers.gql'
 import _ from 'lodash'
 
@@ -39,6 +34,9 @@ export default {
   middleware: 'authenticated',
   transition (to, from) {
     if (from && from.name === 'read-id') return 'index'
+  },
+  components: {
+    MonsterList
   },
   data () {
     return {

@@ -1,63 +1,46 @@
 <template>
-  <div>
-
-    <v-parallax
-      dark
-      src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg">
-      <v-layout
-        align-center
-        column
-        justify-center
-      >
-        <h1 class="display-4 title_text font-weight-thin mb-3">ツイットモンスター</h1>
-      </v-layout>
-    </v-parallax>
-    <v-container grid-list-lg text-xs-center> 
-      <v-layout row wrap>
-        <v-flex v-for="user in users" v-bind:key="user.id" xs3>
-          <v-card  :hover="true" class="rounded-card"
-          :to="'/read/' + user.id">
-            <v-img v-bind:src="user.sns_img_url" aspect-ratio="1"></v-img>
-            <!-- <v-card-title primary-title class="pb-1">
-              <h3 class="headline text-truncate mb-0">{{ user.name }}</h3>
-            </v-card-title>
-            <div class="text-xs-left pl-4 pb-3">
-              <div class="subheading like_panel_red">
-                <i v-if="user.liked" class="fas fa-heart"></i>
-                <i v-else class="far fa-heart"></i>
-                <span class="body-2 ml-1">{{user.like_ct}}</span>
-              </div>
-              <div class="text-truncate"> {{ user.feature1 }} </div>
-              <div class="text-truncate"> {{ user.feature1_content }} </div>
-              <div class="text-truncate mt-2"> {{ user.feature2 }} </div>
-              <div class="text-truncate"> {{ user.feature2_content }} </div>
-            </div> -->
-          </v-card>
-          <p class="mb-0 mt-2 nameText text-truncate ">{{ user.name }}</p>
-        </v-flex>
-      </v-layout>
-      <v-layout row wrap>
-        <v-flex>
-          <div class="text-xs-center">
+  <!-- <v-parallax
+    dark
+    src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg">
+    <v-layout
+      align-center
+      column
+      justify-center
+    >
+      <h1 class="display-4 title_text font-weight-thin mb-3">ツイットモンスター</h1>
+    </v-layout>
+  </v-parallax> -->
+  <v-container fluid fill-height text-center> 
+    <v-row 
+      align="center"
+      justify="center"
+      no-gutters>
+      <v-col>
+        <monster-list :users="users"/>
+        <v-row>
+          <v-col>
             <v-pagination
               v-model="page"
               :length="this.lastPage"
               circle
             ></v-pagination>
-          </div>
-        </v-flex>
-      </v-layout>
-    </v-container>
-  </div>
+          </v-col>
+        </v-row>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
+import MonsterList from '~/components/MonsterList.vue'
 import GET_USERS_GQL from '~/apollo/queries/getUsers.gql'
-// import CREATE_USER_GQL from '~/apollo/mutations/createUser.gql'
 
 export default {
   transition (to, from) {
     if (from && from.name === 'read-id') return 'index'
+  },
+  components: {
+    MonsterList
   },
   data () {
     return {
@@ -99,9 +82,6 @@ export default {
 </script>
 <style type="text/css">
 .title_text{
-  /* background-color:blue;  */
-  /* height:300px; */
-  /* font-size: 100px; */
   font-family: 'PixelMplus' !important;
   text-align: center;
   padding-top:60px;

@@ -89,7 +89,7 @@ export default {
 .like_panel_red {
   color:#ea3f60
 }
-.nameText{
+/* .nameText{
   font-size: 11px;
-}
+} */
 </style>

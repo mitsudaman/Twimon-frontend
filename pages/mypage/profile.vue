@@ -86,8 +86,7 @@
             </v-row>
             <v-row
               align="center"
-              justify="center"
-              class="pb-7">
+              justify="center">
               <v-col cols="11" class="pb-0 ml-3">
                 <label class="font-weight-bold">せつめい</label>
               </v-col>
@@ -161,22 +160,22 @@
                   </v-row>
               </v-col>
             </v-row>
+            <v-row
+              align="center"
+              justify="center"
+              class="py-3">
+              <v-col cols="10" class="text-center">
+                <v-btn
+                  rounded
+                  block
+                  :disabled="!isUpdatable"
+                  @click="onUpdateUser"
+                  color="primary">
+                  <span>こうしん</span>
+                </v-btn>
+              </v-col>
+            </v-row>
           </v-card>
-        </v-col>
-      </v-row>
-      <v-row
-        align="center"
-        justify="center"
-        class="mt-3">
-        <v-col class="text-center">
-          <v-btn
-            rounded
-            :large=true
-            :disabled="!isUpdatable"
-            @click="onUpdateUser"
-            color="primary">
-            <span>こうしん</span>
-          </v-btn>
         </v-col>
       </v-row>
     </v-container>

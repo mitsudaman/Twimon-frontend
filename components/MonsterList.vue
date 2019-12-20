@@ -1,6 +1,11 @@
 <template>
   <v-row>
-    <v-col cols="12" md="4" v-for="user in users" v-bind:key="user.id">
+    <v-col 
+      cols="12" 
+      md="4" 
+      v-for="user in users" 
+      v-bind:key="user.id"
+      class="pt-0 pt-md-3">
       <v-card  
         :hover="true"
         class="mx-auto text-left"
@@ -15,12 +20,7 @@
          </v-col>
          <v-col cols="7" md="12">
           <v-card-subtitle class="pt-2 pb-0 subtitle-1">
-            <template
-              v-if="String(user.serial_number).length<4"
-              >No.{{(("000") + user.serial_number ).substr(-3)}}</template>
-              <template
-              v-else
-              >No.{{user.serial_number}}</template>
+              {{ user.serial_number | serialNumFormatter }}
           </v-card-subtitle>
           <v-card-text>
             <p class="mb-0 subtitle-1 font-weight-black text-truncate ">{{ user.name }}</p>
@@ -31,10 +31,10 @@
                 align="center"
                 justify="center">
                 <v-col cols="5">
-                  <v-card class=""> くさ </v-card>
+                  <v-card outlined :color="'くさ' | getTypeColor"> くさ </v-card>
                 </v-col>
                 <v-col cols="5">
-                  <v-card class=""> どく </v-card>
+                  <v-card outlined :color="'どく' | getTypeColor" > どく </v-card>
                 </v-col>
               </v-row>
             </div>

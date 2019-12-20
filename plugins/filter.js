@@ -17,3 +17,13 @@ Vue.filter('getTypeColor', function (value) {
       } 
       return color
 })
+
+Vue.filter('serialNumFormatter', function (value) {
+    var serialNum = ""
+    if (String(value).length<4) {
+        serialNum = "No." + ("000" + value ).substr(-3)
+    }else{
+        serialNum = "No." + value
+    }
+    return serialNum
+})

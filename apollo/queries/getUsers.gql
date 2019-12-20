@@ -9,6 +9,8 @@ query GetUsers ($page:Int!){
             id
             serial_number
             name
+            type1
+            type2
             feature1
             feature1_content
             feature2

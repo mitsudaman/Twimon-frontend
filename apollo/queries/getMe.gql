@@ -4,6 +4,8 @@
     serial_number
     name
     title
+    type1
+    type2
     feature1
     feature1_content
     feature2

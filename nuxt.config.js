@@ -24,6 +24,7 @@ module.exports = {
     ]
   },
   plugins: [
+    '~/plugins/filter.js',
     // '~/plugins/vuetify.js',
     // '@plugins/vuetify'
   ],

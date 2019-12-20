@@ -6,6 +6,8 @@ query getUser($userId:ID!){
       name
       nickname
       title
+      type1
+      type2
       feature1
       feature1_content
       feature2

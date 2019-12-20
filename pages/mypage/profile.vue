@@ -28,6 +28,31 @@
               align="center"
               justify="center">
               <v-col cols="11" class="mt-5 pb-0 ml-3">
+                <label class="font-weight-bold">タイプ</label>
+              </v-col>
+              <v-col cols="11">
+                <v-select
+                  v-model="typeValue"
+                  :items="types"
+                  multiple
+                  outlined
+                  :error="typeValue.length > 2"
+                >
+                  <template v-slot:selection="{ item, index }">
+                    <v-chip :color="item | getTypeColor">
+                      <span>{{ item }}</span>
+                    </v-chip>
+                  </template>
+                </v-select>
+                <small
+                v-if="typeValue.length > 2"
+                class="red--text">タイプは2つまでです</small>
+              </v-col>
+            </v-row>
+            <v-row
+              align="center"
+              justify="center">
+              <v-col cols="11" class="mt-5 pb-0 ml-3">
                 <label class="font-weight-bold">ニックネーム<small class="red--text">*</small></label>
               </v-col>
               <v-col cols="11" class="pb-0">
@@ -202,13 +227,25 @@ export default {
       },
       snackbar: false,
       snackbarColor: 'success',
-      snackbarText: ''
+      snackbarText: '',
+      types: [
+        'でんき', 
+        'ほのお', 
+        'みず', 
+        'くさ', 
+        'はがね', 
+        'どく'
+      ],
+      typeValue: [],
     }
   },
   apollo: {
     me: {
       query: GET_ME,
       update (data) {
+        this.typeValue = []
+        if(data.me.type1) this.typeValue.push(data.me.type1)
+        if(data.me.type2) this.typeValue.push(data.me.type2)
         return _.cloneDeep(data.me)
       }
     }
@@ -220,7 +257,8 @@ export default {
               this.getLen(this.me.title) <= 20 &&
               this.getLen(this.me.description1) <= 25 &&
               this.getLen(this.me.description2) <= 25 &&
-              this.getLen(this.me.description3) <= 25
+              this.getLen(this.me.description3) <= 25 &&
+              this.typeValue.length <= 2
     }
   },
   methods: {
@@ -231,6 +269,8 @@ export default {
         this.snackbarText = 'プロフィールを更新できませんでした'
         return
       }
+      let type1 = this.typeValue[0]?this.typeValue[0]:null
+      let type2 = this.typeValue[1]?this.typeValue[0]:null
       // ユーザー情報アップデート
       this.$apollo.mutate({
         mutation: UPDATE_USER_PROF_GQL,
@@ -238,6 +278,8 @@ export default {
           UpdateUserProfInput: {
             name: this.me.name,
             title: this.me.title,
+            type1: type1,
+            type2: type2,
             description1: this.me.description1,
             description2: this.me.description2,
             description3: this.me.description3

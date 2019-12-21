@@ -10,7 +10,8 @@
       <h1 class="display-4 title_text font-weight-thin mb-3">ツイットモンスター</h1>
     </v-layout>
   </v-parallax> -->
-  <v-container fluid fill-height text-center> 
+  <v-container fluid fill-height text-center
+  :class="{containerSmAndDown: $vuetify.breakpoint.smAndDown}"> 
     <v-row 
       align="center"
       justify="center"

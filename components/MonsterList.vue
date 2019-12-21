@@ -12,7 +12,7 @@
         :to="'/read/' + user.id"
       >
        <v-row no-gutters>
-         <v-col cols="4" md="12" class="pt-0 pb-0">
+         <v-col cols="4" md="12" class="pa-1 pa-md-0">
             <v-img
             v-bind:src="user.sns_img_url" 
             aspect-ratio="1">

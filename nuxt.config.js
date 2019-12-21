@@ -1,3 +1,4 @@
+import colors from 'vuetify/es5/util/colors'
 require('dotenv').config()
 module.exports = {
   mode: 'universal',
@@ -29,9 +30,18 @@ module.exports = {
     // '@plugins/vuetify'
   ],
   css: [
-    '~/assets/main.css',
+    '~/assets/main.scss',
     '@fortawesome/fontawesome-free/css/all.css'
   ],
+  vuetify: {
+     theme: {
+       themes: {
+         light: {
+           background: colors.blue.darken1,
+         }
+       }
+     }
+   },
   /*
   ** Customize the progress bar color
   */

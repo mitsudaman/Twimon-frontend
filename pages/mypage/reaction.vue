@@ -1,6 +1,7 @@
 <template>
   <div>
-    <v-container fluid fill-height>
+    <v-container fluid fill-height
+      :class="{containerSmAndDown: $vuetify.breakpoint.smAndDown}">
       <v-snackbar
         v-model="snackbar"
         top

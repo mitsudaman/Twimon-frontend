@@ -12,13 +12,13 @@
         :to="'/read/' + user.id"
       >
        <v-row no-gutters>
-         <v-col cols="5" md="12" class="pt-0 pb-0">
+         <v-col cols="4" md="12" class="pt-0 pb-0">
             <v-img
             v-bind:src="user.sns_img_url" 
             aspect-ratio="1">
             </v-img>
          </v-col>
-         <v-col cols="7" md="12">
+         <v-col cols="8" md="12">
           <v-card-subtitle class="pt-2 pb-0 subtitle-1">
               {{ user.serial_number | serialNumFormatter }}
           </v-card-subtitle>
@@ -31,10 +31,12 @@
                 align="center"
                 justify="center">
                 <v-col cols="5">
-                  <v-card outlined :color="'くさ' | getTypeColor"> くさ </v-card>
+                  <v-card v-if="user.type1" outlined :color="user.type1 | getTypeColor" class="white--text caption font-weight-bold type_area"> {{user.type1}} </v-card>
                 </v-col>
                 <v-col cols="5">
-                  <v-card outlined :color="'どく' | getTypeColor" > どく </v-card>
+                  <v-card v-if="user.type1" outlined :color="user.type2 | getTypeColor" class="white--text caption font-weight-bold type_area"> 
+                    {{ user.type2 }}
+                     </v-card>
                 </v-col>
               </v-row>
             </div>
@@ -65,10 +67,10 @@ export default {
 </script>
 <style type="text/css">
 .type_area {
-  width: 60px !important;
-  height: 26px !important;
+  white-space: nowrap;
 }
 .type_area span{
   text-align: center !important;
+
 }
 </style>

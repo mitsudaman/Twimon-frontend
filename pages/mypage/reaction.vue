@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-container fluid fill-height
-      :class="{containerSmAndDown: $vuetify.breakpoint.smAndDown}">
+      :class="{'back-ground-color-sm-and-down': $vuetify.breakpoint.smAndDown}">
       <v-snackbar
         v-model="snackbar"
         top
@@ -578,9 +578,6 @@ export default {
 .reaction_list_text{
   color: #787c7b;
   font-size: 13px;
-}
-.border-top{
-  border-top: 1px solid #f2f2f2;
 }
 .svg_area{
     text-align: center;

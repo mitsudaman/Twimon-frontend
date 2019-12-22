@@ -1,6 +1,6 @@
 <template>
   <v-container fluid fill-height text-center
-  :class="{containerSmAndDown: $vuetify.breakpoint.smAndDown}">
+  :class="{'back-ground-color-sm-and-down': $vuetify.breakpoint.smAndDown}">
     <v-row 
       align="center"
       justify="center"

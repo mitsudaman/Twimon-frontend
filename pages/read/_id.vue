@@ -1,12 +1,7 @@
 <template>
   <div>
-    <v-container grid-list-md text-xs-center>
-      <!-- <v-layout row wrap justify-center>
-        <v-flex sm9>
-          <h2 class="blackboard">プロフィール</h2>
-        </v-flex>
-      </v-layout> -->
-      <v-layout row wrap justify-center text-xs-right>
+    <v-container>
+      <!-- <v-layout row wrap justify-center text-xs-right>
         <v-flex sm8 class="title">
           <a 
             v-bind:href="'https://twitter.com/share?text=やせいの ' + user.name + ' が あらわれた！&hashtags=ツイットモンスター&url=https://twimon-backend.herokuapp.com/og/'+ $route.params.id"
@@ -31,7 +26,7 @@
             </button>
             <span class="text-grey ml-1">{{likeSum}}</span>
         </v-flex>
-      </v-layout>
+      </v-layout> -->
       <v-layout row justify-center>
         <v-dialog
           v-model="loginDialog"
@@ -57,6 +52,115 @@
           </v-card>
         </v-dialog>
       </v-layout>
+      <v-row
+        justify="center">
+        <v-col cols="12" class="pb-0">
+          <v-row
+          align="center"
+          no-gutters>
+            <v-col cols="2" class="text-center">
+              <nuxt-link 
+                v-if="user.id>1"
+                :to="'/read/' + (Number(user.id)-1)"
+                class="arrowLink">
+                <v-icon class="arrowIcon" :color="$vuetify.theme.themes.light.background">mdi-chevron-left</v-icon>
+              </nuxt-link>
+            </v-col>
+            <v-col cols="8" class="text-center headline font-weight-bold">
+              <p class="mb-0">{{ user.serial_number | serialNumFormatter }}</p>
+              <p class="mb-0">{{user.name}}</p>
+            </v-col>
+            <v-col cols="2" class="text-center">
+              <nuxt-link 
+                :to="'/read/' + (Number(user.id)+1)"
+                class="arrowLink">
+                <v-icon class="arrowIcon" :color="$vuetify.theme.themes.light.background">mdi-chevron-right</v-icon>
+              </nuxt-link>
+            </v-col>
+          </v-row>
+        </v-col>
+        <v-col cols="11" class="py-0">
+          <v-row>
+            <v-col></v-col>
+            <v-spacer></v-spacer>
+            <v-col class="text-right headline py-0">
+              <a 
+                v-bind:href="'https://twitter.com/share?text=やせいの ' + user.name + ' が あらわれた！&hashtags=ツイットモンスター&url=https://twimon-backend.herokuapp.com/og/'+ $route.params.id"
+                target="_blank" 
+                rel="noopener"
+                class="mr-2"
+                role="button">
+                <i class="fab fa-twitter blue--text"></i>
+              </a>
+              <button 
+              v-if="likedFlg"
+              @click="delLikeUsr()">
+                <i  
+                  v-bind:class="{ like_active: likedFlg, heart_break: onLikedFlg }"
+                class="fas fa-heart"></i>
+              </button>
+              <button 
+              v-else
+              @click="addLikeUsr()">
+                <i 
+                  class="far fa-heart text-grey"></i>
+              </button>
+              <span class="text-grey ml-1">{{likeSum}}</span>
+            </v-col>
+          </v-row>
+        </v-col>
+        <v-col
+        cols="11"
+        :class="{'back-ground-color-sm-and-down': $vuetify.breakpoint.smAndDown}">
+          <v-card flat
+            :style="{border: 'solid 2px' + $vuetify.theme.themes.light.background + '!important' }">
+            <v-row 
+              align="center"
+              justify="center"
+              no-gutters>
+              <v-col cols="12" md="6" class="pa-1 pa-md-3">
+                <v-img
+                v-bind:src="user.sns_img_url" 
+                class="image"
+                aspect-ratio="1">
+                </v-img>
+              </v-col>
+              <v-col md="6">
+                <v-card-subtitle class="pt-2 pb-0 subtitle-1 font-weight-black black--text">
+                    <p class="border-bottom">せつめい</p>
+                </v-card-subtitle>
+                <v-card-text class="font-weight-bold pb-0">
+                  <p>{{user.description1}}{{user.description2}}{{user.description3}}</p>
+                  <p></p>
+                </v-card-text>
+                <template>
+                  <div class="text-center">
+                    <v-row
+                      align="center"
+                      justify="center">
+                      <v-col cols="5">
+                        <v-card v-if="user.type1" outlined :color="user.type1 | getTypeColor" class="white--text caption font-weight-bold type_area"> {{user.type1}} </v-card>
+                      </v-col>
+                      <v-col cols="5">
+                        <v-card v-if="user.type1" outlined :color="user.type2 | getTypeColor" class="white--text caption font-weight-bold type_area"> 
+                          {{ user.type2 }}
+                          </v-card>
+                      </v-col>
+                    </v-row>
+                  </div>
+                </template>
+              </v-col>
+            </v-row>
+          </v-card>
+        </v-col>
+      </v-row>
+      <!-- <v-layout row wrap justify-center>
+        <v-flex sm9>
+          <h2 class="blackboard">プロフィール</h2>
+        </v-flex>
+      </v-layout> -->
+
+
       <!-- <v-layout row wrap justify-center mt-3>
         <v-flex  sm8 class="profile">
           <v-layout row wrap align-center justify-center pt-2>
@@ -180,18 +284,6 @@
                 </span>
                 </v-btn>
             </v-flex>
-            <!-- <v-flex xs6>
-              <v-btn
-              :block=true
-              :large=true
-              rounded
-              @click="commandMagic"
-              color="grey darken-3 white--text">
-                <span class="command_context">
-                  <i class="fas fa-hat-wizard"></i> じゅもん
-                </span>
-              </v-btn>
-            </v-flex> -->
           </v-layout>
           <v-layout v-else row wrap>
             <v-flex
@@ -321,6 +413,12 @@ export default {
 }
 </script>
 <style type="text/css">
+.arrowLink{
+  text-decoration: none;
+}
+.arrowIcon{
+  font-size:70px !important;
+}
 h2 {
   font-size: 2.5em;
   border: 2px solid black;

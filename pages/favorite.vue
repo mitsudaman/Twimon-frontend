@@ -6,6 +6,31 @@
       justify="center"
       no-gutters>
       <v-col>
+        <v-row>
+          <v-col>
+
+            <v-expansion-panels>
+              <v-expansion-panel>
+                <v-expansion-panel-header disable-icon-rotate>
+                  タイプで探す
+                  <template v-slot:actions>
+                    <v-icon color="error">mdi-alert-circle</v-icon>
+                  </template>
+                </v-expansion-panel-header>
+                <v-expansion-panel-content>
+                  <v-row
+                    align="center"
+                    justify="center">
+                    <v-col v-for="type in types" 
+                    v-bind:key="type.id" cols="4" md="3">
+                      <v-card  outlined :color="type | getTypeColor" class="white--text caption font-weight-bold type_area"> {{type}} </v-card>
+                    </v-col>
+                  </v-row>
+                </v-expansion-panel-content>
+              </v-expansion-panel>
+            </v-expansion-panels>
+          </v-col>
+        </v-row>
         <v-row v-if="likeUsers && likeUsers.length==0">
           <v-col >
             <p class="mb-5 title">お気に入りのモンスターが登録されていません！</p>
@@ -59,7 +84,27 @@ export default {
       page: 1,
       lastPage: 0,
       type1:'',
-      type2:''
+      type2:'',
+      types: [
+        'ノーマル',
+        'ほのお', 
+        'みず', 
+        'くさ', 
+        'でんき', 
+        'こおり',
+        'かくとう',
+        'どく',
+        'じめん',
+        'ひこう',
+        'エスパー',
+        'むし',
+        'いわ',
+        'ゴースト',
+        'ドラゴン',
+        'あく',
+        'はがね',
+        'フェアリー'
+      ],
     }
   },
   computed: {

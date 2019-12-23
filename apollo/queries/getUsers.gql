@@ -1,11 +1,6 @@
-query GetUsers ($page:Int!){
-    users(count: 12, page: $page,orderBy: [
-            {
-                field: "id"
-                order: ASC
-            }
-        ]) {
-        data {
+query GetUsers ($perPage:Int!,$page:Int!,$type1:String,$type2:String){
+  getUsers(perPage: $perPage, page:$page,type1: $type1,type2: $type2){
+    users {
             id
             serial_number
             name

@@ -11,6 +11,21 @@
             <p class="mb-5 title">お気に入りのモンスターが登録されていません！</p>
           </v-col>
         </v-row>
+        {{likeUsers}}
+        <v-row
+          align="center"
+          justify="center"
+          class="py-3">
+          <v-col cols="10" class="text-center">
+            <v-btn
+              rounded
+              block
+              @click="onSearchLikeUsers"
+              color="primary">
+              <span>こうしん</span>
+            </v-btn>
+          </v-col>
+        </v-row>
         <monster-list :users="likeUsers"/>
         <v-row>
           <v-col>
@@ -42,7 +57,9 @@ export default {
   data () {
     return {
       page: 1,
-      lastPage: 0
+      lastPage: 0,
+      type1:'',
+      type2:''
     }
   },
   computed: {
@@ -58,7 +75,9 @@ export default {
       variables () {
         return {
           perPage: 12,
-          page: this.page
+          page: this.page,
+          type1:this.type1,
+          type2:this.type2
         }
       },
       update (data) {
@@ -68,6 +87,9 @@ export default {
     }
   },
   methods: {
+    onSearchLikeUsers () {
+      this.type1="みず"
+    },
   }
 }
 </script>

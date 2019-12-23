@@ -17,7 +17,22 @@
       justify="center"
       no-gutters>
       <v-col>
-        <monster-list :users="users"/>
+        <!-- <monster-list :users="users"/> -->
+        {{users}}
+        <v-row
+          align="center"
+          justify="center"
+          class="py-3">
+          <v-col cols="10" class="text-center">
+            <v-btn
+              rounded
+              block
+              @click="onSearchUsers"
+              color="primary">
+              <span>こうしん</span>
+            </v-btn>
+          </v-col>
+        </v-row>
         <v-row>
           <v-col>
             <v-pagination
@@ -53,7 +68,9 @@ export default {
       },
       page: 1,
       users: null,
-      lastPage: 0
+      lastPage: 0,
+      type1:'',
+      type2:''
     }
   },
   computed: {
@@ -68,16 +85,22 @@ export default {
       query: GET_USERS_GQL,
       variables () {
         return {
-          page: this.page
+          perPage:12,
+          page: this.page,
+          type1:this.type1,
+          type2:this.type2
         }
       },
       update (data) {
-        this.lastPage = data.users.paginatorInfo.lastPage
-        return data.users.data
+        this.lastPage = data.getUsers.paginatorInfo.lastPage
+        return data.getUsers.users
       }
     }
   },
   methods: {
+    onSearchUsers () {
+      this.type1="みず"
+    },
   }
 }
 </script>

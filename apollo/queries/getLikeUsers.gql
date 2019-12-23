@@ -1,6 +1,6 @@
 # Write your query or mutation here
-query GetLikeUsers ($perPage:Int!,$page:Int!){
-  getLikeUsers(perPage: $perPage, page: $page){
+query GetLikeUsers ($perPage:Int!,$page:Int!,$type1:String,$type2:String){
+  getLikeUsers(perPage: $perPage, page:$page,type1: $type1,type2: $type2){
     likeUsers{
           id
           serial_number

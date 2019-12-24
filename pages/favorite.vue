@@ -8,13 +8,12 @@
       <v-col>
         <v-row>
           <v-col>
-
             <v-expansion-panels>
               <v-expansion-panel>
                 <v-expansion-panel-header disable-icon-rotate>
                   タイプで探す
                   <template v-slot:actions>
-                    <v-icon color="error">mdi-alert-circle</v-icon>
+                    <v-icon :color="$vuetify.theme.themes.light.background">mdi-magnify</v-icon>
                   </template>
                 </v-expansion-panel-header>
                 <v-expansion-panel-content>
@@ -23,7 +22,13 @@
                     justify="center">
                     <v-col v-for="type in types" 
                     v-bind:key="type.id" cols="4" md="3">
-                      <v-card  outlined :color="type | getTypeColor" class="white--text caption font-weight-bold type_area"> {{type}} </v-card>
+                      <v-card  
+                        outlined 
+                        v-on:click='type.select=!type.select' 
+                        v-bind:class="[{active:type.select},{'white--text':type.select},type.class]"
+                        class="caption font-weight-bold ty-area"> 
+                        {{type.name}} 
+                      </v-card>
                     </v-col>
                   </v-row>
                 </v-expansion-panel-content>
@@ -36,7 +41,7 @@
             <p class="mb-5 title">お気に入りのモンスターが登録されていません！</p>
           </v-col>
         </v-row>
-        {{likeUsers}}
+        <!-- {{likeUsers}} -->
         <v-row
           align="center"
           justify="center"
@@ -51,7 +56,7 @@
             </v-btn>
           </v-col>
         </v-row>
-        <monster-list :users="likeUsers"/>
+        <!-- <monster-list :users="likeUsers"/> -->
         <v-row>
           <v-col>
             <v-pagination
@@ -86,24 +91,24 @@ export default {
       type1:'',
       type2:'',
       types: [
-        'ノーマル',
-        'ほのお', 
-        'みず', 
-        'くさ', 
-        'でんき', 
-        'こおり',
-        'かくとう',
-        'どく',
-        'じめん',
-        'ひこう',
-        'エスパー',
-        'むし',
-        'いわ',
-        'ゴースト',
-        'ドラゴン',
-        'あく',
-        'はがね',
-        'フェアリー'
+        {name:'ノーマル',class:'ty1',select:false},
+        // {name:'ほのお',class:'ty2',select:false},
+        // {name:'みず',class:'ty3',select:false},
+        // {name:'くさ',class:'ty4',select:false},
+        // {name:'でんき',class:'ty5',select:false},
+        // {name:'こおり',class:'ty6',select:false},
+        // {name:'かくとう',class:'ty7',select:false},
+        // {name:'どく',class:'ty8',select:false},
+        // {name:'じめん',class:'ty9',select:false},
+        // {name:'ひこう',class:'ty10',select:false},
+        // {name:'エスパー',class:'ty11',select:false},
+        // {name:'むし',class:'ty12',select:false},
+        {name:'いわ',class:'ty13',select:false},
+        // {name:'ゴースト',class:'ty14',select:false},
+        // {name:'ドラゴン',class:'ty15',select:false},
+        // {name:'あく',class:'ty16',select:false},
+        {name:'はがね',class:'ty17',select:false},
+        // {name:'フェアリー',class:'ty18',select:false},
       ],
     }
   },

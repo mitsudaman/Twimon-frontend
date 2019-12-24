@@ -6,36 +6,7 @@
       justify="center"
       no-gutters>
       <v-col>
-        <v-row>
-          <v-col>
-            <v-expansion-panels>
-              <v-expansion-panel>
-                <v-expansion-panel-header disable-icon-rotate>
-                  タイプで探す
-                  <template v-slot:actions>
-                    <v-icon :color="$vuetify.theme.themes.light.background">mdi-magnify</v-icon>
-                  </template>
-                </v-expansion-panel-header>
-                <v-expansion-panel-content>
-                  <v-row
-                    align="center"
-                    justify="center">
-                    <v-col v-for="type in types" 
-                    v-bind:key="type.id" cols="4" md="3">
-                      <v-card  
-                        outlined 
-                        v-on:click='type.select=!type.select' 
-                        v-bind:class="[{active:type.select},{'white--text':type.select},type.class]"
-                        class="caption font-weight-bold ty-area"> 
-                        {{type.name}} 
-                      </v-card>
-                    </v-col>
-                  </v-row>
-                </v-expansion-panel-content>
-              </v-expansion-panel>
-            </v-expansion-panels>
-          </v-col>
-        </v-row>
+        <type-list :types="types"/>
         <v-row v-if="likeUsers && likeUsers.length==0">
           <v-col >
             <p class="mb-5 title">お気に入りのモンスターが登録されていません！</p>
@@ -73,6 +44,7 @@
 
 <script>
 import MonsterList from '~/components/MonsterList.vue'
+import TypeList from '~/components/TypeList.vue'
 import GET_LIKE_USERS_GQL from '~/apollo/queries/getLikeUsers.gql'
 import _ from 'lodash'
 
@@ -82,14 +54,14 @@ export default {
     if (from && from.name === 'read-id') return 'index'
   },
   components: {
-    MonsterList
+    MonsterList,
+    TypeList
   },
   data () {
     return {
       page: 1,
       lastPage: 0,
-      type1:'',
-      type2:'',
+      searchTypes:[],
       types: [
         {name:'ノーマル',class:'ty1',select:false},
         // {name:'ほのお',class:'ty2',select:false},
@@ -126,8 +98,7 @@ export default {
         return {
           perPage: 12,
           page: this.page,
-          type1:this.type1,
-          type2:this.type2
+          searchTypes:this.searchTypes,
         }
       },
       update (data) {
@@ -138,7 +109,11 @@ export default {
   },
   methods: {
     onSearchLikeUsers () {
-      this.type1="みず"
+      this.searchTypes  = _.filter(this.types, function(n) { return n.select; });
+      this.searchTypes = _.map(this.searchTypes,(n)=>{
+        return (_.pick(n, ['name'])).name;
+      })
+      console.log(this.searchTypes)
     },
   }
 }

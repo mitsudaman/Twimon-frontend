@@ -17,6 +17,7 @@
       justify="center"
       no-gutters>
       <v-col>
+        <type-list :types="types"/>
         <!-- <monster-list :users="users"/> -->
         {{users}}
         <v-row
@@ -49,6 +50,7 @@
 
 <script>
 import MonsterList from '~/components/MonsterList.vue'
+import TypeList from '~/components/TypeList.vue'
 import GET_USERS_GQL from '~/apollo/queries/getUsers.gql'
 
 export default {
@@ -56,7 +58,8 @@ export default {
     if (from && from.name === 'read-id') return 'index'
   },
   components: {
-    MonsterList
+    MonsterList,
+    TypeList
   },
   data () {
     return {
@@ -69,8 +72,27 @@ export default {
       page: 1,
       users: null,
       lastPage: 0,
-      type1:'',
-      type2:''
+      searchTypes:[],
+      types: [
+        {name:'ノーマル',class:'ty1',select:false},
+        // {name:'ほのお',class:'ty2',select:false},
+        // {name:'みず',class:'ty3',select:false},
+        // {name:'くさ',class:'ty4',select:false},
+        // {name:'でんき',class:'ty5',select:false},
+        // {name:'こおり',class:'ty6',select:false},
+        // {name:'かくとう',class:'ty7',select:false},
+        // {name:'どく',class:'ty8',select:false},
+        // {name:'じめん',class:'ty9',select:false},
+        // {name:'ひこう',class:'ty10',select:false},
+        // {name:'エスパー',class:'ty11',select:false},
+        // {name:'むし',class:'ty12',select:false},
+        {name:'いわ',class:'ty13',select:false},
+        // {name:'ゴースト',class:'ty14',select:false},
+        // {name:'ドラゴン',class:'ty15',select:false},
+        // {name:'あく',class:'ty16',select:false},
+        {name:'はがね',class:'ty17',select:false},
+        // {name:'フェアリー',class:'ty18',select:false},
+      ],
     }
   },
   computed: {
@@ -87,8 +109,7 @@ export default {
         return {
           perPage:12,
           page: this.page,
-          type1:this.type1,
-          type2:this.type2
+          searchTypes:this.searchTypes,
         }
       },
       update (data) {
@@ -99,7 +120,10 @@ export default {
   },
   methods: {
     onSearchUsers () {
-      this.type1="みず"
+      this.searchTypes  = _.filter(this.types, function(n) { return n.select; });
+      this.searchTypes = _.map(this.searchTypes,(n)=>{
+        return (_.pick(n, ['name'])).name;
+      })
     },
   }
 }
@@ -113,7 +137,4 @@ export default {
 .like_panel_red {
   color:#ea3f60
 }
-/* .nameText{
-  font-size: 11px;
-} */
 </style>

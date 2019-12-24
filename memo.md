@@ -51,3 +51,12 @@ let updateTalks = _.map(this.me.talks,(n)=>{
 
 ## 特定のkey,idを除外するとき
 this.me.talks = _.reject(this.me.talks, { 'id': delId});
+
+## 絞るとき
+var users = [
+  { 'user': 'barney', 'age': 36, 'active': true },
+  { 'user': 'fred',   'age': 40, 'active': false }
+];
+ 
+_.filter(users, function(o) { return !o.active; });
+// => objects for ['fred']

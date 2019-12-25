@@ -17,23 +17,9 @@
       justify="center"
       no-gutters>
       <v-col>
-        <type-list :types="types"/>
+        <type-list :types="types" @child-event="onSearchUsers"/>
         <!-- <monster-list :users="users"/> -->
         {{users}}
-        <v-row
-          align="center"
-          justify="center"
-          class="py-3">
-          <v-col cols="10" class="text-center">
-            <v-btn
-              rounded
-              block
-              @click="onSearchUsers"
-              color="primary">
-              <span>こうしん</span>
-            </v-btn>
-          </v-col>
-        </v-row>
         <v-row>
           <v-col>
             <v-pagination

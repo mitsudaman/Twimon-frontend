@@ -6,27 +6,13 @@
       justify="center"
       no-gutters>
       <v-col>
-        <type-list :types="types"/>
+        <type-list :types="types" @child-event="onSearchLikeUsers"/>
         <v-row v-if="likeUsers && likeUsers.length==0">
           <v-col >
             <p class="mb-5 title">お気に入りのモンスターが登録されていません！</p>
           </v-col>
         </v-row>
         <!-- {{likeUsers}} -->
-        <v-row
-          align="center"
-          justify="center"
-          class="py-3">
-          <v-col cols="10" class="text-center">
-            <v-btn
-              rounded
-              block
-              @click="onSearchLikeUsers"
-              color="primary">
-              <span>こうしん</span>
-            </v-btn>
-          </v-col>
-        </v-row>
         <!-- <monster-list :users="likeUsers"/> -->
         <v-row>
           <v-col>

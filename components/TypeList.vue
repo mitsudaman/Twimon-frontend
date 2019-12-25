@@ -24,6 +24,20 @@
                 </v-card>
               </v-col>
             </v-row>
+            <v-row
+              align="center"
+              justify="center"
+              class="py-3">
+              <v-col cols="10" class="text-center">
+                <v-btn
+                  rounded
+                  block
+                  @click="onSendParent()"
+                  color="primary">
+                  <span>こうしん</span>
+                </v-btn>
+              </v-col>
+            </v-row>
           </v-expansion-panel-content>
         </v-expansion-panel>
       </v-expansion-panels>
@@ -36,5 +50,10 @@ export default {
   props: {
     types: Array
   },
+  methods:{
+    onSendParent(){
+        this.$emit('child-event');
+    }
+  }
 }
 </script>

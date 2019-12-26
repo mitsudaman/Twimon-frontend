@@ -40,7 +40,7 @@
                   :error="typeValue.length > 2"
                 >
                   <template v-slot:selection="{ item, index }">
-                    <v-chip :color="item | getTypeColor">
+                    <v-chip :color="item | getTypeColor" text-color="white" class="font-weight-bold">
                       <span>{{ item }}</span>
                     </v-chip>
                   </template>
@@ -283,7 +283,7 @@ export default {
         return
       }
       let type1 = this.typeValue[0]?this.typeValue[0]:null
-      let type2 = this.typeValue[1]?this.typeValue[0]:null
+      let type2 = this.typeValue[1]?this.typeValue[1]:null
       // ユーザー情報アップデート
       this.$apollo.mutate({
         mutation: UPDATE_USER_PROF_GQL,

@@ -1,6 +1,7 @@
 <template>
-  <v-app 
-   :style="{background: $vuetify.theme.themes.light.background}">
+  <v-app >
+  <!-- <v-app 
+   :style="{background: $vuetify.theme.themes.light.background}"> -->
     <v-card color="grey lighten-4" flat height="60px">
       <v-toolbar flat>
         <button
@@ -54,11 +55,12 @@
       </v-toolbar>
     </v-card>
 
-    <v-content class="my-4">
+    <v-content class="mb-4">
         <nuxt/>
     </v-content>
 
     <v-bottom-navigation app
+      grow
       :value="true"
       fixed>
       <v-btn

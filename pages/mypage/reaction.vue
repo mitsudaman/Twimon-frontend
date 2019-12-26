@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-container fluid fill-height
-      :class="{'back-ground-color-sm-and-down': $vuetify.breakpoint.smAndDown}">
+      :class="{'back-ground-color-sm-and-down': breakpoint.smAndDown}">
       <v-snackbar
         v-model="snackbar"
         top
@@ -425,6 +425,7 @@ export default {
   },
   data () {
     return {
+      isHydrated: false,
       me: {
       },
       snackbar: false,
@@ -456,7 +457,15 @@ export default {
         if (this.getLen(n.sentence1) > 50 || this.getLen(n.sentence2) > 50 || this.getLen(n.sentence3) > 50) updatableFlg = false
       })
       return updatableFlg
+    },
+    breakpoint () { 
+      return this.isHydrated
+        ? this.$vuetify.breakpoint
+        : ''
     }
+  },
+  mounted() {
+    this.isHydrated = true
   },
   methods: {
     onVisibleTalkPanel () {

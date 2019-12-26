@@ -11,7 +11,7 @@
     </v-layout>
   </v-parallax> -->
   <v-container fluid fill-height text-center
-  :class="{'back-ground-color-sm-and-down': $vuetify.breakpoint.smAndDown}"> 
+  :class="{'back-ground-color-sm-and-down': breakpoint.smAndDown}"> 
     <v-row 
       align="center"
       justify="center"
@@ -49,6 +49,7 @@ export default {
   },
   data () {
     return {
+      isHydrated: false,
       name: '',
       title: '',
       height: '',
@@ -86,7 +87,15 @@ export default {
       const binding = {}
       if (this.$vuetify.breakpoint.xs) binding.column = true
       return binding
+    },
+    breakpoint () {
+      return this.isHydrated
+        ? this.$vuetify.breakpoint
+        : ''
     }
+  },
+  mounted() {
+    this.isHydrated = true
   },
   apollo: {
     users: {

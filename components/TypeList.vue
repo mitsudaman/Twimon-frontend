@@ -10,6 +10,14 @@
             </template>
           </v-expansion-panel-header>
           <v-expansion-panel-content>
+            <v-row>
+              <v-col>
+                <v-text-field
+                  v-model="name"
+                  label="なまえ"
+                ></v-text-field>
+              </v-col>
+            </v-row>
             <v-row
               align="center"
               justify="center">
@@ -50,8 +58,14 @@ export default {
   props: {
     types: Array
   },
+  data () {
+    return {
+      name: ''
+    }
+  },
   methods:{
     onSendParent(){
+        this.$parent.name = this.name;
         this.$emit('child-event');
     }
   }

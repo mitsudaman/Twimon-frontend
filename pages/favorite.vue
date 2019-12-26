@@ -6,13 +6,13 @@
       justify="center"
       no-gutters>
       <v-col>
-        <type-list :types="types" @child-event="onSearchLikeUsers"/>
+        <type-list :name="name" :types="types" @child-event="onSearchLikeUsers"/>
         <v-row v-if="likeUsers && likeUsers.length==0">
           <v-col >
             <p class="mb-5 title">お気に入りのモンスターが登録されていません！</p>
           </v-col>
         </v-row>
-        <!-- {{likeUsers}} -->
+        {{likeUsers}}
         <!-- <monster-list :users="likeUsers"/> -->
         <v-row>
           <v-col>
@@ -49,6 +49,7 @@ export default {
       page: 1,
       lastPage: 0,
       searchTypes:[],
+      name: '',
       types: [
         {name:'ノーマル',class:'ty1',select:false},
         // {name:'ほのお',class:'ty2',select:false},
@@ -93,6 +94,7 @@ export default {
         return {
           perPage: 12,
           page: this.page,
+          name: this.name,
           searchTypes:this.searchTypes,
         }
       },
@@ -108,7 +110,6 @@ export default {
       this.searchTypes = _.map(this.searchTypes,(n)=>{
         return (_.pick(n, ['name'])).name;
       })
-      console.log(this.searchTypes)
     },
   }
 }

@@ -1,5 +1,5 @@
-query GetUsers ($perPage:Int!,$page:Int!,$searchTypes:[String]){
-  getUsers(perPage: $perPage, page:$page,searchTypes: $searchTypes){
+query GetUsers ($perPage:Int!,$page:Int!,$name:String,$searchTypes:[String]){
+  getUsers(perPage: $perPage, page:$page,name:$name,searchTypes: $searchTypes){
     users {
             id
             serial_number

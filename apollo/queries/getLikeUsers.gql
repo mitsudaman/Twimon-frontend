@@ -1,5 +1,5 @@
-query GetLikeUsers ($perPage:Int!,$page:Int!,$searchTypes:[String]){
-  getLikeUsers(perPage: $perPage, page:$page,searchTypes: $searchTypes){
+query GetLikeUsers ($perPage:Int!,$page:Int!,$name:String,$searchTypes:[String]){
+  getLikeUsers(perPage: $perPage, page:$page,name:$name,searchTypes: $searchTypes){
     likeUsers{
           id
           serial_number

@@ -17,7 +17,7 @@
       justify="center"
       no-gutters>
       <v-col>
-        <type-list :types="types" @child-event="onSearchUsers"/>
+        <type-list :name="name" :types="types" @child-event="onSearchUsers"/>
         <!-- <monster-list :users="users"/> -->
         {{users}}
         <v-row>
@@ -104,6 +104,7 @@ export default {
         return {
           perPage:12,
           page: this.page,
+          name: this.name,
           searchTypes:this.searchTypes,
         }
       },

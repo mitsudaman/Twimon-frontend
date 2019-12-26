@@ -74,21 +74,12 @@ $ty18-color: #e06cbb;
     background-color: $ty1-color;
     color: #ffffff;
 }
-.ty1:hover{
-    background-color: $ty1-color;
-    color: #ffffff;
-}
-
 .ty2 {
  border: 1px solid $ty2-color !important;
 }
 .ty2.active {
  background-color: $ty2-color !important;
  color: #ffffff;
-}
-.ty2:hover{
-    background-color: $ty2-color;
-    color: #ffffff;
 }
 .ty3 {
  border: 1px solid $ty3-color !important;
@@ -97,20 +88,12 @@ $ty18-color: #e06cbb;
  background-color: $ty3-color !important;
  color: #ffffff;
 }
-.ty3:hover{
-    background-color: $ty3-color;
-    color: #ffffff;
-}
 .ty4 {
  border: 1px solid $ty4-color !important;
 }
 .ty4.active {
  background-color: $ty4-color !important;
  color: #ffffff;
-}
-.ty4:hover{
-    background-color: $ty4-color;
-    color: #ffffff;
 }
 .ty5 {
  border: 1px solid $ty5-color !important;
@@ -119,20 +102,12 @@ $ty18-color: #e06cbb;
  background-color: $ty5-color !important;
  color: #ffffff;
 }
-.ty5:hover{
-    background-color: $ty5-color;
-    color: #ffffff;
-}
 .ty6 {
  border: 1px solid $ty6-color !important;
 }
 .ty6.active {
  background-color: $ty6-color !important;
  color: #ffffff;
-}
-.ty6:hover{
-    background-color: $ty6-color;
-    color: #ffffff;
 }
 .ty7 {
  border: 1px solid $ty7-color !important;
@@ -141,20 +116,12 @@ $ty18-color: #e06cbb;
  background-color: $ty7-color !important;
  color: #ffffff;
 }
-.ty7:hover{
-    background-color: $ty7-color;
-    color: #ffffff;
-}
 .ty8 {
  border: 1px solid $ty8-color !important;
 }
 .ty8.active {
  background-color: $ty8-color !important;
  color: #ffffff;
-}
-.ty8:hover{
-    background-color: $ty8-color;
-    color: #ffffff;
 }
 .ty9 {
  border: 1px solid $ty9-color !important;
@@ -163,20 +130,12 @@ $ty18-color: #e06cbb;
  background-color: $ty9-color !important;
  color: #ffffff;
 }
-.ty9:hover{
-    background-color: $ty9-color;
-    color: #ffffff;
-}
 .ty10 {
  border: 1px solid $ty10-color !important;
 }
 .ty10.active {
  background-color: $ty10-color !important;
  color: #ffffff;
-}
-.ty10:hover{
-    background-color: $ty10-color;
-    color: #ffffff;
 }
 .ty11 {
  border: 1px solid $ty11-color !important;
@@ -185,20 +144,12 @@ $ty18-color: #e06cbb;
  background-color: $ty11-color !important;
  color: #ffffff;
 }
-.ty11:hover{
-    background-color: $ty11-color;
-    color: #ffffff;
-}
 .ty12 {
  border: 1px solid $ty12-color !important;
 }
 .ty12.active {
  background-color: $ty12-color !important;
  color: #ffffff;
-}
-.ty12:hover{
-    background-color: $ty12-color;
-    color: #ffffff;
 }
 .ty13 {
  border: 1px solid $ty13-color !important;
@@ -207,20 +158,12 @@ $ty18-color: #e06cbb;
  background-color: $ty13-color !important;
  color: #ffffff;
 }
-.ty13:hover{
-    background-color: $ty13-color;
-    color: #ffffff;
-}
 .ty14 {
  border: 1px solid $ty14-color !important;
 }
 .ty14.active {
  background-color: $ty14-color !important;
  color: #ffffff;
-}
-.ty14:hover{
-    background-color: $ty14-color;
-    color: #ffffff;
 }
 .ty15 {
  border: 1px solid $ty15-color !important;
@@ -229,20 +172,12 @@ $ty18-color: #e06cbb;
  background-color: $ty15-color !important;
  color: #ffffff;
 }
-.ty15:hover{
-    background-color: $ty15-color;
-    color: #ffffff;
-}
 .ty16 {
  border: 1px solid $ty16-color !important;
 }
 .ty16.active {
  background-color: $ty16-color !important;
  color: #ffffff;
-}
-.ty16:hover{
-    background-color: $ty16-color;
-    color: #ffffff;
 }
 .ty17 {
  border: 1px solid $ty17-color !important;
@@ -251,10 +186,6 @@ $ty18-color: #e06cbb;
  background-color: $ty17-color !important;
  color: #ffffff;
 }
-.ty17:hover{
-    background-color: $ty17-color;
-    color: #ffffff;
-}
 .ty18 {
  border: 1px solid $ty18-color !important;
 }
@@ -262,7 +193,78 @@ $ty18-color: #e06cbb;
  background-color: $ty18-color !important;
  color: #ffffff;
 }
-.ty18:hover{
-    background-color: $ty18-color;
-    color: #ffffff;
+
+@media screen and (min-width:600px) { 
+    .ty1:hover{
+        background-color: $ty1-color;
+        color: #ffffff;
+    }
+    .ty2:hover{
+        background-color: $ty2-color;
+        color: #ffffff;
+    }
+    .ty3:hover{
+        background-color: $ty3-color;
+        color: #ffffff;
+    }
+    .ty4:hover{
+        background-color: $ty4-color;
+        color: #ffffff;
+    }
+    .ty5:hover{
+        background-color: $ty5-color;
+        color: #ffffff;
+    }
+    .ty6:hover{
+        background-color: $ty6-color;
+        color: #ffffff;
+    }
+    .ty7:hover{
+        background-color: $ty7-color;
+        color: #ffffff;
+    }
+    .ty8:hover{
+        background-color: $ty8-color;
+        color: #ffffff;
+    }
+    .ty9:hover{
+        background-color: $ty9-color;
+        color: #ffffff;
+    }
+    .ty10:hover{
+        background-color: $ty10-color;
+        color: #ffffff;
+    }
+    .ty11:hover{
+        background-color: $ty11-color;
+        color: #ffffff;
+    }
+    .ty12:hover{
+        background-color: $ty12-color;
+        color: #ffffff;
+    }
+    .ty13:hover{
+        background-color: $ty13-color;
+        color: #ffffff;
+    }
+    .ty14:hover{
+        background-color: $ty14-color;
+        color: #ffffff;
+    }
+    .ty15:hover{
+        background-color: $ty15-color;
+        color: #ffffff;
+    }
+    .ty16:hover{
+        background-color: $ty16-color;
+        color: #ffffff;
+    }
+    .ty17:hover{
+        background-color: $ty17-color;
+        color: #ffffff;
+    }
+    .ty18:hover{
+        background-color: $ty18-color;
+        color: #ffffff;
+    }
 }

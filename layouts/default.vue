@@ -1,8 +1,7 @@
 <template>
-  <v-app >
-  <!-- <v-app 
-   :style="{background: $vuetify.theme.themes.light.background}"> -->
-    <v-card color="grey lighten-4" flat height="60px">
+  <v-app 
+   :style="{background: $vuetify.theme.themes.light.background}">
+    <div color="grey lighten-4" flat height="60px">
       <v-toolbar flat>
         <button
           v-if="$route.name=='read-id'"
@@ -11,11 +10,11 @@
         </button>
         <template v-else>
           <nuxt-link to='/'>
-            <!-- <img src="~/assets/img/twimon.png" class="pt-1 mr-1"/> -->
+            <img src="~/assets/img/twimon.png" class="pt-1 mr-1"/>
           </nuxt-link>
         </template>
         <v-toolbar-title>
-          <!-- <span class="title_name pt-1">ツイモン</span> -->
+          <span class="title_name pt-1">ツイモン</span>
         </v-toolbar-title>
         <v-spacer></v-spacer>
         <v-menu>
@@ -53,9 +52,9 @@
           </v-list>
         </v-menu>
       </v-toolbar>
-    </v-card>
+    </div>
 
-    <v-content class="mb-4">
+    <v-content class="my-4">
         <nuxt/>
     </v-content>
 

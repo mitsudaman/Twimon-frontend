@@ -38,7 +38,7 @@
                   <v-card v-if="user.type1" outlined :color="user.type1 | getTypeColor" class="white--text caption font-weight-bold type_area"> {{user.type1}} </v-card>
                 </v-col>
                 <v-col cols="5">
-                  <v-card v-if="user.type1" outlined :color="user.type2 | getTypeColor" class="white--text caption font-weight-bold type_area"> 
+                  <v-card v-if="user.type2" outlined :color="user.type2 | getTypeColor" class="white--text caption font-weight-bold type_area"> 
                     {{ user.type2 }}
                      </v-card>
                 </v-col>

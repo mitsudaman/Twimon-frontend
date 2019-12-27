@@ -18,8 +18,7 @@
       no-gutters>
       <v-col>
         <type-list :name="name" :types="types" @child-event="onSearchUsers"/>
-        <!-- <monster-list :users="users"/> -->
-        {{users}}
+        <monster-list :users="users"/>
         <v-row>
           <v-col>
             <v-pagination
@@ -62,23 +61,23 @@ export default {
       searchTypes:[],
       types: [
         {name:'ノーマル',class:'ty1',select:false},
-        // {name:'ほのお',class:'ty2',select:false},
-        // {name:'みず',class:'ty3',select:false},
-        // {name:'くさ',class:'ty4',select:false},
-        // {name:'でんき',class:'ty5',select:false},
-        // {name:'こおり',class:'ty6',select:false},
-        // {name:'かくとう',class:'ty7',select:false},
-        // {name:'どく',class:'ty8',select:false},
-        // {name:'じめん',class:'ty9',select:false},
-        // {name:'ひこう',class:'ty10',select:false},
-        // {name:'エスパー',class:'ty11',select:false},
-        // {name:'むし',class:'ty12',select:false},
+        {name:'ほのお',class:'ty2',select:false},
+        {name:'みず',class:'ty3',select:false},
+        {name:'くさ',class:'ty4',select:false},
+        {name:'でんき',class:'ty5',select:false},
+        {name:'こおり',class:'ty6',select:false},
+        {name:'かくとう',class:'ty7',select:false},
+        {name:'どく',class:'ty8',select:false},
+        {name:'じめん',class:'ty9',select:false},
+        {name:'ひこう',class:'ty10',select:false},
+        {name:'エスパー',class:'ty11',select:false},
+        {name:'むし',class:'ty12',select:false},
         {name:'いわ',class:'ty13',select:false},
-        // {name:'ゴースト',class:'ty14',select:false},
-        // {name:'ドラゴン',class:'ty15',select:false},
-        // {name:'あく',class:'ty16',select:false},
+        {name:'ゴースト',class:'ty14',select:false},
+        {name:'ドラゴン',class:'ty15',select:false},
+        {name:'あく',class:'ty16',select:false},
         {name:'はがね',class:'ty17',select:false},
-        // {name:'フェアリー',class:'ty18',select:false},
+        {name:'フェアリー',class:'ty18',select:false},
       ],
     }
   },

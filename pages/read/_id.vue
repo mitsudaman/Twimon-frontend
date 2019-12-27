@@ -131,7 +131,8 @@
                 </v-card-subtitle>
                 <v-card-text class="font-weight-bold pb-0">
                   <p>{{user.description1}}{{user.description2}}{{user.description3}}</p>
-                  <p></p>
+                  <p>talkSentence:{{talkSentence}}</p>
+                  <p>sentenceIndex:{{sentenceIndex}}</p>
                 </v-card-text>
                 <template>
                   <div class="text-center">

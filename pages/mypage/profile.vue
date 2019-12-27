@@ -253,6 +253,7 @@ export default {
     }
   },
   apollo: {
+    $prefetch: false,
     me: {
       query: GET_ME,
       update (data) {
@@ -260,7 +261,10 @@ export default {
         if(data.me.type1) this.typeValue.push(data.me.type1)
         if(data.me.type2) this.typeValue.push(data.me.type2)
         return _.cloneDeep(data.me)
-      }
+      },
+      error (error) {
+        return this.$router.replace({ path: '/login'})
+      },
     }
   },
   computed: {

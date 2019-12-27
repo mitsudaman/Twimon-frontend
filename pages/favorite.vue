@@ -89,6 +89,7 @@ export default {
     this.isHydrated = true
   },
   apollo: {
+    $prefetch: false,
     likeUsers: {
       query: GET_LIKE_USERS_GQL,
       variables () {
@@ -102,7 +103,10 @@ export default {
       update (data) {
         this.lastPage = data.getLikeUsers.paginatorInfo.lastPage
         return data.getLikeUsers.likeUsers
-      }
+      },
+      error (error) {
+        return $router.replace({ path: '/login'})
+      },
     }
   },
   methods: {

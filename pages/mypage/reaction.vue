@@ -440,11 +440,15 @@ export default {
     }
   },
   apollo: {
+    $prefetch: false,
     me: {
       query: GET_ME,
       update (data) {
         return _.cloneDeep(data.me)
-      }
+      },
+      error (error) {
+        return this.$router.replace({ path: '/login'})
+      },
     }
   },
   computed: {

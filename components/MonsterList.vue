@@ -14,10 +14,13 @@
       >
        <v-row no-gutters>
          <v-col cols="4" md="12" class="pa-1 pa-md-0">
-            <v-img
+          <v-img
             v-bind:src="user.sns_img_url" 
             aspect-ratio="1">
-            </v-img>
+            <div class="ribbon-wrapper">
+              <span class="ribbon">★</span>
+            </div>
+          </v-img>
          </v-col>
          <v-col cols="8" md="12">
           <v-card-subtitle class="pt-2 pb-0 subtitle-1">

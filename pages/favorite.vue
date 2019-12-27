@@ -1,14 +1,15 @@
 <template>
   <v-container fluid fill-height text-center
   :class="{'back-ground-color-sm-and-down': breakpoint.smAndDown}">
+    <!-- <h1>あああああああ</h1> -->
     <v-row 
       align="center"
       justify="center"
       no-gutters>
       <v-col>
-        <type-list :name="name" :types="types" @child-event="onSearchLikeUsers"/>
+        <!-- <type-list :name="name" :types="types" @child-event="onSearchLikeUsers"/> -->
         <v-row v-if="likeUsers && likeUsers.length==0">
-          <v-col >
+          <v-col>
             <p class="mb-5 title">お気に入りのモンスターが登録されていません！</p>
           </v-col>
         </v-row>

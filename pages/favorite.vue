@@ -1,7 +1,6 @@
 <template>
   <v-container fluid fill-height text-center
   :class="{'back-ground-color-sm-and-down': breakpoint.smAndDown}">
-    <!-- <h1>あああああああ</h1> -->
     <v-row 
       align="center"
       justify="center"

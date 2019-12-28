@@ -126,30 +126,24 @@
                 </v-img>
               </v-col>
               <v-col md="6">
-                <v-card-subtitle class="pt-2 pb-0 subtitle-1 font-weight-black black--text">
-                    <p class="border-bottom">せつめい</p>
-                </v-card-subtitle>
-                <v-card-text class="font-weight-bold pb-0">
-                  <p>{{user.description1}}{{user.description2}}{{user.description3}}</p>
-                  <p>talkSentence:{{talkSentence}}</p>
-                  <p>sentenceIndex:{{sentenceIndex}}</p>
-                </v-card-text>
-                <template>
-                  <div class="text-center">
+                  <v-card-subtitle class="pt-2 pb-0 mb-1">
+                    <h2><span>せつめい</span></h2>
+                  </v-card-subtitle>
+                  <v-card-text class="font-weight-bold pb-0 description">
+                    <p>{{user.description1}}{{user.description2}}{{user.description3}}</p>
                     <v-row
-                      align="center"
-                      justify="center">
-                      <v-col cols="5">
+                      align="center">
+                      <v-col cols="10" class="font-weight-bold subtitle-1 py-0">タイプ</v-col>
+                      <v-col cols="5" class="text-center pt-1">
                         <v-card v-if="user.type1" outlined :color="user.type1 | getTypeColor" class="white--text caption font-weight-bold type_area"> {{user.type1}} </v-card>
                       </v-col>
-                      <v-col cols="5">
+                      <v-col cols="5" class="text-center pt-1">
                         <v-card v-if="user.type1" outlined :color="user.type2 | getTypeColor" class="white--text caption font-weight-bold type_area"> 
                           {{ user.type2 }}
                           </v-card>
                       </v-col>
                     </v-row>
-                  </div>
-                </template>
+                  </v-card-text>
               </v-col>
             </v-row>
           </v-card>

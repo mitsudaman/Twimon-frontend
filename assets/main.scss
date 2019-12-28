@@ -269,29 +269,24 @@ $ty18-color: #e06cbb;
     }
 }
 
-h1 {
-    position: relative;
-    color: black;
-    background: #d0ecff;
-    line-height: 1.4;
-    padding: 0.25em 0.5em;
-    margin: 2em 0 0.5em;
-    border-radius: 0 5px 5px 5px;
+h2{
+    border:none !important;
+    border-bottom: solid 2px #2196F3 !important;
+    border-radius: 0px !important;
 }
-  
-h1:after {
-    position: absolute;
-    font-family: "Font Awesome 5 Free",'Quicksand','Avenir','Arial',sans-serif;
-    content: '\f00c Check';
+h2 span {
     background: #2196F3;
     color: #fff;
-    left: 0px;
-    bottom: 100%;
     border-radius: 5px 5px 0 0;
     padding: 3px 7px 1px;
-    font-size: 0.7em;
+    font-size: 0.5em;
     line-height: 1;
     letter-spacing: 0.05em
+}
+.description p {
+    border-bottom: solid 2px #2196F3 !important;
+    padding-bottom: 3px;
+    margin-bottom:10px;
 }
 
 .ribbon-wrapper {  
@@ -299,8 +294,6 @@ h1:after {
     position: relative;
     margin: 15px auto;
     padding: 10px 0;
-    // width: 300px;
-    // background: #f1f1f1;
     box-sizing: border-box;
 }
   

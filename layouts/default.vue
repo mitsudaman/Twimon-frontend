@@ -3,16 +3,9 @@
    :style="{background: $vuetify.theme.themes.light.background}">
     <div color="grey lighten-4" flat height="60px">
       <v-toolbar flat>
-        <button
-          v-if="$route.name=='read-id'"
-          class="title"
-          @click="$router.go(-1)"><i class="fas fa-chevron-left pl-3"></i>
-        </button>
-        <template v-else>
-          <nuxt-link to='/'>
-            <img src="~/assets/img/twimon.png" class="pt-1 mr-1"/>
-          </nuxt-link>
-        </template>
+        <nuxt-link to='/'>
+          <img src="~/assets/img/twimon.png" class="pt-1 mr-1"/>
+        </nuxt-link>
         <v-toolbar-title>
           <span class="title_name pt-1">ツイモン</span>
         </v-toolbar-title>

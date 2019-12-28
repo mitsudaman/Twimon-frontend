@@ -1,32 +1,14 @@
 <template>
   <div>
     <v-container>
-      <!-- <v-layout row wrap justify-center text-xs-right>
-        <v-flex sm8 class="title">
-          <a 
-            v-bind:href="'https://twitter.com/share?text=やせいの ' + user.name + ' が あらわれた！&hashtags=ツイットモンスター&url=https://twimon-backend.herokuapp.com/og/'+ $route.params.id"
-            target="_blank" 
-            rel="noopener"
-            class="mr-2"
-            role="button">
-            <i class="fab fa-twitter blue--text"></i>
-          </a>
-            <button 
-            v-if="likedFlg"
-            @click="delLikeUsr()">
-              <i  
-                v-bind:class="{ like_active: likedFlg, heart_break: onLikedFlg }"
-              class="fas fa-heart"></i>
-            </button>
-            <button 
-            v-else
-            @click="addLikeUsr()">
-              <i 
-                class="far fa-heart text-grey"></i>
-            </button>
-            <span class="text-grey ml-1">{{likeSum}}</span>
-        </v-flex>
-      </v-layout> -->
+      <template v-if="user == null">
+        <v-row>
+          <v-col>
+            <p class="mb-5 headline font-weight-bold text-center">モンスターが登録されていないよ！</p>
+          </v-col>
+        </v-row>
+      </template>
+      <template v-else>
       <v-layout row justify-center>
         <v-dialog
           v-model="loginDialog"
@@ -149,50 +131,6 @@
           </v-card>
         </v-col>
       </v-row>
-      <!-- <v-layout row wrap justify-center>
-        <v-flex sm9>
-          <h2 class="blackboard">プロフィール</h2>
-        </v-flex>
-      </v-layout> -->
-
-
-      <!-- <v-layout row wrap justify-center mt-3>
-        <v-flex  sm8 class="profile">
-          <v-layout row wrap align-center justify-center pt-2>
-            <v-flex xs5>
-              <div>
-                <v-img
-                class="image"
-                v-if="user.sns_img_url"
-                v-bind:src="user.sns_img_url" aspect-ratio="1"></v-img>
-              </div>
-              <div text-center>
-                <template
-                v-if="String(user.serial_number).length<4"
-                >No.{{(("000") + user.serial_number ).substr(-3)}}</template>
-                <template
-                v-else
-                >No.{{user.serial_number}}</template>
-              </div>
-            </v-flex>
-            <v-flex xs6
-            :class="{'mt-0': $vuetify.breakpoint.smAndDown, 'mt-4': $vuetify.breakpoint.lgAndUp}">
-              <div class="pl-2 text-xs-left">
-                <p>@{{ user.nickname }}</p>
-                <p>{{ user.name }}</p>
-                <p>{{ user.title }}</p>
-                <p>戦闘力 {{ user.twitter_followers_count}}</p>
-              </div>
-            </v-flex>
-          </v-layout>
-          <hr style="border: 1px solid #000;">
-          <div class="mt-3">
-            <p>{{user.description1}}</p>
-            <p>{{user.description2}}</p>
-            <p>{{user.description3}}</p>
-          </div>
-        </v-flex>
-      </v-layout> -->
       <v-layout row justify-center>
         <v-dialog
           v-model="dialog"
@@ -294,6 +232,8 @@
       </v-layout>
 
 
+
+      </template>
     </v-container>
   </div>
 </template>
@@ -338,16 +278,24 @@ export default {
           likedFlg: data.user.liked
         }
     }).catch(() => {
+      return { 
+          user: null, 
+          talks: null,
+          likeSum: null,
+          likedFlg: null
+        }
     })
     return userData
   },
   head () {
-    return {
-      title: "ツイットモンスター | " + this.user.name,
-      meta: [
-        { hid: 'og:description', name: 'description', content: this.user.description1 + " " + this.user.description2 + " " + this.user.description3 },
-        { hid: 'og:image', property: 'og:image', content: this.user.ogp_img_url },
-      ],
+    if(this.user){
+      return {
+        title: "ツイットモンスター | " + this.user.name,
+        meta: [
+          { hid: 'og:description', name: 'description', content: this.user.description1 + " " + this.user.description2 + " " + this.user.description3 },
+          { hid: 'og:image', property: 'og:image', content: this.user.ogp_img_url },
+        ],
+      }
     }
   },
   methods: {

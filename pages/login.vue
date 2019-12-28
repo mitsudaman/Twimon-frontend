@@ -1,44 +1,46 @@
 <template>
   <div>
-    <v-container grid-list-xl>
-      <v-layout row justify-center align-center>
-        <v-flex xs10>
+    <v-container 
+  :class="{'back-ground-color-sm-and-down': breakpoint.smAndDown}">
+      <v-row align="center" justify="center">
+        <v-col cols="11">
           <v-card class="rounded-card">
-            <v-layout justify-center align-center>
-              <v-flex xs11 mt-4 pb-0 title>
+            <v-row align="center" justify="center">
+              <v-col cols="11" class="mt-4 pb-0 title">
                 <p>ボタンをクリックするとTwitterログイン画面に移動します</p>
-              </v-flex>
-            </v-layout>
-            <v-layout justify-center align-center>
-              <v-flex xs11 d-flex pb-4>
+              </v-col>
+            </v-row>
+            <v-row align="center" justify="center">
+              <v-col cols="11" class="pb-4">
                 <v-btn
-                round
+                rounded
+                block
                 :loading="loading"
-                class="btn-tw"
+                class="btn-tw title"
                 @click="onLogin()">
                   <i class="fab fa-twitter"></i>ログイン
                 </v-btn>
-              </v-flex>
-            </v-layout>
+              </v-col>
+            </v-row>
           </v-card>
-        </v-flex>
-      </v-layout>
-      <v-layout row justify-center align-center mt-5>
-        <v-flex xs10>
+        </v-col>
+      </v-row>
+      <v-row align="center" justify="center">
+        <v-col cols="11">
           <v-card class="rounded-card">
-            <v-layout justify-center align-center>
-              <v-flex xs11 mt-4 pb-4>
+            <v-row align="center" justify="center">
+              <v-col cols="11" class="mt-4 pb-4">
                 <p class="subheading">ツイットモンスターは個人を識別するためにTwitterアカウントの連携を必要としています。</p>
                 <ul>
                   <li>連携許可をログイン以外の目的で使用することはありません。</li>
                   <li>あなたのアカウントからツイートすることはありません。</li>
                   <li>DMなどを勝手に送信することはありません。</li>
                 </ul>
-              </v-flex>
-            </v-layout>
+              </v-col>
+            </v-row>
           </v-card>
-        </v-flex>
-      </v-layout>
+        </v-col>
+      </v-row>
     </v-container>
   </div>
 </template>
@@ -49,8 +51,19 @@ export default {
   },
   data () {
     return {
+      isHydrated: false,
       loading: false,
     }
+  },
+  computed: {
+    breakpoint () {
+      return this.isHydrated
+        ? this.$vuetify.breakpoint
+        : ''
+    }
+  },
+  mounted() {
+    this.isHydrated = true
   },
   methods: {
     async onLogin () {

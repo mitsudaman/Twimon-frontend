@@ -19,8 +19,9 @@ $ty17-color: #919191;
 $ty18-color: #e06cbb;
 
 .container{
-    max-width: 600px;
+    max-width: 600px!important;
     background-color: #fff;
+    border-radius:5px;
 }
 .back-ground-color-sm-and-down{
     background-color: $theme-color;

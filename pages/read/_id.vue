@@ -117,11 +117,11 @@
                       <v-row
                         align="center">
                         <v-col cols="10" class="font-weight-bold subtitle-1 py-0">タイプ</v-col>
-                        <v-col cols="5" class="text-center pt-1">
+                        <v-col cols="6" class="text-center pt-1">
                           <v-card v-if="user.type1" outlined :color="user.type1 | getTypeColor" class="white--text caption font-weight-bold type_area"> {{user.type1}} </v-card>
                         </v-col>
-                        <v-col cols="5" class="text-center pt-1">
-                          <v-card v-if="user.type1" outlined :color="user.type2 | getTypeColor" class="white--text caption font-weight-bold type_area"> 
+                        <v-col cols="6" class="text-center pt-1">
+                          <v-card v-if="user.type2" outlined :color="user.type2 | getTypeColor" class="white--text caption font-weight-bold type_area"> 
                             {{ user.type2 }}
                             </v-card>
                         </v-col>
@@ -183,12 +183,6 @@
               </v-card-text>
             </v-card>
           </v-dialog>
-        </v-row>
-        <v-row>
-          <v-col>
-            <p>talkIndex:{{talkIndex}}</p>
-            <p>sentenceIndex:{{sentenceIndex}}</p>
-          </v-col>
         </v-row>
         <v-row
           align="center"

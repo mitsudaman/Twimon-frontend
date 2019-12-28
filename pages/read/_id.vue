@@ -9,7 +9,7 @@
         </v-row>
       </template>
       <template v-else>
-        <v-layout row justify-center>
+        <v-row>
           <v-dialog
             v-model="loginDialog"
             max-width="400">
@@ -18,14 +18,15 @@
               <v-card-actions class="text-xs-right">
                 <v-spacer></v-spacer>
                 <v-btn
-                  round
-                  color="blue darken-1"
-                  text
+                  rounded
+                  class="font-weight-bold"
+                  color="blue darken-1 white--text"
                   @click="$router.replace({ path: '/login'})">
                   ログインする
                 </v-btn>
                 <v-btn
-                  round
+                  rounded
+                  class="font-weight-bold"
                   color="darken-1"
                   @click="loginDialog = false">
                   ログインしない
@@ -33,7 +34,7 @@
               </v-card-actions>
             </v-card>
           </v-dialog>
-        </v-layout>
+        </v-row>
         <v-row
           justify="center">
           <v-col cols="12" class="pb-0">

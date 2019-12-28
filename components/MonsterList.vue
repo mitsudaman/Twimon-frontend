@@ -10,16 +10,14 @@
         :hover="true"
         class="mx-auto text-left"
         :to="'/read/' + user.id" flat
-            :style="{border: 'solid 2px' + $vuetify.theme.themes.light.background + '!important' }"
+        :style="{border: 'solid 2px' + $vuetify.theme.themes.light.background + '!important' }"
       >
        <v-row no-gutters>
          <v-col cols="4" md="12" class="pa-1 pa-md-0">
+          <span v-if="user.hall_of_fame_flg || user.like_ct >= 10" class="ribbon">★</span>
           <v-img
             v-bind:src="user.sns_img_url" 
             aspect-ratio="1">
-            <div class="ribbon-wrapper">
-              <span class="ribbon">★</span>
-            </div>
           </v-img>
          </v-col>
          <v-col cols="8" md="12">

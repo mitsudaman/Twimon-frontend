@@ -21,7 +21,11 @@ $ty18-color: #e06cbb;
 .container{
     max-width: 600px!important;
     background-color: #fff;
-    border-radius:5px;
+}
+@media screen and (min-width:600px) { 
+    .container{
+        border-radius:5px;
+    }
 }
 .back-ground-color-sm-and-down{
     background-color: $theme-color;
@@ -297,37 +301,48 @@ h2 span {
     margin-bottom:10px;
 }
 
-.ribbon-wrapper {  
-    display: block;
-    position: relative;
-    margin: 15px auto;
-    padding: 10px 0;
-    box-sizing: border-box;
-}
+$theme-color: #FFD700;
   
-.ribbon {  
+.ribbon {
     display: inline-block;
     position: absolute;
-    top: 0;
-    right: 10px;
+    top: -6px;
+    right: 6px;
     margin: 0;
-    padding: 10px 0;
+    padding: 5px 0;
     z-index: 2;
     width: 40px;
     text-align: center;
-    font-size: 17px;
     color: white;
-    background: #ff785b;
+    font-size: 17px;
+    // background: linear-gradient(#ff785b 0%, #e95738 100%);
+    background: $theme-color;
+    border-radius: 2px 0 0 0;
+}
+
+@media screen and (min-width:600px) { 
+    .ribbon{
+        top: -8px;
+    }
 }
   
-  .ribbon14:after {
+.ribbon:before {
+    position: absolute;
+    content: '';
+    top: 0;
+    right: -6px;
+    border: none;
+    border-bottom: solid 6px $theme-color;
+    border-right: solid 6px transparent;
+}
+.ribbon:after {
     content: '';
     position: absolute;
     left: 0;
     top: 100%;
     height: 0;
     width: 0;
-    border-left: 20px solid #ff785b;
-    border-right: 20px solid #ff785b;
+    border-left: 20px solid $theme-color;
+    border-right: 20px solid $theme-color;
     border-bottom: 10px solid transparent;
-  }
+}

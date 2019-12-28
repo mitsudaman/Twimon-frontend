@@ -269,6 +269,13 @@ $ty18-color: #e06cbb;
     }
 }
 
+h1{
+    font-size:1.3em !important;
+    background-color: $theme-color;
+    color: #ffffff;
+    text-align: center;
+    border-radius: 6px !important;
+}
 h2{
     border:none !important;
     border-bottom: solid 2px #2196F3 !important;

@@ -47,7 +47,7 @@
       </v-toolbar>
     </div>
 
-    <v-content class="my-4">
+    <v-content class="my-md-4">
         <nuxt/>
     </v-content>
 

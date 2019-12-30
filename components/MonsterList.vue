@@ -68,11 +68,4 @@ export default {
 }
 </script>
 <style type="text/css">
-.type_area {
-  white-space: nowrap;
-}
-.type_area span{
-  text-align: center !important;
-
-}
 </style>

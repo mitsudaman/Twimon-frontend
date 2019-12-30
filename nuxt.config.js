@@ -16,7 +16,7 @@ module.exports = {
       { hid: 'og:description', property: 'og:description', content: 'ツイッター上に生息するモンスターの図鑑サービスです。' },
       { hid: 'og:url',property: 'og:url', content: 'https://twimon.com' },
       { hid: 'og:site_name', property: 'og:site_name', content: 'ツイットモンスター' },
-      { hid: 'og:image', property: 'og:image', content: 'https://twimon.com/ogp.jpg' },
+      { hid: 'og:image', property: 'og:image', content: 'https://twimon.com/OGP.png' },
       { name: 'twitter:site', content: '@twimon1000' },
       { name: 'twitter:card', content: 'summary_large_image' },
     ],

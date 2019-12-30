@@ -4,7 +4,7 @@
       <v-expansion-panels>
         <v-expansion-panel>
           <v-expansion-panel-header disable-icon-rotate>
-            タイプで探す
+            <span class="font-weight-bold">なまえまたはタイプで探す</span>
             <template v-slot:actions>
               <v-icon :color="$vuetify.theme.themes.light.background">mdi-magnify</v-icon>
             </template>
@@ -22,7 +22,7 @@
               align="center"
               justify="center">
               <v-col v-for="type in types" 
-              v-bind:key="type.id" cols="4" md="3">
+              v-bind:key="type.id" cols="4" md="3" class="py-1">
                 <v-card  
                   outlined 
                   v-on:click='type.select=!type.select' 

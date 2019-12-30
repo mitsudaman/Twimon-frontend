@@ -69,6 +69,13 @@ $ty18-color: #e06cbb;
 .border-bottom{
     border-bottom: 2px solid $theme-color;
 }
+.type_area {
+    white-space: nowrap !important;
+}
+  .type_area span{
+    text-align: center !important;
+  
+}
 .ty-area:focus:before {
     opacity: 0 !important;
 }

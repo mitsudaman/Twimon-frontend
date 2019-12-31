@@ -68,7 +68,7 @@
               <v-spacer></v-spacer>
               <v-col class="text-right headline py-0">
                 <a 
-                  v-bind:href="'https://twitter.com/share?text=やせいの ' + user.name + ' が あらわれた！&hashtags=ツイットモンスター&url=https://twimon-backend.herokuapp.com/og/'+ $route.params.id"
+                  v-bind:href="'https://twitter.com/share?text=やせいの ' + user.name + ' が あらわれた！&hashtags=ツイットモンスター&url=https://twimon.com/read/'+ $route.params.id"
                   target="_blank" 
                   rel="noopener"
                   class="mr-2"

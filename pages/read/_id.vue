@@ -186,7 +186,8 @@
         </v-row>
         <v-row
           align="center"
-          justify="center">
+          justify="center"
+          class="mb-10">
           <v-col cols="11" md="10">
             <v-row v-if="!talkViewFlg">
               <v-col cols="6">

@@ -124,7 +124,7 @@
                         編集
                       </div>
                     </div>
-                    <p class="font-weight-thin reaction_list_text">ユーザーが【しらべる】コマンドを押したときに表示されるリンクの一覧です。リンク名とURLを最大5個設定できます。</p>
+                    <p class="font-weight-thin reaction_list_text">ユーザーが【しらべる】コマンドを押したときに表示されるリンクの一覧です。URLを最大5個設定できます。</p>
                   </v-col>
                 </v-row>
               </v-col>

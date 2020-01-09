@@ -1,5 +1,5 @@
-query GetUsers ($perPage:Int!,$page:Int!,$name:String,$searchTypes:[String]){
-  getUsers(perPage: $perPage, page:$page,name:$name,searchTypes: $searchTypes){
+query GetUsers ($perPage:Int!,$page:Int!,$name:String,$searchTypes:[String],$withDescription:Boolean,$talkEditedFlg:Boolean){
+  getUsers(perPage: $perPage, page:$page,name:$name,searchTypes: $searchTypes,withDescription: $withDescription,talkEditedFlg: $talkEditedFlg){
     users {
             id
             serial_number
@@ -17,6 +17,7 @@ query GetUsers ($perPage:Int!,$page:Int!,$name:String,$searchTypes:[String]){
             ogp_img_url
             hall_of_fame_flg
             legend_flg
+      			talk_edited_flg
           	like_ct
           	liked
         }

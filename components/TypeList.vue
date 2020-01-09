@@ -18,6 +18,40 @@
                 ></v-text-field>
               </v-col>
             </v-row>
+            <v-row>
+              <v-col cols="6" md="4" class="text-left ">
+                <label>せつめい</label>
+                <v-switch 
+                v-model="withDescription" 
+                class="mt-2"
+                inset>
+                  <template v-slot:label>
+                    <template v-if="withDescription">
+                      ありのみ
+                    </template>
+                    <template v-else>
+                      ぜんぶ
+                    </template>
+                  </template>
+                </v-switch>
+              </v-col>
+              <v-col cols="6" md="5" class="text-left ">
+                <label>かいわ　</label>
+                <v-switch 
+                v-model="talkEditedFlg" 
+                class="mt-2"
+                inset>
+                  <template v-slot:label>
+                    <template v-if="talkEditedFlg">
+                      アレンジのみ
+                    </template>
+                    <template v-else>
+                      すべて
+                    </template>
+                  </template>
+                </v-switch>
+              </v-col>
+            </v-row>
             <v-row
               align="center"
               justify="center">
@@ -42,7 +76,7 @@
                   block
                   @click="onSendParent()"
                   color="primary">
-                  <span>こうしん</span>
+                  <span>けんさく</span>
                 </v-btn>
               </v-col>
             </v-row>
@@ -60,12 +94,17 @@ export default {
   },
   data () {
     return {
-      name: ''
+      name: '',
+      withDescription: true,
+      withTalkMonsters: true,
+      talkEditedFlg: false,
     }
   },
   methods:{
     onSendParent(){
         this.$parent.name = this.name;
+        this.$parent.withDescription = this.withDescription;
+        this.$parent.talkEditedFlg = this.talkEditedFlg;
         this.$emit('child-event');
     }
   }

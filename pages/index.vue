@@ -17,8 +17,14 @@
       justify="center"
       no-gutters>
       <v-col>
-        <type-list :name="name" :types="types" @child-event="onSearchUsers"/>
+        <type-list 
+        :name="name" 
+        :types="types" 
+        :withDescription="withDescription"
+        :talkEditedFlg="talkEditedFlg"
+        @child-event="onSearchUsers"/>
         <monster-list :users="users"/>
+        <!-- {{users}} -->
         <v-row>
           <v-col>
             <v-pagination
@@ -50,9 +56,8 @@ export default {
     return {
       isHydrated: false,
       name: '',
-      title: '',
-      height: '',
-      weight: '',
+      withDescription: true,
+      talkEditedFlg: false,
       user: {
       },
       page: 1,
@@ -101,10 +106,12 @@ export default {
       query: GET_USERS_GQL,
       variables () {
         return {
-          perPage:12,
+          perPage:24,
           page: this.page,
           name: this.name,
           searchTypes:this.searchTypes,
+          withDescription: this.withDescription,
+          talkEditedFlg: this.talkEditedFlg
         }
       },
       update (data) {

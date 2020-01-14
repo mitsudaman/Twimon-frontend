@@ -1,15 +1,4 @@
 <template>
-  <!-- <v-parallax
-    dark
-    src="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg">
-    <v-layout
-      align-center
-      column
-      justify-center
-    >
-      <h1 class="display-4 title_text font-weight-thin mb-3">ツイットモンスター</h1>
-    </v-layout>
-  </v-parallax> -->
   <v-container fluid fill-height text-center
   :class="{'back-ground-color-sm-and-down': breakpoint.smAndDown}"> 
     <v-row 
@@ -18,8 +7,7 @@
       no-gutters>
       <v-col>
         <type-list @child-event="onSearchUsers"/>
-        <!-- <monster-list :users="users"/> -->
-        {{users}}
+        <monster-list :users="users"/>
         <v-row>
           <v-col>
             <v-pagination

@@ -12,8 +12,7 @@
             <p class="mb-5 title">お気に入りのモンスターが登録されていません！</p>
           </v-col>
         </v-row>
-        <!-- <monster-list :users="likeUsers"/> -->
-        {{likeUsers}}
+        <monster-list :users="likeUsers"/>
         <v-row>
           <v-col>
             <v-pagination

@@ -60,6 +60,7 @@
                 <v-card  
                   outlined 
                   v-on:click='type.select=!type.select'
+                  v-bind:class="[{active:type.select},type.class]"
                   class="caption font-weight-bold ty-area"> 
                   {{type.name}} 
                 </v-card>

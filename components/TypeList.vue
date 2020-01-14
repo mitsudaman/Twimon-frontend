@@ -59,7 +59,7 @@
               v-bind:key="type.id" cols="4" md="3" class="py-1">
                 <v-card  
                   outlined 
-                  v-on:click='type.select=!type.select' 
+                  v-on:click='type.select=!type.select'
                   class="caption font-weight-bold ty-area"> 
                   {{type.name}} 
                 </v-card>
@@ -88,12 +88,11 @@
 
 <script>
 export default {
-  // props: {
-  //   types: Array
-  // },
   data () {
     return {
-      name: '',
+      name: "",
+      withDescription: true,
+      talkEditedFlg: false,
       types: [
         {name:'ノーマル',class:'ty1',select:false},
         {name:'ほのお',class:'ty2',select:false},
@@ -114,62 +113,56 @@ export default {
         {name:'はがね',class:'ty17',select:false},
         {name:'フェアリー',class:'ty18',select:false},
       ],
-      searchTypes:[],
-      withDescription: true,
-      withTalkMonsters: true,
-      talkEditedFlg: false,
     }
   },
   mounted() {
-    if (localStorage.name) {
-      this.name = localStorage.name;
-      this.$parent.name = this.name;
+    if(this.$route.name == 'index'){
+      if (localStorage.tw_name) {
+        this.name = localStorage.tw_name;
+        this.$parent.name = this.name;
+      }
+      if (localStorage.tw_with_description) {
+        var boolean = localStorage.tw_with_description == 'true' ? true : false;
+        this.withDescription = boolean;
+        this.$parent.withDescription = this.withDescription;
+      }
+      if (localStorage.tw_talk_edited_flg) {
+        var boolean = localStorage.tw_talk_edited_flg == 'true' ? true : false;
+        this.talkEditedFlg = boolean;
+        this.$parent.talkEditedFlg = this.talkEditedFlg;
+      }
+      if (localStorage.tw_types) {
+        this.types = JSON.parse(localStorage.getItem('tw_types'))
+      }
     }
-    if (localStorage.withDescription) {
-      var boolean = localStorage.withDescription == 'true' ? true : false;
-      this.withDescription = boolean;
-      this.$parent.withDescription = boolean;
+    if(this.$route.name == 'favorite'){
+      if (localStorage.tw_fa_name) {
+        this.name = localStorage.tw_fa_name;
+        this.$parent.name = this.name;
+      }
+      if (localStorage.tw_fa_with_description) {
+        var boolean = localStorage.tw_fa_with_description == 'true' ? true : false;
+        this.withDescription = boolean;
+        this.$parent.withDescription = this.withDescription;
+      }
+      if (localStorage.tw_fa_talk_edited_flg) {
+        var boolean = localStorage.tw_fa_talk_edited_flg == 'true' ? true : false;
+        this.talkEditedFlg = boolean;
+        this.$parent.talkEditedFlg = this.talkEditedFlg;
+      }
+      if (localStorage.tw_fa_types) {
+        this.types = JSON.parse(localStorage.getItem('tw_fa_types'))
+      }
     }
-    if (localStorage.talkEditedFlg) {
-      var boolean = localStorage.talkEditedFlg == 'true' ? true : false;
-      this.talkEditedFlg = boolean;
-      this.$parent.talkEditedFlg = boolean;
-    }
-    if (localStorage.types) {
-      // this.types = JSON.parse(localStorage.getItem('types'))
-      this.$parent.searchTypes  = _.filter(this.types, function(n) { return n.select; });
-      this.$parent.searchTypes = _.map(this.searchTypes,(n)=>{
-        return (_.pick(n, ['name'])).name;
-      })
-      console.log(this.$parent.searchTypes)
-    }
-  },
-  watch: {
-    // types(newTypes) {
-    //   localStorage.types = this.types.join(',');
-    // },
-    name(newName) {
-      localStorage.name = newName;
-    },
-    withDescription(newWithDescription) {
-      localStorage.withDescription = newWithDescription;
-    },
-    withTalkMonsters(newTalkEditedFlg) {
-      localStorage.talkEditedFlg = newTalkEditedFlg;
-    },
   },
   methods:{
     onSendParent(){
-        this.$parent.name = this.name;
-        this.$parent.withDescription = this.withDescription;
-        this.$parent.talkEditedFlg = this.talkEditedFlg;
+      this.$parent.name = this.name;
+      this.$parent.withDescription = this.withDescription;
+      this.$parent.talkEditedFlg = this.talkEditedFlg;
+      this.$parent.types = this.types;
 
-        // タイプをjson化してローカルストレージに格納
-        const parsed = JSON.stringify(this.types);
-        localStorage.setItem('types', parsed);
-        this.$parent.types = this.types;
-
-        this.$emit('child-event');
+      this.$emit('child-event');
     }
   }
 }

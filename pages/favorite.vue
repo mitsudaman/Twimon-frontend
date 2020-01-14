@@ -6,13 +6,14 @@
       justify="center"
       no-gutters>
       <v-col>
-        <type-list :name="name" :types="types" @child-event="onSearchLikeUsers"/>
+        <type-list @child-event="onSearchLikeUsers"/>
         <v-row v-if="likeUsers && likeUsers.length==0">
           <v-col>
             <p class="mb-5 title">お気に入りのモンスターが登録されていません！</p>
           </v-col>
         </v-row>
-        <monster-list :users="likeUsers"/>
+        <!-- <monster-list :users="likeUsers"/> -->
+        {{likeUsers}}
         <v-row>
           <v-col>
             <v-pagination
@@ -49,26 +50,9 @@ export default {
       lastPage: 0,
       searchTypes:[],
       name: '',
-      types: [
-        {name:'ノーマル',class:'ty1',select:false},
-        {name:'ほのお',class:'ty2',select:false},
-        {name:'みず',class:'ty3',select:false},
-        {name:'くさ',class:'ty4',select:false},
-        {name:'でんき',class:'ty5',select:false},
-        {name:'こおり',class:'ty6',select:false},
-        {name:'かくとう',class:'ty7',select:false},
-        {name:'どく',class:'ty8',select:false},
-        {name:'じめん',class:'ty9',select:false},
-        {name:'ひこう',class:'ty10',select:false},
-        {name:'エスパー',class:'ty11',select:false},
-        {name:'むし',class:'ty12',select:false},
-        {name:'いわ',class:'ty13',select:false},
-        {name:'ゴースト',class:'ty14',select:false},
-        {name:'ドラゴン',class:'ty15',select:false},
-        {name:'あく',class:'ty16',select:false},
-        {name:'はがね',class:'ty17',select:false},
-        {name:'フェアリー',class:'ty18',select:false},
-      ],
+      withDescription: false,
+      talkEditedFlg: false,
+      types: [],
     }
   },
   computed: {
@@ -85,6 +69,20 @@ export default {
   },
   mounted() {
     this.isHydrated = true
+    if (localStorage.tw_fa_page) {
+      this.page = Number(localStorage.tw_fa_page);
+    }
+    if (localStorage.types) {
+      this.searchTypes  = _.filter(JSON.parse(localStorage.getItem("types")), function(n) { return n.select; });
+      this.searchTypes = _.map(this.searchTypes,(n)=>{
+        return (_.pick(n, ['name'])).name;
+      })
+    }
+  },
+  watch: {
+    page(newPage) {
+      localStorage.tw_fa_page = newPage;
+    }
   },
   apollo: {
     $prefetch: false,
@@ -92,10 +90,12 @@ export default {
       query: GET_LIKE_USERS_GQL,
       variables () {
         return {
-          perPage: 12,
+          perPage: 1,
           page: this.page,
           name: this.name,
           searchTypes:this.searchTypes,
+          withDescription: this.withDescription,
+          talkEditedFlg: this.talkEditedFlg
         }
       },
       update (data) {
@@ -103,12 +103,17 @@ export default {
         return data.getLikeUsers.likeUsers
       },
       error (error) {
-        return $router.replace({ path: '/login'})
+        return $router.push({ path: '/login'})
       },
     }
   },
   methods: {
     onSearchLikeUsers () {
+      localStorage.tw_fa_name = this.name;
+      localStorage.tw_fa_with_description = this.withDescription;
+      localStorage.tw_fa_talk_edited_flg = this.talkEditedFlg;
+      const parsed = JSON.stringify(this.types);
+      localStorage.setItem('tw_fa_types', parsed);
       this.searchTypes  = _.filter(this.types, function(n) { return n.select; });
       this.searchTypes = _.map(this.searchTypes,(n)=>{
         return (_.pick(n, ['name'])).name;

@@ -17,13 +17,7 @@
       justify="center"
       no-gutters>
       <v-col>
-        <type-list 
-        :name="name" 
-        :types="types" 
-        :searchTypes="searchTypes" 
-        :withDescription="withDescription"
-        :talkEditedFlg="talkEditedFlg"
-        @child-event="onSearchUsers"/>
+        <type-list @child-event="onSearchUsers"/>
         <!-- <monster-list :users="users"/> -->
         {{users}}
         <v-row>
@@ -55,6 +49,7 @@ export default {
   },
   data () {
     return {
+      querySkip: true,
       isHydrated: false,
       name: '',
       withDescription: true,
@@ -82,13 +77,21 @@ export default {
   },
   mounted() {
     this.isHydrated = true
-    if (localStorage.page) {
-      this.page = Number(localStorage.page);
+    if (localStorage.tw_page) {
+      this.page = Number(localStorage.tw_page);
     }
+    if (localStorage.tw_types) {
+      this.types = JSON.parse(localStorage.getItem('tw_types'))
+      this.searchTypes  = _.filter(this.types, function(n) { return n.select; });
+      this.searchTypes = _.map(this.searchTypes,(n)=>{
+        return (_.pick(n, ['name'])).name;
+      })
+    }
+    this.querySkip = false;
   },
   watch: {
     page(newPage) {
-      localStorage.page = newPage;
+      localStorage.tw_page = newPage;
     }
   },
   apollo: {
@@ -107,11 +110,19 @@ export default {
       update (data) {
         this.lastPage = data.getUsers.paginatorInfo.lastPage
         return data.getUsers.users
-      }
+      },
+      skip() {
+        return this.querySkip
+      },
     }
   },
   methods: {
     onSearchUsers () {
+      localStorage.tw_name = this.name;
+      localStorage.tw_with_description = this.withDescription;
+      localStorage.tw_talk_edited_flg = this.talkEditedFlg;
+      const parsed = JSON.stringify(this.types);
+      localStorage.setItem('tw_types', parsed);
       this.page = 1
       this.searchTypes  = _.filter(this.types, function(n) { return n.select; });
       this.searchTypes = _.map(this.searchTypes,(n)=>{

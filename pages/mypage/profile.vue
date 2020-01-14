@@ -263,7 +263,7 @@ export default {
         return _.cloneDeep(data.me)
       },
       error (error) {
-        return this.$router.replace({ path: '/login'})
+        return this.$router.push({ path: '/login'})
       },
     }
   },

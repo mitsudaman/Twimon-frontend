@@ -1,11 +1,12 @@
 <template>
-  <v-app 
-   :style="{background: $vuetify.theme.themes.light.background}">
+<v-app>
+  <!-- <v-app 
+   :style="{background: $vuetify.theme.themes.light.background}"> -->
     <div color="grey lighten-4" flat height="60px">
       <v-toolbar flat>
         <nuxt-link to='/'>
           <!-- <img src="~/assets/img/twimon.png" class="pt-1 mr-1"/> -->
-          <img src="~/assets/img/logo.png" class="pt-1"/>
+          <!-- <img src="~/assets/img/logo.png" class="pt-1"/> -->
         </nuxt-link>
         <v-spacer></v-spacer>
         <v-menu>

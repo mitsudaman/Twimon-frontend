@@ -46,9 +46,11 @@
       </v-toolbar>
     </div>
     <div class="banner">
+      <a href="https://sasakkuma.com/" target="_blank">
       <v-img 
         v-bind:src="image_src" 
         aspect-ratio="4"></v-img>
+      </a>
     </div>
     <v-content class="my-md-4">
         <nuxt/>

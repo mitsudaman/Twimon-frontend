@@ -45,7 +45,11 @@
         </v-menu>
       </v-toolbar>
     </div>
-
+    <div class="banner">
+      <a href='https://www.amazon.co.jp/dp/B088K5Q8L1/' target="_blank">
+        <img src="~/assets/img/sasakuma.jpg" class="pt-1"/>
+      </a>
+    </div>
     <v-content class="my-md-4">
         <nuxt/>
     </v-content>
@@ -126,5 +130,9 @@
 .title_name{
   font-size:24px;
   font-family: 'PixelMplus';
+}
+.banner{
+  text-align: center;
+  margin-top: 10px;
 }
 </style>

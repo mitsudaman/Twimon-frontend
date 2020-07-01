@@ -46,9 +46,9 @@
       </v-toolbar>
     </div>
     <div class="banner">
-      <a href='https://sasakkuma.com/' target="_blank">
-        <img src="~/assets/img/sasakuma.jpg" class="pt-1"/>
-      </a>
+      <v-img 
+        v-bind:src="image_src" 
+        aspect-ratio="4"></v-img>
     </div>
     <v-content class="my-md-4">
         <nuxt/>
@@ -103,6 +103,7 @@
         rightDrawer: false,
         title: 'ツイモン',
         onLogOut: false,
+        image_src: require("@/assets/img/sasakuma.jpg")
       }
     },
     methods: {
@@ -134,5 +135,6 @@
 .banner{
   text-align: center;
   margin-top: 10px;
+  padding:0 10px;
 }
 </style>

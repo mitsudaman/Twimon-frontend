@@ -46,7 +46,7 @@
       </v-toolbar>
     </div>
     <div class="banner">
-      <a href='https://www.amazon.co.jp/dp/B088K5Q8L1/' target="_blank">
+      <a href='https://sasakkuma.com/' target="_blank">
         <img src="~/assets/img/sasakuma.jpg" class="pt-1"/>
       </a>
     </div>
